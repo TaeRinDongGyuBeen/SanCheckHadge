@@ -12,8 +12,8 @@ struct WalkingMapView: View {
     // 현재 위치를 나타내주는 @State 변수. Map()의 파라미터의 Binding으로 사용됨.
     @State private var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(
-            latitude: 37.5,
-            longitude: 126.5),
+            latitude: 37.4025,
+            longitude: 127.1013),
         span: MKCoordinateSpan(
             latitudeDelta: 0.03,
             longitudeDelta: 0.03
@@ -26,11 +26,16 @@ struct WalkingMapView: View {
         GeometryReader { geometry in
             ZStack {
                 Map(coordinateRegion: $region, interactionModes: MapInteractionModes.all, showsUserLocation: true, userTrackingMode: $userTrackingMode)
+                    
                     .edgesIgnoringSafeArea(.all)
                 
                 Button(action: {
-                    requestLocationPermission()
                     userTrackingMode = .follow
+                    // 정확도 설정 - 최고로 높은 정확도
+                    locationManager.desiredAccuracy = kCLLocationAccuracyBest
+                    requestLocationPermission()
+                    // 위치 업데이트 시작
+                    locationManager.startUpdatingLocation()
                 }) {
                     Image(systemName: "location.circle.fill")
                         .resizable()
