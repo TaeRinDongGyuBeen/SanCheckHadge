@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C921EE472A275F4F00290875 /* WalkingMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C921EE462A275F4F00290875 /* WalkingMapView.swift */; };
 		C9D8CD8B2A27597000A880E8 /* InToTheSeoulApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D8CD8A2A27597000A880E8 /* InToTheSeoulApp.swift */; };
 		C9D8CD8D2A27597000A880E8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D8CD8C2A27597000A880E8 /* ContentView.swift */; };
 		C9D8CD8F2A27597100A880E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9D8CD8E2A27597100A880E8 /* Assets.xcassets */; };
@@ -14,6 +15,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C921EE462A275F4F00290875 /* WalkingMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkingMapView.swift; sourceTree = "<group>"; };
+		C921EE482A27675F00290875 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C9D8CD872A27597000A880E8 /* InToTheSeoul.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InToTheSeoul.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9D8CD8A2A27597000A880E8 /* InToTheSeoulApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InToTheSeoulApp.swift; sourceTree = "<group>"; };
 		C9D8CD8C2A27597000A880E8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -43,6 +46,7 @@
 			isa = PBXGroup;
 			children = (
 				C9D8CD8C2A27597000A880E8 /* ContentView.swift */,
+				C921EE462A275F4F00290875 /* WalkingMapView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -74,6 +78,7 @@
 		C9D8CD892A27597000A880E8 /* InToTheSeoul */ = {
 			isa = PBXGroup;
 			children = (
+				C921EE482A27675F00290875 /* Info.plist */,
 				C9D8CD8A2A27597000A880E8 /* InToTheSeoulApp.swift */,
 				C921EE442A275C8D00290875 /* View */,
 				C921EE432A275C8B00290875 /* Model */,
@@ -161,6 +166,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C921EE472A275F4F00290875 /* WalkingMapView.swift in Sources */,
 				C9D8CD8D2A27597000A880E8 /* ContentView.swift in Sources */,
 				C9D8CD8B2A27597000A880E8 /* InToTheSeoulApp.swift in Sources */,
 			);
@@ -294,11 +300,13 @@
 				DEVELOPMENT_TEAM = UULN4L9KLP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = InToTheSeoul/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -323,11 +331,13 @@
 				DEVELOPMENT_TEAM = UULN4L9KLP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = InToTheSeoul/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
