@@ -32,6 +32,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C921EE432A275C8B00290875 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C921EE442A275C8D00290875 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C9D8CD8C2A27597000A880E8 /* ContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C921EE452A275CA400290875 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				C9D8CD8E2A27597100A880E8 /* Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		C9D8CD7E2A27597000A880E8 = {
 			isa = PBXGroup;
 			children = (
@@ -52,8 +75,9 @@
 			isa = PBXGroup;
 			children = (
 				C9D8CD8A2A27597000A880E8 /* InToTheSeoulApp.swift */,
-				C9D8CD8C2A27597000A880E8 /* ContentView.swift */,
-				C9D8CD8E2A27597100A880E8 /* Assets.xcassets */,
+				C921EE442A275C8D00290875 /* View */,
+				C921EE432A275C8B00290875 /* Model */,
+				C921EE452A275CA400290875 /* Resource */,
 				C9D8CD902A27597100A880E8 /* Preview Content */,
 			);
 			path = InToTheSeoul;
