@@ -102,7 +102,7 @@ struct DataReceiveView: View {
                         ButtonComponent(
                             buttonType: .genderButton,
                             content: "여성",
-                            isTapped: genderActivatedList[0],
+                            isActive: genderActivatedList[0],
                             action: {
                                 genderActivatedList[0].toggle()
                                 genderActivatedList[1] = false
@@ -118,7 +118,7 @@ struct DataReceiveView: View {
                         ButtonComponent(
                             buttonType: .genderButton,
                             content: "남성",
-                            isTapped: genderActivatedList[1],
+                            isActive: genderActivatedList[1],
                             action: {
                                 genderActivatedList[1].toggle()
                                 genderActivatedList[0] = false
@@ -142,7 +142,7 @@ struct DataReceiveView: View {
                         ButtonComponent(
                             buttonType: .miniButton,
                             content: "19세 이하",
-                            isTapped: ageCheckList[0],
+                            isActive: ageCheckList[0],
                             action: {
                                 for i in stride(from: 0, through: ageCheckList.count - 1, by: 1) {
                                     ageCheckList[i] = false
@@ -160,7 +160,7 @@ struct DataReceiveView: View {
                         ButtonComponent(
                             buttonType: .miniButton,
                             content: "20대",
-                            isTapped: ageCheckList[1],
+                            isActive: ageCheckList[1],
                             action: {
                                 for i in stride(from: 0, through: ageCheckList.count - 1, by: 1) {
                                     ageCheckList[i] = false
@@ -178,7 +178,7 @@ struct DataReceiveView: View {
                         ButtonComponent(
                             buttonType: .miniButton,
                             content: "30대",
-                            isTapped: ageCheckList[2],
+                            isActive: ageCheckList[2],
                             action: {
                                 for i in stride(from: 0, through: ageCheckList.count - 1, by: 1) {
                                     ageCheckList[i] = false
@@ -197,7 +197,7 @@ struct DataReceiveView: View {
                         ButtonComponent(
                             buttonType: .miniButton,
                             content: "40대",
-                            isTapped: ageCheckList[3],
+                            isActive: ageCheckList[3],
                             action: {
                                 for i in stride(from: 0, through: ageCheckList.count - 1, by: 1) {
                                     ageCheckList[i] = false
@@ -215,7 +215,7 @@ struct DataReceiveView: View {
                         ButtonComponent(
                             buttonType: .miniButton,
                             content: "50대",
-                            isTapped: ageCheckList[4],
+                            isActive: ageCheckList[4],
                             action: {
                                 for i in stride(from: 0, through: ageCheckList.count - 1, by: 1) {
                                     ageCheckList[i] = false
@@ -233,7 +233,7 @@ struct DataReceiveView: View {
                         ButtonComponent(
                             buttonType: .miniButton,
                             content: "60대 이상",
-                            isTapped: ageCheckList[5],
+                            isActive: ageCheckList[5],
                             action: {
                                 for i in stride(from: 0, through: ageCheckList.count - 1, by: 1) {
                                     ageCheckList[i] = false
@@ -253,7 +253,7 @@ struct DataReceiveView: View {
                 ButtonComponent(
                     buttonType: .nextButton,
                     content: "시작하기",
-                    isTapped: nextButtonActivated,
+                    isActive: nextButtonActivated,
                     action: {
                         // 메인뷰로 넘어가기
                     }
