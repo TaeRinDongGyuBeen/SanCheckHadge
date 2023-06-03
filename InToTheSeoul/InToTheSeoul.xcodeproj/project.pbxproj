@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3D3846062A2B9C20008A9166 /* ButtonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3846052A2B9C20008A9166 /* ButtonComponent.swift */; };
+		C924BE182A2BD84600FF36BA /* DataReceiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C924BE172A2BD84600FF36BA /* DataReceiveView.swift */; };
 		C95F4AA32A2AE4A800DFBFE3 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95F4AA22A2AE4A800DFBFE3 /* ColorExtension.swift */; };
 		C95F4AA52A2B134500DFBFE3 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95F4AA42A2B134500DFBFE3 /* ViewExtension.swift */; };
 		C95F4AA72A2B14DB00DFBFE3 /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95F4AA62A2B14DB00DFBFE3 /* FontExtension.swift */; };
@@ -20,6 +21,7 @@
 /* Begin PBXFileReference section */
 		3D3846052A2B9C20008A9166 /* ButtonComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonComponent.swift; sourceTree = "<group>"; };
 		C921EE482A27675F00290875 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		C924BE172A2BD84600FF36BA /* DataReceiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataReceiveView.swift; sourceTree = "<group>"; };
 		C95F4AA22A2AE4A800DFBFE3 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		C95F4AA42A2B134500DFBFE3 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		C95F4AA62A2B14DB00DFBFE3 /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 		C921EE442A275C8D00290875 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C924BE162A2BD82E00FF36BA /* DataReceiveView */,
 				C9D8CD8C2A27597000A880E8 /* ContentView.swift */,
 			);
 			path = View;
@@ -70,6 +73,14 @@
 				C9D8CD8E2A27597100A880E8 /* Assets.xcassets */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		C924BE162A2BD82E00FF36BA /* DataReceiveView */ = {
+			isa = PBXGroup;
+			children = (
+				C924BE172A2BD84600FF36BA /* DataReceiveView.swift */,
+			);
+			path = DataReceiveView;
 			sourceTree = "<group>";
 		};
 		C95F4AA12A2AE47D00DFBFE3 /* Extension */ = {
@@ -197,6 +208,7 @@
 				3D3846062A2B9C20008A9166 /* ButtonComponent.swift in Sources */,
 				C95F4AA32A2AE4A800DFBFE3 /* ColorExtension.swift in Sources */,
 				C95F4AA52A2B134500DFBFE3 /* ViewExtension.swift in Sources */,
+				C924BE182A2BD84600FF36BA /* DataReceiveView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
