@@ -110,7 +110,7 @@ extension ButtonComponent {
             }
             .frame(width: 138, height: 159)
             .background(isTapped ? Color.theme.yellow : Color.theme.white)
-            .cornerRadius(30)
+            .cornerRadius(20)
             .shadow(color: Color.theme.shadow, radius: 3, y: 4)
         }
     }

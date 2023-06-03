@@ -20,9 +20,8 @@ struct ContentView: View {
                 .font(Font.seoul(.body4))
             TextField("시험용", text: $test)
             
-            ButtonComponent(buttonType: .mainViewButton, isTapped: isTapped, content: "산책\n기록보기", action: {
-                isTapped.toggle()
-            }, imageName: "bookmark.fill")
+            ButtonComponent(buttonType: .mainViewButton, content: "산책\n기록보기", isTapped: isTapped, imageName: "bookmark.fill") { isTapped.toggle()
+            }
         }
         .padding()
     }
