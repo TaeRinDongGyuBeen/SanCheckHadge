@@ -19,6 +19,8 @@ enum ButtonType {
     case miniButton
     case nextButton
     case mainViewButton
+    case storeProductButton
+    case storeReadyForSaleButton
 }
 
 /**
@@ -34,7 +36,7 @@ enum ButtonType {
  */
 struct ButtonComponent: View {
     var buttonType: ButtonType
-    let content: String
+    var content: String = ""
     var isTapped: Bool
     var imageName: String = ""
     let action: () -> Void
@@ -50,6 +52,10 @@ struct ButtonComponent: View {
             MiniButton(isTapped: isTapped, content: content, action: action)
         case .nextButton:
             NextButton(isTapped: isTapped, content: content, action: action)
+        case .storeProductButton:
+            StoreProductButton(isTapped: isTapped, imageName: imageName, action: action)
+        case .storeReadyForSaleButton:
+            StoreReadyForSaleButton(isTapped: isTapped, content: content, action: action)
         }
     }
 }
@@ -151,7 +157,56 @@ struct NextButton: View {
     }
 }
 
+struct StoreProductButton: View {
+    var isTapped: Bool
+    let imageName: String
+    let action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
+            // padding을 정확히 주기 위해 spacing을 0으로 처리한다.
+            VStack(spacing: 0) {
+                Image(imageName)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 49, height: 52)
+                    .foregroundColor(Color.theme.gray3)
+            }
+        }
+        .frame(width: 138, height: 140)
+        .background(isTapped ? Color.theme.white : Color.theme.gray1)
+        .cornerRadius(20)
+        .overlay(
+            RoundedRectangle(cornerRadius: 20)
+                .stroke(isTapped ? Color.theme.green1 : Color.white.opacity(1), lineWidth: 3)
+        )
+    }
+}
 
+
+struct StoreReadyForSaleButton: View {
+    var isTapped: Bool
+    let content: String
+    let action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
+            // padding을 정확히 주기 위해 spacing을 0으로 처리한다.
+            VStack(spacing: 0) {
+                Text(content)
+                    .font(Font.seoul(.body6))
+                    .foregroundColor(Color.theme.gray4)
+            }
+        }
+        .frame(width: 138, height: 140)
+        .background(isTapped ? Color.theme.white : Color.theme.gray1)
+        .cornerRadius(20)
+        .overlay(
+            RoundedRectangle(cornerRadius: 20)
+                .stroke(isTapped ? Color.theme.green1 : Color.white.opacity(1), lineWidth: 3)
+        )
+    }
+}
 
 
 struct ButtonComponent_Previews: PreviewProvider {
@@ -174,6 +229,9 @@ struct ButtonComponent_Previews: PreviewProvider {
                 
             })
             ButtonComponent(buttonType: .mainViewButton, content: "산책\n시작하기", isTapped: false, imageName: "figure.walk", action: {
+                
+            })
+            ButtonComponent(buttonType: .storeProductButton, isTapped: false, imageName: "person.fill", action: {
                 
             })
         }
