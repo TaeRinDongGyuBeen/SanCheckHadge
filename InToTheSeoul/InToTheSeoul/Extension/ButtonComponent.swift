@@ -23,13 +23,22 @@ enum ButtonType {
 
 /**
  Button들의 래퍼
+ 
+ 
+ // Parameters
+ 
+ buttonType: 버튼의 종류(genderButton, miniButton, nextButton, mainViewButton)
+ content: 버튼 안에 쓰일 텍스트
+ isTapped: 버튼이 눌리면 변화되는 Bool. false이면 선택되지 않은 상태의 UI가 표현된다.
+ imageName: mainViewButton에서만 필요한 것으로, 버튼안에 표시될 심볼의 String을 입력한다.
  */
 struct ButtonComponent: View {
     var buttonType: ButtonType
-    var isTapped: Bool
     let content: String
-    let action: () -> Void
+    var isTapped: Bool
     var imageName: String = ""
+    let action: () -> Void
+    
     
     var body: some View {
         switch buttonType {
@@ -54,6 +63,7 @@ extension ButtonComponent {
         
         var body: some View {
             Button(action: action) {
+                // padding을 정확히 주기 위해 spacing을 0으로 처리한다.
                 VStack(spacing: 0) {
                     Image(systemName: "person.fill")
                         .resizable()
@@ -156,18 +166,18 @@ struct ButtonComponent_Previews: PreviewProvider {
     
     static var previews: some View {
         VStack {
-            ButtonComponent(buttonType: .genderButton, isTapped: false, content: "시험용", action: {
+            ButtonComponent(buttonType: .genderButton, content: "시험용", isTapped: false, action: {
                 
             })
-            ButtonComponent(buttonType: .miniButton, isTapped: false, content: "시험용", action: {
+            ButtonComponent(buttonType: .miniButton, content: "시험용", isTapped: false, action: {
                 
             })
-            ButtonComponent(buttonType: .nextButton, isTapped: false, content: "시험용", action: {
+            ButtonComponent(buttonType: .nextButton, content: "시험용", isTapped: false, action: {
                 
             })
-            ButtonComponent(buttonType: .mainViewButton, isTapped: false, content: "산책\n시작하기", action: {
+            ButtonComponent(buttonType: .mainViewButton, content: "산책\n시작하기", isTapped: false, imageName: "figure.walk", action: {
                 
-            }, imageName: "figure.walk")
+            })
         }
     }
 }
