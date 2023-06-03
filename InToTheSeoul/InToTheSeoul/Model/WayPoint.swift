@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+struct Waypoint {
+    var hospital: Bool
+    var pharmacy: Bool
+    var library: Bool
+    var park: Bool
+    var busStop: Bool
+}

@@ -23,6 +23,7 @@ struct Point: Hashable, Codable, Identifiable {
 
 struct ViewPoint: Hashable, Codable, Identifiable {
     var id: Int
+    var mustWaypoint: Bool = false
     var nowPoint: Point
 }
 

@@ -14,6 +14,7 @@
 		3D38460F2A2BA564008A9166 /* Ex+ CLocationCoordinate2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D38460E2A2BA564008A9166 /* Ex+ CLocationCoordinate2D.swift */; };
 		3D3846112A2BA621008A9166 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3846102A2BA621008A9166 /* Point.swift */; };
 		3D3846132A2BA70C008A9166 /* TrekkingInformationInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3846122A2BA70C008A9166 /* TrekkingInformationInput.swift */; };
+		3D3846172A2BCA16008A9166 /* WayPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3846162A2BCA16008A9166 /* WayPoint.swift */; };
 		C95F4AA32A2AE4A800DFBFE3 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95F4AA22A2AE4A800DFBFE3 /* ColorExtension.swift */; };
 		C95F4AA52A2B134500DFBFE3 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95F4AA42A2B134500DFBFE3 /* ViewExtension.swift */; };
 		C95F4AA72A2B14DB00DFBFE3 /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95F4AA62A2B14DB00DFBFE3 /* FontExtension.swift */; };
@@ -31,6 +32,7 @@
 		3D38460E2A2BA564008A9166 /* Ex+ CLocationCoordinate2D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+ CLocationCoordinate2D.swift"; sourceTree = "<group>"; };
 		3D3846102A2BA621008A9166 /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		3D3846122A2BA70C008A9166 /* TrekkingInformationInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrekkingInformationInput.swift; sourceTree = "<group>"; };
+		3D3846162A2BCA16008A9166 /* WayPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WayPoint.swift; sourceTree = "<group>"; };
 		C921EE482A27675F00290875 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C95F4AA22A2AE4A800DFBFE3 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		C95F4AA42A2B134500DFBFE3 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 				3D38460A2A2BA505008A9166 /* PointModel.swift */,
 				3D3846102A2BA621008A9166 /* Point.swift */,
 				3D38460C2A2BA52A008A9166 /* JsonLoader.swift */,
+				3D3846162A2BCA16008A9166 /* WayPoint.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -214,6 +217,7 @@
 				C95F4AA72A2B14DB00DFBFE3 /* FontExtension.swift in Sources */,
 				C9D8CD8D2A27597000A880E8 /* ContentView.swift in Sources */,
 				C9D8CD8B2A27597000A880E8 /* InToTheSeoulApp.swift in Sources */,
+				3D3846172A2BCA16008A9166 /* WayPoint.swift in Sources */,
 				3D38460F2A2BA564008A9166 /* Ex+ CLocationCoordinate2D.swift in Sources */,
 				3D38460D2A2BA52A008A9166 /* JsonLoader.swift in Sources */,
 				3D3846112A2BA621008A9166 /* Point.swift in Sources */,

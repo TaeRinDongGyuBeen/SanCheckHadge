@@ -34,7 +34,7 @@ struct TrekkingInformationInput: View {
             
             ButtonComponent(buttonType: .nextButton, content: "시작하기", isActive: true) {
                 do {
-                    try pointsModel.recommendPoint(nowPostion: CLLocationCoordinate2D(latitude: 37.4753668, longitude: 126.9625635), walkTimeMin: Int(trekkingTime), mustWaypoint: [isSelectedWaypointHospital, isSelectedWaypointPharmacy, isSelectedWaypointLibrary, isSelectedWaypointPark, isSelectedWaypointBusStop])
+                    try pointsModel.recommendPoint(nowPostion: CLLocationCoordinate2D(latitude: 37.4753668, longitude: 126.9625635), walkTimeMin: Int(trekkingTime), mustWaypoint: Waypoint(hospital: isSelectedWaypointHospital, pharmacy: isSelectedWaypointPharmacy, library: isSelectedWaypointLibrary, park: isSelectedWaypointPark, busStop: isSelectedWaypointBusStop))
                 } catch {
                     print(error)
                     isRecommendError.toggle()

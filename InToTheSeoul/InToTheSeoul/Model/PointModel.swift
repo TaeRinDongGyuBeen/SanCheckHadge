@@ -11,11 +11,13 @@ import CoreLocation
 final class PointsModel: ObservableObject {
     @Published var points: [Point] = jsonLoader("Points.json")
     @Published var selectedPoints: [ViewPoint] = []
+    var mustWaypointNumber: [Int] = []
     
-    func recommendPoint(nowPostion: CLLocationCoordinate2D, walkTimeMin: Int, mustWaypoint: [Bool]) throws -> Void {
+    func recommendPoint(nowPostion: CLLocationCoordinate2D, walkTimeMin: Int, mustWaypoint: Waypoint) throws -> Void {
         var selectedPoints: [Point] = []
         var resultPoints: [ViewPoint] = []
-
+        var waypoint: Waypoint = mustWaypoint
+        
         // 입력된 시간을 거리로 환산 (if 10분 : 3km/h * 10/60h -> 0.5km -> 500m) => remained walking distance(purposeWalkDistance)
         let purposeWalkingDistance: Double = 3000 * (Double(walkTimeMin)/60)
         var remainedWalkingDistance: Double = purposeWalkingDistance
@@ -57,7 +59,7 @@ final class PointsModel: ObservableObject {
         remainedWalkingDistance -= selectedPoints[0].locationCoordinate.distance(from: nowPostion)
         print("남은거리 : \(remainedWalkingDistance)")
         do {
-            remainedWalkingDistance = try selectForwardPoint(remainedDistance: remainedWalkingDistance, purposeDistance: purposeWalkingDistance, candidatePoints: candidatePoints, direction: forwardDirection, stepCount: .first, selectedPoints: &selectedPoints)
+            remainedWalkingDistance = try selectForwardPoint(remainedDistance: remainedWalkingDistance, purposeDistance: purposeWalkingDistance, candidatePoints: candidatePoints, direction: forwardDirection, stepCount: .first, mustWaypoint: &waypoint, selectedPoints: &selectedPoints)
         } catch {
             print(error.localizedDescription)
             return
@@ -69,7 +71,7 @@ final class PointsModel: ObservableObject {
         
         // 30% 전진
         do {
-            remainedWalkingDistance = try selectForwardPoint(remainedDistance: remainedWalkingDistance, purposeDistance: purposeWalkingDistance, candidatePoints: candidatePoints, direction: forwardDirection, stepCount: .second, selectedPoints: &selectedPoints)
+            remainedWalkingDistance = try selectForwardPoint(remainedDistance: remainedWalkingDistance, purposeDistance: purposeWalkingDistance, candidatePoints: candidatePoints, direction: forwardDirection, stepCount: .second, mustWaypoint: &waypoint, selectedPoints: &selectedPoints)
         } catch {
             print(error.localizedDescription)
             return
@@ -83,7 +85,7 @@ final class PointsModel: ObservableObject {
         
         // 남은 거리 Back
         do {
-            remainedWalkingDistance = try selectForwardPoint(remainedDistance: remainedWalkingDistance, purposeDistance: purposeWalkingDistance, candidatePoints: candidatePoints, direction: forwardDirection, stepCount: .last, selectedPoints: &selectedPoints)
+            remainedWalkingDistance = try selectForwardPoint(remainedDistance: remainedWalkingDistance, purposeDistance: purposeWalkingDistance, candidatePoints: candidatePoints, direction: forwardDirection, stepCount: .last, mustWaypoint: &waypoint, selectedPoints: &selectedPoints)
         } catch {
             print(error.localizedDescription)
             return
@@ -95,7 +97,13 @@ final class PointsModel: ObservableObject {
         selectedPoints.append(Point(name: "출발지점", lat: String(nowPostion.latitude), lon: String(nowPostion.longitude), category: "출발지점", address: "출발지점", id: 999999999))
         
         for selectedPoint in selectedPoints.enumerated() {
-            resultPoints.append(ViewPoint(id: selectedPoint.offset, nowPoint: selectedPoint.element))
+            if !mustWaypointNumber.isEmpty && selectedPoint.offset == mustWaypointNumber[0] {
+                resultPoints.append(ViewPoint(id: selectedPoint.offset, mustWaypoint: true, nowPoint: selectedPoint.element))
+                print(ViewPoint(id: selectedPoint.offset, mustWaypoint: true, nowPoint: selectedPoint.element))
+                mustWaypointNumber.removeFirst()
+            } else {
+                resultPoints.append(ViewPoint(id: selectedPoint.offset, nowPoint: selectedPoint.element))
+            }
         }
         
         self.selectedPoints = resultPoints
@@ -124,19 +132,7 @@ final class PointsModel: ObservableObject {
         return firstPoint
     }
     
-    private func decideForwardDirection(nowPosition: CLLocationCoordinate2D, firstPoint: CLLocationCoordinate2D) -> ForwardDirection {
-        if firstPoint.latitude > nowPosition.latitude && firstPoint.longitude > nowPosition.longitude {
-            return .NE
-        } else if firstPoint.latitude > nowPosition.latitude && firstPoint.longitude < nowPosition.longitude {
-            return .NW
-        } else if firstPoint.latitude < nowPosition.latitude && firstPoint.longitude < nowPosition.longitude {
-            return .SW
-        } else {
-            return .SE
-        }
-    }
-    
-    private func selectForwardPoint(remainedDistance: Double, purposeDistance: Double, candidatePoints: [Point], direction: ForwardDirection, stepCount: DirectionCount, selectedPoints: inout [Point]) throws -> Double {
+    private func selectForwardPoint(remainedDistance: Double, purposeDistance: Double, candidatePoints: [Point], direction: ForwardDirection, stepCount: DirectionCount, mustWaypoint: inout Waypoint, selectedPoints: inout [Point]) throws -> Double {
         var calculatedDistance = remainedDistance
         var searchRange: Double = 100.0
         let purposeRatio: Double = stepCount.rawValue
@@ -186,6 +182,43 @@ final class PointsModel: ObservableObject {
                 continue
             }
             
+            if mustWaypoint.hospital && !(nextCandidatePoints.filter { $0.category == "Hospital" }.isEmpty) {
+                mustWaypoint.hospital = false
+                selectedPoints.append(nextCandidatePoints.filter { $0.category == "Hospital" }.first!)
+                searchRange = 50.0
+                i += 1
+                self.mustWaypointNumber.append(i)
+                continue
+            } else if mustWaypoint.library && !(nextCandidatePoints.filter { $0.category == "Library" }.isEmpty) {
+                mustWaypoint.library = false
+                selectedPoints.append(nextCandidatePoints.filter { $0.category == "Library" }.first!)
+                searchRange = 50.0
+                i += 1
+                self.mustWaypointNumber.append(i)
+                continue
+            } else if mustWaypoint.park && !(nextCandidatePoints.filter { $0.category == "Park" }.isEmpty) {
+                mustWaypoint.park = false
+                selectedPoints.append(nextCandidatePoints.filter { $0.category == "Park" }.first!)
+                searchRange = 50.0
+                i += 1
+                self.mustWaypointNumber.append(i)
+                continue
+            } else if mustWaypoint.pharmacy && !(nextCandidatePoints.filter { $0.category == "Pharmacy" }.isEmpty) {
+                mustWaypoint.pharmacy = false
+                selectedPoints.append(nextCandidatePoints.filter { $0.category == "Pharmacy" }.first!)
+                searchRange = 50.0
+                i += 1
+                self.mustWaypointNumber.append(i)
+                continue
+            } else if mustWaypoint.busStop && !(nextCandidatePoints.filter { $0.category == "Bus" }.isEmpty) {
+                mustWaypoint.busStop = false
+                selectedPoints.append(nextCandidatePoints.filter { $0.category == "Bus" }.first!)
+                searchRange = 50.0
+                i += 1
+                self.mustWaypointNumber.append(i)
+                continue
+            }
+            
             guard let nextPoint = nextCandidatePoints.randomElement() else {
                 throw RecommendError.pointNotFound
             }
@@ -202,6 +235,21 @@ final class PointsModel: ObservableObject {
         print("=====> 남은 거리 : \(calculatedDistance)")
         return calculatedDistance
     }
+}
+
+extension PointsModel {
+    private func decideForwardDirection(nowPosition: CLLocationCoordinate2D, firstPoint: CLLocationCoordinate2D) -> ForwardDirection {
+        if firstPoint.latitude > nowPosition.latitude && firstPoint.longitude > nowPosition.longitude {
+            return .NE
+        } else if firstPoint.latitude > nowPosition.latitude && firstPoint.longitude < nowPosition.longitude {
+            return .NW
+        } else if firstPoint.latitude < nowPosition.latitude && firstPoint.longitude < nowPosition.longitude {
+            return .SW
+        } else {
+            return .SE
+        }
+    }
+    
     
     private func changeDirection(nowDirection: ForwardDirection) -> ForwardDirection {
         var candidateDirections: [ForwardDirection]
@@ -251,4 +299,5 @@ final class PointsModel: ObservableObject {
         }
     }
 }
+
 
