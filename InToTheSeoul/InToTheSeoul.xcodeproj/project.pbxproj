@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C921EE472A275F4F00290875 /* WalkingMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C921EE462A275F4F00290875 /* WalkingMapView.swift */; };
 		C95F4AA32A2AE4A800DFBFE3 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95F4AA22A2AE4A800DFBFE3 /* ColorExtension.swift */; };
 		C95F4AA52A2B134500DFBFE3 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95F4AA42A2B134500DFBFE3 /* ViewExtension.swift */; };
 		C95F4AA72A2B14DB00DFBFE3 /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95F4AA62A2B14DB00DFBFE3 /* FontExtension.swift */; };
@@ -18,7 +17,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C921EE462A275F4F00290875 /* WalkingMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkingMapView.swift; sourceTree = "<group>"; };
 		C921EE482A27675F00290875 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C95F4AA22A2AE4A800DFBFE3 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		C95F4AA42A2B134500DFBFE3 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
@@ -52,7 +50,6 @@
 			isa = PBXGroup;
 			children = (
 				C9D8CD8C2A27597000A880E8 /* ContentView.swift */,
-				C921EE462A275F4F00290875 /* WalkingMapView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -184,7 +181,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C95F4AA72A2B14DB00DFBFE3 /* FontExtension.swift in Sources */,
-				C921EE472A275F4F00290875 /* WalkingMapView.swift in Sources */,
 				C9D8CD8D2A27597000A880E8 /* ContentView.swift in Sources */,
 				C9D8CD8B2A27597000A880E8 /* InToTheSeoulApp.swift in Sources */,
 				C95F4AA32A2AE4A800DFBFE3 /* ColorExtension.swift in Sources */,
