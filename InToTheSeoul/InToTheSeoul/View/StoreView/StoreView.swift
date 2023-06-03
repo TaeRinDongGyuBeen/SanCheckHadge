@@ -10,10 +10,21 @@ import SwiftUI
 struct StoreView: View {
     var body: some View {
         VStack(spacing: 0) {
+            CoinComponent(money: "1,750", color: Color.theme.green1)
             ZStack {
-                Ellipse
-                    .Body(shape: Ellipse(), style: ForegroundStyle())
-                Image("storeCharacter")
+                
+                ZStack {
+                    VStack {
+                        Ellipse()
+                            .frame(width: 208, height: 38)
+                            .foregroundColor(Color.theme.green1)
+                    }
+                    .frame(maxHeight: 208, alignment: .bottom)
+                    Image("storeCharacter")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 153, height: 167)
+                }
             }
         }
     }
