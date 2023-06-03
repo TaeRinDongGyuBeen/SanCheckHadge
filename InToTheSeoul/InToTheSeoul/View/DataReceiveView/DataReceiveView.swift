@@ -57,10 +57,13 @@ struct DataReceiveView: View {
                     .padding(1.5)
             }
             
+            Spacer()
+            
             VStack(spacing: 0) {
                 Text("이름을 알려주세요")
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .textFontAndColor(.h3)
+                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 12, trailing: 0))
                 TextField("이름을 입력하세요", text: $nameLimiter, onEditingChanged: { check in
                     if check && nameLimiter.count >= 2 {
                         dataCheckList[0] = true
@@ -68,9 +71,11 @@ struct DataReceiveView: View {
                         dataCheckList[0] = false
                     }
                 })
-                .customTextField()
+                
 
             }
+            
+            Spacer()
             
             VStack(spacing: 0) {
                 Text("성별을 알려주세요")
@@ -111,10 +116,13 @@ struct DataReceiveView: View {
                 }
             }
             
+            Spacer()
+            
             VStack(spacing: 0) {
                 Text("연령대를 알려주세요")
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .textFontAndColor(.h3)
+                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 12, trailing: 0))
                 HStack(spacing: 0) {
                     Button(action: {
                         
@@ -225,6 +233,7 @@ struct DataReceiveView: View {
                     
                 }
             }
+            Spacer()
             
             Button(action: {
                 

@@ -142,8 +142,7 @@ struct NextButton: View {
             Text(content)
                 .frame(maxWidth: .infinity)
                 .frame(height: 45)
-                .font(Font.seoul(.button1))
-                .foregroundColor(Color.theme.white)
+                .textFontAndColor(.button1)
             
         }
         .background(isTapped ? Color.theme.green1 : Color.theme.gray3)
