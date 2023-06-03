@@ -41,23 +41,25 @@ struct ButtonComponent: View {
         case .mainViewButton:
             Button(action: action) {
                 Text(content)
-                    .frame(width: 285, height: 45)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 45)
                     .font(Font.seoul(.button1))
                     .foregroundColor(Color.theme.white)
                     
             }
-            .background(Color.theme.green1)
+            .background(isTapped ? Color.theme.green1 : Color.theme.gray3)
             .cornerRadius(30)
+            
         case .miniButton:
             Button(action: action) {
                 Text(content)
-                    .frame(width: 285, height: 45)
-                    .font(Font.seoul(.button1))
-                    .foregroundColor(Color.theme.white)
+                    .frame(width: 93, height: 45)
+                    .font(Font.seoul(.body6))
+                    .foregroundColor(isTapped ? Color.theme.white : Color.theme.gray4)
                     
             }
-            .background(Color.theme.green1)
-            .cornerRadius(30)
+            .background(isTapped ? Color.theme.green1 : Color.theme.gray1)
+            .cornerRadius(12)
         case .nextButton:
             Button(action: action) {
                 Text(content)
