@@ -33,19 +33,89 @@ extension View {
         self.modifier(ViewHideModifier(isTrue: isTrue))
     }
     
-    func textFontAndColor(font: Font.SeoulFont, color: Color) -> some View {
-        self.modifier(FontAndColorModifier(font: font, color: color))
+    /**
+     기본 폰트로 적용된 modifier
+     */
+    func textFontAndColor(_ font: Font.SeoulFont) -> some View {
+        self.modifier(FontAndColorModifier(font: font))
     }
 }
 
 struct FontAndColorModifier: ViewModifier {
     let font: Font.SeoulFont
-    let color: Color
     
     func body(content: Content) -> some View {
-        content
-            .font(Font.seoul(font))
-            .foregroundColor(color)
+        switch font {
+        case .h1:
+            content
+                .font(Font.seoul(.h1))
+                .foregroundColor(Color.theme.black)
+        case .h2:
+            content
+                .font(Font.seoul(.h2))
+                .foregroundColor(Color.theme.gray5)
+        case .h3:
+            content
+                .font(Font.seoul(.h3))
+                .foregroundColor(Color.theme.black)
+        case .h4:
+            content
+                .font(Font.seoul(.h4))
+                .foregroundColor(Color.theme.gray4)
+        case .h5:
+            content
+                .font(Font.seoul(.h5))
+                .foregroundColor(Color.theme.gray4)
+        case .h6:
+            content
+                .font(Font.seoul(.h6))
+                .foregroundColor(Color.theme.white)
+        case .h7:
+            content
+                .font(Font.seoul(.h7))
+                .foregroundColor(Color.theme.yellow)
+        case .body1:
+            content
+                .font(Font.seoul(.body1))
+                .foregroundColor(Color.theme.gray4)
+        case .body2:
+            content
+                .font(Font.seoul(.body2))
+                .foregroundColor(Color.theme.green1)
+        case .body3:
+            content
+                .font(Font.seoul(.body3))
+                .foregroundColor(Color.theme.gray4)
+        case .body4:
+            content
+                .font(Font.seoul(.body4))
+                .foregroundColor(Color.theme.green1)
+        case .body5:
+            content
+                .font(Font.seoul(.body5))
+                .foregroundColor(Color.theme.yellow)
+        case .body6:
+            content
+                .font(Font.seoul(.body6))
+                .foregroundColor(Color.theme.gray4)
+        case .body7:
+            content
+                .font(Font.seoul(.body7))
+                .foregroundColor(Color.theme.black)
+        case .button1:
+            content
+                .font(Font.seoul(.button1))
+                .foregroundColor(Color.theme.white)
+        case .button2:
+            content
+                .font(Font.seoul(.button2))
+                .foregroundColor(Color.theme.white)
+        case .coin:
+            content
+                .font(Font.seoul(.coin))
+                .foregroundColor(Color.theme.white)
+        }
+
         
     }
 }
