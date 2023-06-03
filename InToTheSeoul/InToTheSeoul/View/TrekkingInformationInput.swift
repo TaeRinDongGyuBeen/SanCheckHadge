@@ -6,9 +6,20 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct TrekkingInformationInput: View {
+    @StateObject var pointsModel: PointsModel = PointsModel()
+    
     @State var trekkingTime: Float = 60
+    
+    @State var isSelectedWaypointHospital: Bool = false
+    @State var isSelectedWaypointPharmacy: Bool = false
+    @State var isSelectedWaypointLibrary: Bool = false
+    @State var isSelectedWaypointPark: Bool = false
+    @State var isSelectedWaypointBusStop: Bool = false
+    
+    @State var isRecommendError: Bool = false
     
     var body: some View {
         VStack {
@@ -21,12 +32,22 @@ struct TrekkingInformationInput: View {
             WaypointPicker
                 .padding(.bottom, 109)
             
-            ButtonComponent(buttonType: .nextButton, content: "시작하기", isActive: false) {
-                // 시작 하기
+            ButtonComponent(buttonType: .nextButton, content: "시작하기", isActive: true) {
+                do {
+                    try pointsModel.recommendPoint(nowPostion: CLLocationCoordinate2D(latitude: 37.4753668, longitude: 126.9625635), walkTimeMin: Int(trekkingTime), mustWaypoint: [isSelectedWaypointHospital, isSelectedWaypointPharmacy, isSelectedWaypointLibrary, isSelectedWaypointPark, isSelectedWaypointBusStop])
+                } catch {
+                    print(error)
+                    isRecommendError.toggle()
+                }
             }
             
         }
         .padding(.horizontal, 40)
+        .alert("경로 추천 실패", isPresented: $isRecommendError) {
+            
+        } message: {
+            Text("위치 정보를 불러올 수 없거나\n서비스할 수 없는 지역입니다.")
+        }
     }
 }
 
@@ -91,23 +112,23 @@ extension TrekkingInformationInput {
             
             VStack {
                 HStack {
-                    ButtonComponent(buttonType: .miniButton, content: "병원", isActive: true) {
-                        
+                    ButtonComponent(buttonType: .miniButton, content: "병원", isActive: isSelectedWaypointHospital) {
+                        isSelectedWaypointHospital.toggle()
                     }
-                    ButtonComponent(buttonType: .miniButton, content: "약국", isActive: false) {
-                        
+                    ButtonComponent(buttonType: .miniButton, content: "약국", isActive: isSelectedWaypointPharmacy) {
+                        isSelectedWaypointPharmacy.toggle()
                     }
-                    ButtonComponent(buttonType: .miniButton, content: "도서관", isActive: false) {
-                        
+                    ButtonComponent(buttonType: .miniButton, content: "도서관", isActive: isSelectedWaypointLibrary) {
+                        isSelectedWaypointLibrary.toggle()
                     }
                 }
                 
                 HStack {
-                    ButtonComponent(buttonType: .miniButton, content: "공원", isActive: false) {
-                        
+                    ButtonComponent(buttonType: .miniButton, content: "공원", isActive: isSelectedWaypointPark) {
+                        isSelectedWaypointPark.toggle()
                     }
-                    ButtonComponent(buttonType: .miniButton, content: "버스정류장", isActive: false) {
-                        
+                    ButtonComponent(buttonType: .miniButton, content: "버스정류장", isActive: isSelectedWaypointBusStop) {
+                        isSelectedWaypointBusStop.toggle()
                     }
                 }
             }

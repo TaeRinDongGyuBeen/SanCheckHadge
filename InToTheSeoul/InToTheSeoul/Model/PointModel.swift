@@ -12,7 +12,7 @@ final class PointsModel: ObservableObject {
     @Published var points: [Point] = jsonLoader("Points.json")
     @Published var selectedPoints: [ViewPoint] = []
     
-    func recommendPoint(nowPostion: CLLocationCoordinate2D, walkTimeMin: Int) {
+    func recommendPoint(nowPostion: CLLocationCoordinate2D, walkTimeMin: Int, mustWaypoint: [Bool]) throws -> Void {
         var selectedPoints: [Point] = []
         var resultPoints: [ViewPoint] = []
 
@@ -27,6 +27,10 @@ final class PointsModel: ObservableObject {
         // 내 위치 반경 purpose에 있는 모든 포인트 검색
         let candidatePoints: [Point] = points.filter {
             $0.locationCoordinate.distance(from: nowPostion) <= purposeWalkingDistance
+        }
+        
+        if candidatePoints.isEmpty {
+            throw RecommendError.pointNotFound
         }
         
         print("======> candidatePoint Count \(candidatePoints.count)")
@@ -135,7 +139,7 @@ final class PointsModel: ObservableObject {
     private func selectForwardPoint(remainedDistance: Double, purposeDistance: Double, candidatePoints: [Point], direction: ForwardDirection, stepCount: DirectionCount, selectedPoints: inout [Point]) throws -> Double {
         var calculatedDistance = remainedDistance
         var searchRange: Double = 100.0
-        var purposeRatio: Double = stepCount.rawValue
+        let purposeRatio: Double = stepCount.rawValue
         var i: Int = selectedPoints.count - 1
         
         while (purposeDistance * purposeRatio) < calculatedDistance {
@@ -149,7 +153,7 @@ final class PointsModel: ObservableObject {
                     $0.locationCoordinate.latitude > selectedPointLocation.latitude &&
                     $0.locationCoordinate.longitude > selectedPointLocation.longitude &&
                     $0.locationCoordinate.distance(from: selectedPointLocation) <= searchRange &&
-                    $0.locationCoordinate.distance(from: selectedPointLocation) >= 50.0
+                    $0.locationCoordinate.distance(from: selectedPointLocation) >= 100.0
                 }
             case .NW:
                 nextCandidatePoints = candidatePoints.filter {
