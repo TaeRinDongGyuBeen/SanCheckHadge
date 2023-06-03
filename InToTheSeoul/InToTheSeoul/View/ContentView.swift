@@ -16,8 +16,7 @@ struct ContentView: View {
                 .imageScale(.large)
                 .foregroundColor(.accentColor)
             Text("Hello, world!")
-                .foregroundColor(Color.theme.yellow)
-                .font(Font.seoul(.body4))
+                .textFontAndColor(font: Font.SeoulFont.headline7, color: Color.theme.yellow)
             TextField("시험용", text: $test)
             
             ButtonComponent(buttonType: .mainViewButton, content: "산책\n기록보기", isTapped: isTapped, imageName: "bookmark.fill") { isTapped.toggle()

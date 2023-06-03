@@ -32,6 +32,22 @@ extension View {
     func hideToBool(_ isTrue: Bool) -> some View {
         self.modifier(ViewHideModifier(isTrue: isTrue))
     }
+    
+    func textFontAndColor(font: Font.SeoulFont, color: Color) -> some View {
+        self.modifier(FontAndColorModifier(font: font, color: color))
+    }
+}
+
+struct FontAndColorModifier: ViewModifier {
+    let font: Font.SeoulFont
+    let color: Color
+    
+    func body(content: Content) -> some View {
+        content
+            .font(Font.seoul(font))
+            .foregroundColor(color)
+        
+    }
 }
 
 struct TextfieldModifier: ViewModifier {
