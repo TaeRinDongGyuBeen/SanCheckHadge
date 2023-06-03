@@ -56,7 +56,6 @@ struct ButtonComponent: View {
             StoreProductButton(isActive: isActive, imageName: imageName, action: action)
         case .storeReadyForSaleButton:
             StoreReadyForSaleButton(isActive: isActive, content: content, action: action)
-
         }
     }
 }
