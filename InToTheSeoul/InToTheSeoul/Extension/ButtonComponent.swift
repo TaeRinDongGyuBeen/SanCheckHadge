@@ -8,15 +8,47 @@ import SwiftUI
 
 // TODO: 짧은 버튼, 긴 버튼, Disable 여부, 정사각형 버튼 대응 필요
 
+/**
+ genderButton : 정보 수집에서 성별 선택하는 버튼
+ miniButton : 정보 수집 or 어떤 산책? 뷰에서 나이대 또는 가고 싶은 곳 선택하는 버튼
+ nextButton : 모든 뷰에서 하단의 긴 버튼
+ mainViewButton : 산책 시작하기 or 산책 기록하기 버튼
+ */
+enum ButtonType {
+    case genderButton
+    case miniButton
+    case nextButton
+    case mainViewButton
+}
+
 struct ButtonComponent: View {
     var buttonType: ButtonType
     var isTapped: Bool
     let content: String
     let action: () -> Void
-    
+        
     var body: some View {
         switch buttonType {
         case .genderButton:
+            GenderButton(isTapped: isTapped, content: content, action: action)
+        case .mainViewButton:
+            MainViewButton(isTapped: isTapped, content: content, action: action)
+        case .miniButton:
+            MiniButton(isTapped: isTapped, content: content, action: action)
+        case .nextButton:
+            NextButton(isTapped: isTapped, content: content, action: action)
+        }
+    }
+}
+
+extension ButtonComponent {
+    
+    struct GenderButton: View {
+        var isTapped: Bool
+        let content: String
+        let action: () -> Void
+        
+        var body: some View {
             Button(action: action) {
                 VStack(spacing: 0) {
                     Image(systemName: "person.fill")
@@ -38,29 +70,15 @@ struct ButtonComponent: View {
                 RoundedRectangle(cornerRadius: 20)
                     .stroke(isTapped ? Color.theme.green1 : Color.white.opacity(1), lineWidth: 3)
             )
-        case .mainViewButton:
-            Button(action: action) {
-                Text(content)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 45)
-                    .font(Font.seoul(.button1))
-                    .foregroundColor(Color.theme.white)
-                    
-            }
-            .background(isTapped ? Color.theme.green1 : Color.theme.gray3)
-            .cornerRadius(30)
-            
-        case .miniButton:
-            Button(action: action) {
-                Text(content)
-                    .frame(width: 93, height: 45)
-                    .font(Font.seoul(.body6))
-                    .foregroundColor(isTapped ? Color.theme.white : Color.theme.gray4)
-                    
-            }
-            .background(isTapped ? Color.theme.green1 : Color.theme.gray1)
-            .cornerRadius(12)
-        case .nextButton:
+        }
+    }
+    
+    struct MainViewButton: View {
+        var isTapped: Bool
+        let content: String
+        let action: () -> Void
+        
+        var body: some View {
             Button(action: action) {
                 Text(content)
                     .frame(width: 285, height: 45)
@@ -73,7 +91,46 @@ struct ButtonComponent: View {
         }
     }
     
+    struct MiniButton: View {
+        var isTapped: Bool
+        let content: String
+        let action: () -> Void
+        
+        var body: some View {
+            Button(action: action) {
+                Text(content)
+                    .frame(width: 93, height: 45)
+                    .font(Font.seoul(.body6))
+                    .foregroundColor(isTapped ? Color.theme.white : Color.theme.gray4)
+                    
+            }
+            .background(isTapped ? Color.theme.green1 : Color.theme.gray1)
+            .cornerRadius(12)
+        }
+    }
+
+    struct NextButton: View {
+        var isTapped: Bool
+        let content: String
+        let action: () -> Void
+        
+        var body: some View {
+            Button(action: action) {
+                Text(content)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 45)
+                    .font(Font.seoul(.button1))
+                    .foregroundColor(Color.theme.white)
+                
+            }
+            .background(isTapped ? Color.theme.green1 : Color.theme.gray3)
+            .cornerRadius(30)
+            
+        }
+    }
+    
 }
+
 
 struct ButtonComponent_Previews: PreviewProvider {
     enum ButtonType {
@@ -101,15 +158,3 @@ struct ButtonComponent_Previews: PreviewProvider {
     }
 }
 
-/**
- genderButton : 정보 수집에서 성별 선택하는 버튼
- miniButton : 정보 수집 or 어떤 산책? 뷰에서 나이대 또는 가고 싶은 곳 선택하는 버튼
- nextButton : 모든 뷰에서 하단의 긴 버튼
- mainViewButton : 산책 시작하기 or 산책 기록하기 버튼
- */
-enum ButtonType {
-    case genderButton
-    case miniButton
-    case nextButton
-    case mainViewButton
-}
