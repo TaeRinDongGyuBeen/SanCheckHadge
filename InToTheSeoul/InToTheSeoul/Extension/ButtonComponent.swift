@@ -21,18 +21,22 @@ enum ButtonType {
     case mainViewButton
 }
 
+/**
+ Button들의 래퍼
+ */
 struct ButtonComponent: View {
     var buttonType: ButtonType
     var isTapped: Bool
     let content: String
     let action: () -> Void
-        
+    var imageName: String = ""
+    
     var body: some View {
         switch buttonType {
         case .genderButton:
             GenderButton(isTapped: isTapped, content: content, action: action)
         case .mainViewButton:
-            MainViewButton(isTapped: isTapped, content: content, action: action)
+            MainViewButton(isTapped: isTapped, imageName: imageName, content: content, action: action)
         case .miniButton:
             MiniButton(isTapped: isTapped, content: content, action: action)
         case .nextButton:
@@ -75,19 +79,29 @@ extension ButtonComponent {
     
     struct MainViewButton: View {
         var isTapped: Bool
+        let imageName: String
         let content: String
         let action: () -> Void
         
         var body: some View {
             Button(action: action) {
-                Text(content)
-                    .frame(width: 285, height: 45)
-                    .font(Font.seoul(.button1))
-                    .foregroundColor(Color.theme.white)
-                    
+                VStack(spacing: 0) {
+                    Image(systemName: imageName)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 25, height: 41)
+                        .foregroundColor(isTapped ? Color.theme.white : Color.theme.yellow)
+                        .padding(8)
+                    Text(content)
+                        .font(Font.seoul(.body6))
+                        .foregroundColor(isTapped ? Color.theme.white : Color.theme.gray4)
+                        .padding(8)
+                }
             }
-            .background(Color.theme.green1)
+            .frame(width: 138, height: 159)
+            .background(isTapped ? Color.theme.yellow : Color.theme.white)
             .cornerRadius(30)
+            .shadow(color: Color.theme.shadow, radius: 3, y: 4)
         }
     }
     
@@ -151,9 +165,9 @@ struct ButtonComponent_Previews: PreviewProvider {
             ButtonComponent(buttonType: .nextButton, isTapped: false, content: "시험용", action: {
                 
             })
-            ButtonComponent(buttonType: .mainViewButton, isTapped: false, content: "시험용", action: {
+            ButtonComponent(buttonType: .mainViewButton, isTapped: false, content: "산책\n시작하기", action: {
                 
-            })
+            }, imageName: "figure.walk")
         }
     }
 }
