@@ -25,6 +25,7 @@ extension Font {
         case headline4
         case headline5
         case headline6
+        case headline7
         case body1
         case body2
         case body3
@@ -34,6 +35,7 @@ extension Font {
         case body7
         case button1
         case button2
+        case coin
         
         var customStyle: TextStyle {
             switch self {
@@ -49,6 +51,8 @@ extension Font {
                 return .footnote
             case .headline6:
                 return .footnote
+            case .headline7:
+                return .largeTitle
             case .body1:
                 return .body
             case .body2:
@@ -66,6 +70,8 @@ extension Font {
             case .button1:
                 return .headline
             case .button2:
+                return .body
+            case .coin:
                 return .body
             }
         }
@@ -84,6 +90,8 @@ extension Font {
                 return .bold
             case .headline6:
                 return .regular
+            case .headline7:
+                return .bold
             case .body1:
                 return .regular
             case .body2:
@@ -101,6 +109,8 @@ extension Font {
             case .button1:
                 return .bold
             case .button2:
+                return .bold
+            case .coin:
                 return .bold
             }
         }
