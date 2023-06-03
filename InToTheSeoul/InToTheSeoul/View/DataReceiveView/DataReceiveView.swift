@@ -64,15 +64,12 @@ struct DataReceiveView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .textFontAndColor(.h3)
                     .padding(EdgeInsets(top: 0, leading: 0, bottom: 12, trailing: 0))
-                TextField("이름을 입력하세요", text: $nameLimiter, onEditingChanged: { check in
-                    if check && nameLimiter.count >= 2 {
-                        dataCheckList[0] = true
-                    } else {
-                        dataCheckList[0] = false
-                    }
-                })
                 
-
+                TextField("이름을 입력하세요", text: $nameLimiter)
+                    .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
+                    .frame(height: 40)
+                    .background(Color.theme.gray1)
+                    .cornerRadius(20)
             }
             
             Spacer()
