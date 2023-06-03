@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C921EE472A275F4F00290875 /* WalkingMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C921EE462A275F4F00290875 /* WalkingMapView.swift */; };
+		C95F4AA32A2AE4A800DFBFE3 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95F4AA22A2AE4A800DFBFE3 /* ColorExtension.swift */; };
 		C9D8CD8B2A27597000A880E8 /* InToTheSeoulApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D8CD8A2A27597000A880E8 /* InToTheSeoulApp.swift */; };
 		C9D8CD8D2A27597000A880E8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D8CD8C2A27597000A880E8 /* ContentView.swift */; };
 		C9D8CD8F2A27597100A880E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9D8CD8E2A27597100A880E8 /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 /* Begin PBXFileReference section */
 		C921EE462A275F4F00290875 /* WalkingMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkingMapView.swift; sourceTree = "<group>"; };
 		C921EE482A27675F00290875 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		C95F4AA22A2AE4A800DFBFE3 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		C9D8CD872A27597000A880E8 /* InToTheSeoul.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InToTheSeoul.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9D8CD8A2A27597000A880E8 /* InToTheSeoulApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InToTheSeoulApp.swift; sourceTree = "<group>"; };
 		C9D8CD8C2A27597000A880E8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -59,6 +61,14 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
+		C95F4AA12A2AE47D00DFBFE3 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				C95F4AA22A2AE4A800DFBFE3 /* ColorExtension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		C9D8CD7E2A27597000A880E8 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +93,7 @@
 				C921EE442A275C8D00290875 /* View */,
 				C921EE432A275C8B00290875 /* Model */,
 				C921EE452A275CA400290875 /* Resource */,
+				C95F4AA12A2AE47D00DFBFE3 /* Extension */,
 				C9D8CD902A27597100A880E8 /* Preview Content */,
 			);
 			path = InToTheSeoul;
@@ -169,6 +180,7 @@
 				C921EE472A275F4F00290875 /* WalkingMapView.swift in Sources */,
 				C9D8CD8D2A27597000A880E8 /* ContentView.swift in Sources */,
 				C9D8CD8B2A27597000A880E8 /* InToTheSeoulApp.swift in Sources */,
+				C95F4AA32A2AE4A800DFBFE3 /* ColorExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
