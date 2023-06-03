@@ -46,33 +46,33 @@ struct FontAndColorModifier: ViewModifier {
     
     func body(content: Content) -> some View {
         switch font {
-        case .headline1:
+        case .h1:
             content
-                .font(Font.seoul(.headline1))
+                .font(Font.seoul(.h1))
                 .foregroundColor(Color.theme.black)
-        case .headline2:
+        case .h2:
             content
-                .font(Font.seoul(.headline2))
+                .font(Font.seoul(.h2))
                 .foregroundColor(Color.theme.gray5)
-        case .headline3:
+        case .h3:
             content
-                .font(Font.seoul(.headline3))
+                .font(Font.seoul(.h3))
                 .foregroundColor(Color.theme.black)
-        case .headline4:
+        case .h4:
             content
-                .font(Font.seoul(.headline4))
+                .font(Font.seoul(.h4))
                 .foregroundColor(Color.theme.gray4)
-        case .headline5:
+        case .h5:
             content
-                .font(Font.seoul(.headline5))
+                .font(Font.seoul(.h5))
                 .foregroundColor(Color.theme.gray4)
-        case .headline6:
+        case .h6:
             content
-                .font(Font.seoul(.headline6))
+                .font(Font.seoul(.h6))
                 .foregroundColor(Color.theme.white)
-        case .headline7:
+        case .h7:
             content
-                .font(Font.seoul(.headline7))
+                .font(Font.seoul(.h7))
                 .foregroundColor(Color.theme.yellow)
         case .body1:
             content
