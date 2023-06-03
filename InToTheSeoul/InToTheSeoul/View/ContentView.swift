@@ -19,7 +19,10 @@ struct ContentView: View {
                 .foregroundColor(Color.theme.yellow)
                 .font(Font.seoul(.body4))
             TextField("시험용", text: $test)
-                .customTextField
+            
+            ButtonComponent(content: "시험용", action: {
+                
+            })
         }
         .padding()
     }

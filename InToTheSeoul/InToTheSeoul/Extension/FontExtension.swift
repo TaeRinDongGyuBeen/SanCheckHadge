@@ -64,7 +64,7 @@ extension Font {
             case .body7:
                 return .body
             case .button1:
-                return .caption2
+                return .headline
             case .button2:
                 return .body
             }
