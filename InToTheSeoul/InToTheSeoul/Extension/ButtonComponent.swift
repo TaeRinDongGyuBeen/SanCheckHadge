@@ -9,31 +9,105 @@ import SwiftUI
 // TODO: 짧은 버튼, 긴 버튼, Disable 여부, 정사각형 버튼 대응 필요
 
 struct ButtonComponent: View {
-    var color: Color = .accentColor
+    var buttonType: ButtonType
+    var isTapped: Bool
     let content: String
     let action: () -> Void
     
-    
     var body: some View {
-        
-        Button(action: action) {
-            Text(content)
-                .frame(width: 285, height: 45)
-                .font(Font.seoul(.button1))
-                .foregroundColor(Color.theme.white)
-                
+        switch buttonType {
+        case .genderButton:
+            Button(action: action) {
+                VStack(spacing: 0) {
+                    Image(systemName: "person.fill")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 49, height: 52)
+                        .foregroundColor(Color.theme.gray3)
+                        .padding(9)
+                    Text(content)
+                        .font(Font.seoul(.body6))
+                        .foregroundColor(Color.theme.gray4)
+                        .padding(9)
+                }
+            }
+            .frame(width: 138, height: 140)
+            .background(isTapped ? Color.theme.white : Color.theme.gray1)
+            .cornerRadius(20)
+            .overlay(
+                RoundedRectangle(cornerRadius: 20)
+                    .stroke(isTapped ? Color.theme.green1 : Color.white.opacity(1), lineWidth: 3)
+            )
+        case .mainViewButton:
+            Button(action: action) {
+                Text(content)
+                    .frame(width: 285, height: 45)
+                    .font(Font.seoul(.button1))
+                    .foregroundColor(Color.theme.white)
+                    
+            }
+            .background(Color.theme.green1)
+            .cornerRadius(30)
+        case .miniButton:
+            Button(action: action) {
+                Text(content)
+                    .frame(width: 285, height: 45)
+                    .font(Font.seoul(.button1))
+                    .foregroundColor(Color.theme.white)
+                    
+            }
+            .background(Color.theme.green1)
+            .cornerRadius(30)
+        case .nextButton:
+            Button(action: action) {
+                Text(content)
+                    .frame(width: 285, height: 45)
+                    .font(Font.seoul(.button1))
+                    .foregroundColor(Color.theme.white)
+                    
+            }
+            .background(Color.theme.green1)
+            .cornerRadius(30)
         }
-        .background(Color.theme.green1)
-        .cornerRadius(30)
     }
     
 }
 
 struct ButtonComponent_Previews: PreviewProvider {
-    static var previews: some View {
-        ButtonComponent(content: "시험용", action: {
-            
-        })
-        
+    enum ButtonType {
+        case genderButton
+        case miniButton
+        case nextButton
+        case mainViewButton
     }
+    
+    static var previews: some View {
+        VStack {
+            ButtonComponent(buttonType: .genderButton, isTapped: false, content: "시험용", action: {
+                
+            })
+            ButtonComponent(buttonType: .miniButton, isTapped: false, content: "시험용", action: {
+                
+            })
+            ButtonComponent(buttonType: .nextButton, isTapped: false, content: "시험용", action: {
+                
+            })
+            ButtonComponent(buttonType: .mainViewButton, isTapped: false, content: "시험용", action: {
+                
+            })
+        }
+    }
+}
+
+/**
+ genderButton : 정보 수집에서 성별 선택하는 버튼
+ miniButton : 정보 수집 or 어떤 산책? 뷰에서 나이대 또는 가고 싶은 곳 선택하는 버튼
+ nextButton : 모든 뷰에서 하단의 긴 버튼
+ mainViewButton : 산책 시작하기 or 산책 기록하기 버튼
+ */
+enum ButtonType {
+    case genderButton
+    case miniButton
+    case nextButton
+    case mainViewButton
 }

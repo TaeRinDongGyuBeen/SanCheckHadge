@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State var test = ""
-    
+    @State var isTapped = false
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -20,8 +20,8 @@ struct ContentView: View {
                 .font(Font.seoul(.body4))
             TextField("시험용", text: $test)
             
-            ButtonComponent(content: "시험용", action: {
-                
+            ButtonComponent(buttonType: .genderButton, isTapped: isTapped, content: "시험용", action: {
+                isTapped.toggle()
             })
         }
         .padding()
