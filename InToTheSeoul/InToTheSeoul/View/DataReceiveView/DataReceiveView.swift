@@ -8,10 +8,24 @@
 import SwiftUI
 
 struct DataReceiveView: View {
+    
+    // MARK: - 변수
+    /**
+     dataCheckList에 있는 모든 변수가 true가 될 때, NextButton이 활성화되게  함.
+     각 변수마다 willSet을 달아서 값 변화를 감지하고 dataCheckList의 값을 변화하게 함.
+     
+     dataCheckList[0] : 이름 입력이 잘 되었는지 체크
+     dataCheckList[1] : 성별을 탭했는지 체크
+     dataCheckList[2] : 연령대를 탬했는지 체크
+     
+     genderActivatedList, ageCheckList의 경우, 하나가 체크될 경우, 나머지 버튼이 해제되어야 하기 때문에 Bool값을 Array에 담아놓았음.
+     */
     // TODO: nameLimiter 최소 글자 수 설정 필요. 최소 글자 수 입력 시 dataCheckList의 0번 인덱스를 true로 만들어 주어야 함.
     @State var nameLimiter: String = ""
     
-    // 여성, 남성이 각각 클릭될 때, 상호 작용하도록 만드는 Bool Array
+    /**
+     여성(0), 남성(1)이 각각 클릭될 때, 상호 작용하도록 만드는 Bool Array
+    */
     @State var genderActivatedList = [false, false] {
         willSet {
             dataCheckList[1] = true
@@ -43,6 +57,7 @@ struct DataReceiveView: View {
         }
     }
     
+    // MARK: - body
     
     var body: some View {
         VStack(spacing: 0) {
