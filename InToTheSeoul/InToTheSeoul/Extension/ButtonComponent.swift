@@ -6,6 +6,8 @@
 //
 import SwiftUI
 
+// TODO: 짧은 버튼, 긴 버튼, Disable 여부, 정사각형 버튼 대응 필요
+
 struct ButtonComponent: View {
     var color: Color = .accentColor
     let content: String
