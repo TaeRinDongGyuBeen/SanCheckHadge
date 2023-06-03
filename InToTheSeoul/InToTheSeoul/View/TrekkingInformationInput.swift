@@ -55,9 +55,9 @@ extension TrekkingInformationInput {
     private var Title: some View {
         VStack {
             Text("어떤 산책을 원하시나요?")
-                .textFontAndColor(font: .headline1, color: .theme.black)
+                .textFontAndColor(.h1)
             Text("정보를 입력하고, 나만의 산책 코스를 추천받아보세요")
-                .textFontAndColor(font: .headline2, color: .theme.gray5)
+                .textFontAndColor(.h2)
         }
     }
     
@@ -65,9 +65,9 @@ extension TrekkingInformationInput {
         VStack {
             HStack(alignment: .bottom, spacing: 16) {
                 Text("시간")
-                    .textFontAndColor(font: .headline3, color: .theme.black)
+                    .textFontAndColor(.h3)
                 Text("슬라이더를 움직여 산책 시간을 선택해주세요")
-                    .textFontAndColor(font: .headline4, color: .theme.gray4)
+                    .textFontAndColor(.h4)
                 Spacer()
             }
             .padding(.bottom, 12)
@@ -78,9 +78,9 @@ extension TrekkingInformationInput {
                 VStack {
                     HStack(alignment: .bottom) {
                         Text("\(Int(trekkingTime))")
-                            .textFontAndColor(font: .body4, color: .theme.green1)
+                            .textFontAndColor(.body4)
                         Text("분")
-                            .textFontAndColor(font: .headline5, color: .theme.gray4)
+                            .textFontAndColor(.h5)
                     }
                     
                     Slider(value: $trekkingTime, in: 0...120, step: 5)
@@ -90,7 +90,7 @@ extension TrekkingInformationInput {
                         Spacer()
                         Text("2시간")
                     }
-                    .textFontAndColor(font: .headline5, color: .theme.gray4)
+                    .textFontAndColor(.h5)
                 }
                 .padding(.horizontal, 14)
                 
@@ -103,9 +103,9 @@ extension TrekkingInformationInput {
         VStack {
             HStack(alignment: .bottom, spacing: 16) {
                 Text("경유지")
-                    .textFontAndColor(font: .headline3, color: .theme.black)
+                    .textFontAndColor(.h3)
                 Text("꼭 들리고 싶은 곳이 있다면 선택해주세요")
-                    .textFontAndColor(font: .headline4, color: .theme.gray4)
+                    .textFontAndColor(.h4)
                 Spacer()
             }
             .padding(.bottom, 12)
