@@ -9,9 +9,9 @@ import SwiftUI
 
 struct TrackingModalView: View {
     
-    @State var height: CGFloat = 60
-    let minHeight: CGFloat = 60
-    let maxHeight: CGFloat = 400
+    @State var height: CGFloat = 80
+    let minHeight: CGFloat = 80
+    let maxHeight: CGFloat = 320
     var percentage: Double {
         Double(height / maxHeight)
     }
@@ -26,18 +26,59 @@ struct TrackingModalView: View {
                     .foregroundColor(Color.theme.gray3)
                     .frame(width: 120, height: 10)
             }
-            .frame(height: 40)
+            .frame(height: 60)
             .frame(maxWidth: .infinity)
             .gesture(dragGesture)
-            
+
             VStack {
-                Text("Hello World")
+                HStack(alignment: .top) {
+                    Image(systemName: "heart")
+                    VStack(alignment: .leading, spacing: 16) {
+                        Text("행복한 소나무에 도착하면")
+                            .textFontAndColor(.body1)
+                        
+                        Text("40 행복코인 지급")
+                            .textFontAndColor(.body2)
+                        
+                        HStack {
+                            Text("현재 위치에서 4km")
+                                .font(Font.seoul(.h5))
+                                .foregroundColor(Color.theme.gray5)
+                            
+                            Text("(3,430걸음)")
+                                .textFontAndColor(.h5)
+                            
+                            Text(" · 7분 예상")
+                                .font(Font.seoul(.h5))
+                                .foregroundColor(Color.theme.gray5)
+                        }
+                    }
+                }
+                .padding(.bottom, 20)
+
+                ButtonComponent(buttonType: .nextButton, content: "리워드 받기", isActive: false, action: {
+                    
+                })
+                .padding(.bottom, 12)
+
+                Button(action: {
+
+                }, label: {
+                    Text("오늘은 그만할래요")
+                        .textFontAndColor(.h5)
+                })
+                .padding(.bottom, 16)
             }
+            .padding(.leading, 40)
+            .padding(.trailing, 40)
+            .padding(.top, 20)
+            
+            Spacer()
+            
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(RoundedRectangle(cornerRadius: 20)
                 .foregroundColor(.white)
             )
-            .padding(.all, 20)
             .opacity(1.5 * (percentage - 0.3))
         }
         .frame(maxWidth: .infinity)
