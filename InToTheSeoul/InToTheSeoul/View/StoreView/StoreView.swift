@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// TODO: CoreDataManager를 활용하여 돈의 변화와 아이템 소장 여부를 CRU 해주어야 함.
+
 struct StoreView: View {
     @State var userMoney: Int = 1530
     
@@ -31,7 +33,7 @@ struct StoreView: View {
                 }
             }
             .padding(EdgeInsets(top: 10, leading: 0, bottom: 13.5, trailing: 0))
-            
+            Spacer()
             VStack(spacing: 0) {
                 HStack(spacing: 0) {
                     StoreProductButton(
@@ -44,7 +46,9 @@ struct StoreView: View {
                         buttonActive(index: 0)
                     })
                     .disabled(cantBuyItemDisable(userMoney: userMoney, price: 1500))
+                    
                     Spacer()
+                    
                     StoreProductButton(
                         isActive: buttonIsActiveArray[1],
                         color: canBuyItemColor(userMoney: userMoney, price: 2000),
@@ -55,7 +59,9 @@ struct StoreView: View {
                         buttonActive(index: 1)
                     })
                     .disabled(cantBuyItemDisable(userMoney: userMoney, price: 2000))
+                    
                     Spacer()
+                    
                     StoreProductButton(
                         isActive: buttonIsActiveArray[2],
                         color: canBuyItemColor(userMoney: userMoney, price: 1200),
@@ -80,12 +86,16 @@ struct StoreView: View {
                         buttonActive(index: 3)
                     })
                     .disabled(cantBuyItemDisable(userMoney: userMoney, price: 1700))
+                    
                     Spacer()
+                    
                     StoreProductButton(isActive: buttonIsActiveArray[4], color: canBuyItemColor(userMoney: userMoney, price: 1500), isOwnItem: checkOwnItem(itemName: "macbook"), money: 1500, imageName: "macbook", action: {
                         buttonActive(index: 4)
                     })
                     .disabled(cantBuyItemDisable(userMoney: userMoney, price: 1500))
+                    
                     Spacer()
+                    
                     ButtonComponent(buttonType: .storeReadyForSaleButton, content: "준비중입니다", isActive: false, action: {
                         
                     })
@@ -94,6 +104,8 @@ struct StoreView: View {
                 
             }
             .padding(EdgeInsets(top: 13.5, leading: 0, bottom: 14, trailing: 0))
+            
+            Spacer()
             
             ButtonComponent(buttonType: .nextButton, content: "저장하기", isActive: true, action: {
                 
