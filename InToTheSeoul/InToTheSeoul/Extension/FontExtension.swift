@@ -26,6 +26,7 @@ extension Font {
         case h5
         case h6
         case h7
+        case h8
         case body1
         case body2
         case body3
@@ -53,6 +54,8 @@ extension Font {
                 return .footnote
             case .h7:
                 return .largeTitle
+            case .h8:
+                return .title3
             case .body1:
                 return .body
             case .body2:
@@ -70,9 +73,11 @@ extension Font {
             case .button1:
                 return .headline
             case .button2:
-                return .body
+                return .caption2
             case .coin:
                 return .body
+
+
             }
         }
         
@@ -92,6 +97,8 @@ extension Font {
                 return .regular
             case .h7:
                 return .bold
+            case .h8:
+                return .bold
             case .body1:
                 return .regular
             case .body2:
@@ -109,7 +116,7 @@ extension Font {
             case .button1:
                 return .bold
             case .button2:
-                return .bold
+                return .regular
             case .coin:
                 return .bold
             }
