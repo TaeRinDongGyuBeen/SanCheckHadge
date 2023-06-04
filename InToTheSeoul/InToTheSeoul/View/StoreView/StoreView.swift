@@ -34,38 +34,61 @@ struct StoreView: View {
             
             VStack(spacing: 0) {
                 HStack(spacing: 0) {
-                    StoreProductButton(isActive: buttonIsActiveArray[0], color: canBuyItemColor(userMoney: userMoney), money: 1500, imageName: "palleteSet", action: {
+                    StoreProductButton(
+                        isActive: buttonIsActiveArray[0],
+                        color: canBuyItemColor(userMoney: userMoney, price: 1500),
+                        isOwnItem: checkOwnItem(itemName: "palleteSet"),
+                        money: 1500,
+                        imageName: "palleteSet",
+                        action: {
                         buttonActive(index: 0)
                     })
-                    .disabled(cantBuyItemDisable(userMoney: userMoney))
+                    .disabled(cantBuyItemDisable(userMoney: userMoney, price: 1500))
                     Spacer()
-                    StoreProductButton(isActive: buttonIsActiveArray[1], color: canBuyItemColor(userMoney: userMoney), money: 1500, imageName: "palleteSet", action: {
+                    StoreProductButton(
+                        isActive: buttonIsActiveArray[1],
+                        color: canBuyItemColor(userMoney: userMoney, price: 2000),
+                        isOwnItem: checkOwnItem(itemName: "drum"),
+                        money: 2000,
+                        imageName: "drum",
+                        action: {
                         buttonActive(index: 1)
                     })
-                    .disabled(cantBuyItemDisable(userMoney: userMoney))
+                    .disabled(cantBuyItemDisable(userMoney: userMoney, price: 2000))
                     Spacer()
-                    StoreProductButton(isActive: buttonIsActiveArray[1], color: canBuyItemColor(userMoney: userMoney), money: 1500, imageName: "palleteSet", action: {
-                        buttonActive(index: 1)
+                    StoreProductButton(
+                        isActive: buttonIsActiveArray[2],
+                        color: canBuyItemColor(userMoney: userMoney, price: 1200),
+                        isOwnItem: true,
+                        money: 1200,
+                        imageName: "books",
+                        action: {
+                        buttonActive(index: 2)
                     })
-                    .disabled(cantBuyItemDisable(userMoney: userMoney))
+                    .disabled(cantBuyItemDisable(userMoney: userMoney, price: 1200))
                 }
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 13.5, trailing: 0))
                 
                 HStack(spacing: 0) {
-                    StoreProductButton(isActive: buttonIsActiveArray[0], color: canBuyItemColor(userMoney: userMoney), money: 1500, imageName: "palleteSet", action: {
-                        buttonActive(index: 0)
+                    StoreProductButton(
+                        isActive: buttonIsActiveArray[3],
+                        color: canBuyItemColor(userMoney: userMoney, price: 1700),
+                        isOwnItem: checkOwnItem(itemName: "trainingTools"),
+                        money: 1700,
+                        imageName: "trainingTools",
+                        action: {
+                        buttonActive(index: 3)
                     })
-                    .disabled(cantBuyItemDisable(userMoney: userMoney))
+                    .disabled(cantBuyItemDisable(userMoney: userMoney, price: 1700))
                     Spacer()
-                    StoreProductButton(isActive: buttonIsActiveArray[1], color: canBuyItemColor(userMoney: userMoney), money: 1500, imageName: "palleteSet", action: {
-                        buttonActive(index: 1)
+                    StoreProductButton(isActive: buttonIsActiveArray[4], color: canBuyItemColor(userMoney: userMoney, price: 1500), isOwnItem: checkOwnItem(itemName: "macbook"), money: 1500, imageName: "macbook", action: {
+                        buttonActive(index: 4)
                     })
-                    .disabled(cantBuyItemDisable(userMoney: userMoney))
+                    .disabled(cantBuyItemDisable(userMoney: userMoney, price: 1500))
                     Spacer()
-                    StoreProductButton(isActive: buttonIsActiveArray[1], color: canBuyItemColor(userMoney: userMoney), money: 1500, imageName: "palleteSet", action: {
-                        buttonActive(index: 1)
+                    ButtonComponent(buttonType: .storeReadyForSaleButton, content: "준비중입니다", isActive: false, action: {
+                        
                     })
-                    .disabled(cantBuyItemDisable(userMoney: userMoney))
                 }
                 .padding(EdgeInsets(top: 13.5, leading: 0, bottom: 0, trailing: 0))
                 
@@ -81,15 +104,25 @@ struct StoreView: View {
     }
     
     func buttonActive(index: Int) {
-        
-        //
+        for i in stride(from: 0, through: buttonIsActiveArray.count - 1, by: 1) {
+            buttonIsActiveArray[i] = false
+        }
+        buttonIsActiveArray[index].toggle()
     }
     
-    func canBuyItemColor(userMoney: Int) -> Color {
-        return Color.theme.gray3
+    func canBuyItemColor(userMoney: Int, price: Int) -> Color {
+        return userMoney >= price ? Color.theme.yellow : Color.theme.gray3
     }
     
-    func cantBuyItemDisable(userMoney: Int) -> Bool {
+    func cantBuyItemDisable(userMoney: Int, price: Int) -> Bool {
+        return userMoney >= price ? false : true
+    }
+    
+    /**
+     사용자가 해당 아이템을 가지고 있는지 확인하는 메서드
+     */
+    func checkOwnItem(itemName: String) -> Bool {
+        // TODO: 코어데이터의 데이터 값과 비교하여, 데이터가 있으면 true, 아니면 false
         return false
     }
 }

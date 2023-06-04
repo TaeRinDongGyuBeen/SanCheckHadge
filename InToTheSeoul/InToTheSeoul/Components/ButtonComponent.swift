@@ -161,6 +161,7 @@ struct NextButton: View {
 struct StoreProductButton: View {
     var isActive: Bool
     var color: Color
+    var isOwnItem: Bool
     let money: Int
     let imageName: String
     let action: () -> Void
@@ -181,8 +182,16 @@ struct StoreProductButton: View {
                     .stroke(Color.theme.gray3, lineWidth: 3)
             )
             .padding(EdgeInsets(top: 0, leading: 0, bottom: 4, trailing: 0))
-            CoinComponent(money: money, color: color)
-                .padding(EdgeInsets(top: 4, leading: 0, bottom: 0, trailing: 0))
+
+            if isOwnItem {
+                Text("보유중")
+                    .font(Font.seoul(.coin))
+                    .foregroundColor(Color.theme.yellow)
+                    .padding(EdgeInsets(top: 4, leading: 0, bottom: 0, trailing: 0))
+            } else {
+                CoinComponent(money: money, color: color)
+                    .padding(EdgeInsets(top: 4, leading: 0, bottom: 0, trailing: 0))
+            }
         }
     }
 }
@@ -234,7 +243,7 @@ struct ButtonComponent_Previews: PreviewProvider {
             ButtonComponent(buttonType: .storeReadyForSaleButton, isActive: false, imageName: "palleteSet", action: {
                 
             })
-            StoreProductButton(isActive: false, color: Color.theme.yellow , money: 1800, imageName: "palleteSet", action: {
+            StoreProductButton(isActive: false, color: Color.theme.yellow, isOwnItem: true , money: 1800, imageName: "palleteSet", action: {
                 
             })
         }
