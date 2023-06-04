@@ -97,20 +97,18 @@ struct MainViewButton: View {
     var body: some View {
         Button(action: action) {
             VStack(spacing: 0) {
-                Image(systemName: imageName)
+                Image(imageName)
                     .resizable()
                     .scaledToFill()
-                    .frame(width: 25, height: 41)
-                    .foregroundColor(isActive ? Color.theme.white : Color.theme.yellow)
-                    .padding(8)
+                    .frame(width: 90, height: 60)
+                    .foregroundColor(Color.theme.white)
+                    .padding(16)
                 Text(content)
-                    .font(Font.seoul(.body6))
-                    .foregroundColor(isActive ? Color.theme.white : Color.theme.gray4)
-                    .padding(8)
+                    .textFontAndColor(.h8)
             }
         }
         .frame(width: 138, height: 159)
-        .background(isActive ? Color.theme.yellow : Color.theme.white)
+        .background(Color.theme.white)
         .cornerRadius(20)
         .shadow(color: Color.theme.shadow, radius: 3, y: 4)
     }
@@ -252,7 +250,7 @@ struct ButtonComponent_Previews: PreviewProvider {
             ButtonComponent(buttonType: .nextButton, content: "시험용", isActive: false, action: {
                 
             })
-            ButtonComponent(buttonType: .mainViewButton, content: "산책\n시작하기", isActive: false, imageName: "figure.walk", action: {
+            ButtonComponent(buttonType: .mainViewButton, content: "산책하기", isActive: false, imageName: "figure.walk", action: {
                 
             })
             ButtonComponent(buttonType: .storeReadyForSaleButton, isActive: false, imageName: "palleteSet", action: {
