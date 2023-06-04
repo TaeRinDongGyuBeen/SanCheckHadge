@@ -17,12 +17,30 @@ struct TrackingView: View {
                 
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color.blue)
             .ignoresSafeArea()
             
             //MARK: - 모달 뷰
-            VStack() {
+            VStack(alignment: .trailing) {
+                Button(action: {
+                    
+                }, label: {
+                    ZStack {
+                        Circle()
+                            .fill(Color.white)
+                            .frame(width: 40)
+                            .overlay(
+                                Circle()
+                                    .stroke(Color.black, lineWidth: 0.3)
+                            )
+                            .shadow(radius: 3, x: 0, y: 2)
+                        Image(systemName: "scope")
+                            .foregroundColor(.black)
+                    }
+
+                })
+                .padding()
                 TrackingModalView()
+                    .shadow(radius: 10)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
             .ignoresSafeArea(edges: .bottom)
