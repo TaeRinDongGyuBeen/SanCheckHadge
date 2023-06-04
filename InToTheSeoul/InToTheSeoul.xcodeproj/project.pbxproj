@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		160EFE332A2C87B2005809A0 /* TrackingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160EFE322A2C87B2005809A0 /* TrackingView.swift */; };
+		160EFE352A2C880F005809A0 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160EFE342A2C880F005809A0 /* MapView.swift */; };
+		160EFE372A2C8867005809A0 /* TrackingModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160EFE362A2C8867005809A0 /* TrackingModalView.swift */; };
 		3D3846062A2B9C20008A9166 /* ButtonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3846052A2B9C20008A9166 /* ButtonComponent.swift */; };
 		3D3846092A2B9CE9008A9166 /* Points.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D3846082A2B9CE9008A9166 /* Points.json */; };
 		3D38460B2A2BA505008A9166 /* PointModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D38460A2A2BA505008A9166 /* PointModel.swift */; };
@@ -28,6 +31,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		160EFE322A2C87B2005809A0 /* TrackingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingView.swift; sourceTree = "<group>"; };
+		160EFE342A2C880F005809A0 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		160EFE362A2C8867005809A0 /* TrackingModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingModalView.swift; sourceTree = "<group>"; };
 		3D3846052A2B9C20008A9166 /* ButtonComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonComponent.swift; sourceTree = "<group>"; };
 		3D3846082A2B9CE9008A9166 /* Points.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Points.json; sourceTree = "<group>"; };
 		3D38460A2A2BA505008A9166 /* PointModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointModel.swift; sourceTree = "<group>"; };
@@ -61,6 +67,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		160EFE312A2C87A5005809A0 /* TrackingView */ = {
+			isa = PBXGroup;
+			children = (
+				160EFE322A2C87B2005809A0 /* TrackingView.swift */,
+				160EFE342A2C880F005809A0 /* MapView.swift */,
+				160EFE362A2C8867005809A0 /* TrackingModalView.swift */,
+			);
+			path = TrackingView;
+			sourceTree = "<group>";
+		};
 		3D3846042A2B9C20008A9166 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -84,6 +100,7 @@
 		C921EE442A275C8D00290875 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				160EFE312A2C87A5005809A0 /* TrackingView */,
 				C976C6472A2BED38009E0D24 /* StoreView */,
 				C924BE162A2BD82E00FF36BA /* DataReceiveView */,
 				C9D8CD8C2A27597000A880E8 /* ContentView.swift */,
@@ -243,12 +260,15 @@
 				C9D8CD8D2A27597000A880E8 /* ContentView.swift in Sources */,
 				C9D8CD8B2A27597000A880E8 /* InToTheSeoulApp.swift in Sources */,
 				3D3846172A2BCA16008A9166 /* WayPoint.swift in Sources */,
+				160EFE372A2C8867005809A0 /* TrackingModalView.swift in Sources */,
 				3D38460F2A2BA564008A9166 /* Ex+ CLocationCoordinate2D.swift in Sources */,
 				3D38460D2A2BA52A008A9166 /* JsonLoader.swift in Sources */,
 				3D3846112A2BA621008A9166 /* Point.swift in Sources */,
 				3D3846062A2B9C20008A9166 /* ButtonComponent.swift in Sources */,
+				160EFE352A2C880F005809A0 /* MapView.swift in Sources */,
 				3D3846132A2BA70C008A9166 /* TrekkingInformationInput.swift in Sources */,
 				C976C64B2A2BF270009E0D24 /* CoinComponent.swift in Sources */,
+				160EFE332A2C87B2005809A0 /* TrackingView.swift in Sources */,
 				C95F4AA32A2AE4A800DFBFE3 /* ColorExtension.swift in Sources */,
 				C95F4AA52A2B134500DFBFE3 /* ViewExtension.swift in Sources */,
 				C976C6492A2BED4A009E0D24 /* StoreView.swift in Sources */,
