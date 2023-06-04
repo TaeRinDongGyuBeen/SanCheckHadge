@@ -78,13 +78,13 @@ struct MainView: View {
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0))
                 
                 HStack(spacing: 0) {
-                    ButtonComponent(buttonType: .mainViewButton, content: "산책하기", isActive: false, imageName: "", action: {
+                    ButtonComponent(buttonType: .mainViewButton, content: "산책하기", isActive: false, imageName: "walkingStartButton", action: {
                         
                     })
                     
                     Spacer()
                     
-                    ButtonComponent(buttonType: .mainViewButton, content: "기록보기", isActive: false, imageName: "", action: {
+                    ButtonComponent(buttonType: .mainViewButton, content: "기록보기", isActive: false, imageName: "recordCheckButton", action: {
                         
                     })
                 }
