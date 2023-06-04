@@ -32,8 +32,10 @@ struct MainView: View {
                 HStack(spacing: 0) {
                     Text(username)
                         .textFontAndColor(.h7)
+                        .frame(alignment: .bottom)
                     Text("님, 안녕하세요!")
                         .textFontAndColor(.body1)
+                        .frame(maxHeight: 30, alignment: .bottom)
                 }
                 
                 Spacer()
@@ -86,6 +88,7 @@ struct MainView: View {
                         
                     })
                 }
+                Spacer()
             }
             .padding(EdgeInsets(top: 0, leading: 40, bottom: 40, trailing: 40))
         }
