@@ -50,7 +50,11 @@ struct FontAndColorModifier: ViewModifier {
         case .h7:
             content
                 .font(Font.seoul(.h7))
-                .foregroundColor(Color.theme.yellow)
+                .foregroundColor(Color.theme.gray5)
+        case .h8:
+            content
+                .font(Font.seoul(.h8))
+                .foregroundColor(Color.theme.green1)
         case .body1:
             content
                 .font(Font.seoul(.body1))
