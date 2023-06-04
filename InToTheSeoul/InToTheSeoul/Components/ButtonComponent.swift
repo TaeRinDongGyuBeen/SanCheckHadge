@@ -168,21 +168,36 @@ struct StoreProductButton: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            Button(action: action) {
-                Image(imageName)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 49, height: 52)
+            ZStack {
+                Button(action: action) {
+                    ZStack {
+                        Image(imageName)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 49, height: 52)
+                        
+                        
+                    }
+                }
+                .frame(width: 94, height: 103)
+                .background(Color.theme.white)
+                .cornerRadius(20)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(isActive ? Color.theme.yellow : Color.theme.gray3, lineWidth: 3)
+                )
+                .padding(EdgeInsets(top: 0, leading: 0, bottom: 4, trailing: 0))
+                if isActive {
+                    VStack(spacing: 0) {
+                        Image("check")
+                            .resizable()
+                            .frame(width: 24, height: 24)
+                    }
+                    .frame(width: 94, height: 103, alignment: .topTrailing)
+                }
+                
+                
             }
-            .frame(width: 94, height: 103)
-            .background(Color.theme.white)
-            .cornerRadius(20)
-            .overlay(
-                RoundedRectangle(cornerRadius: 20)
-                    .stroke(Color.theme.gray3, lineWidth: 3)
-            )
-            .padding(EdgeInsets(top: 0, leading: 0, bottom: 4, trailing: 0))
-
             if isOwnItem {
                 Text("보유중")
                     .font(Font.seoul(.coin))
