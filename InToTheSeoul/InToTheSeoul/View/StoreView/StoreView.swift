@@ -10,7 +10,7 @@ import SwiftUI
 struct StoreView: View {
     var body: some View {
         VStack(spacing: 0) {
-            CoinComponent(money: "1,750", color: Color.theme.green1)
+            CoinComponent(money: 1750, color: Color.theme.green1)
             ZStack {
                 
                 ZStack {

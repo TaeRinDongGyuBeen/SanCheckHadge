@@ -19,7 +19,6 @@ enum ButtonType {
     case miniButton
     case nextButton
     case mainViewButton
-    case storeProductButton
     case storeReadyForSaleButton
 }
 
@@ -41,7 +40,6 @@ struct ButtonComponent: View {
     var imageName: String = ""
     let action: () -> Void
     
-    
     var body: some View {
         switch buttonType {
         case .genderButton:
@@ -52,8 +50,6 @@ struct ButtonComponent: View {
             MiniButton(isActive: isActive, content: content, action: action)
         case .nextButton:
             NextButton(isActive: isActive, content: content, action: action)
-        case .storeProductButton:
-            StoreProductButton(isActive: isActive, imageName: imageName, action: action)
         case .storeReadyForSaleButton:
             StoreReadyForSaleButton(isActive: isActive, content: content, action: action)
         }
@@ -157,29 +153,37 @@ struct NextButton: View {
     }
 }
 
+/**
+ ButtonCompont 객체로 부를 수 없음.
+ money: 보여질 돈(Int)
+ color: 보여질 background 색상(Color)
+ */
 struct StoreProductButton: View {
     var isActive: Bool
+    var color: Color
+    let money: Int
     let imageName: String
     let action: () -> Void
     
     var body: some View {
-        Button(action: action) {
-            // padding을 정확히 주기 위해 spacing을 0으로 처리한다.
-            VStack(spacing: 0) {
+        VStack(spacing: 0) {
+            Button(action: action) {
                 Image(imageName)
                     .resizable()
-                    .scaledToFill()
+                    .scaledToFit()
                     .frame(width: 49, height: 52)
-                    .foregroundColor(Color.theme.gray3)
             }
+            .frame(width: 94, height: 103)
+            .background(Color.theme.white)
+            .cornerRadius(20)
+            .overlay(
+                RoundedRectangle(cornerRadius: 20)
+                    .stroke(Color.theme.gray3, lineWidth: 3)
+            )
+            .padding(EdgeInsets(top: 0, leading: 0, bottom: 4, trailing: 0))
+            CoinComponent(money: money, color: color)
+                .padding(EdgeInsets(top: 4, leading: 0, bottom: 0, trailing: 0))
         }
-        .frame(width: 138, height: 140)
-        .background(isActive ? Color.theme.white : Color.theme.gray1)
-        .cornerRadius(20)
-        .overlay(
-            RoundedRectangle(cornerRadius: 20)
-                .stroke(isActive ? Color.theme.green1 : Color.white.opacity(1), lineWidth: 3)
-        )
     }
 }
 
@@ -193,18 +197,14 @@ struct StoreReadyForSaleButton: View {
         Button(action: action) {
             // padding을 정확히 주기 위해 spacing을 0으로 처리한다.
             VStack(spacing: 0) {
-                Text(content)
-                    .font(Font.seoul(.body6))
-                    .foregroundColor(Color.theme.gray4)
+                Text("준비중\n입니다")
+                    .textFontAndColor(.body3)
             }
         }
-        .frame(width: 138, height: 140)
-        .background(isActive ? Color.theme.white : Color.theme.gray1)
+        .frame(width: 94, height: 103)
+        .background(Color.theme.gray1)
         .cornerRadius(20)
-        .overlay(
-            RoundedRectangle(cornerRadius: 20)
-                .stroke(isActive ? Color.theme.green1 : Color.white.opacity(1), lineWidth: 3)
-        )
+        .disabled(true)
     }
 }
 
@@ -231,7 +231,10 @@ struct ButtonComponent_Previews: PreviewProvider {
             ButtonComponent(buttonType: .mainViewButton, content: "산책\n시작하기", isActive: false, imageName: "figure.walk", action: {
                 
             })
-            ButtonComponent(buttonType: .storeProductButton, isActive: false, imageName: "person.fill", action: {
+            ButtonComponent(buttonType: .storeReadyForSaleButton, isActive: false, imageName: "palleteSet", action: {
+                
+            })
+            StoreProductButton(isActive: false, color: Color.theme.yellow , money: 1800, imageName: "palleteSet", action: {
                 
             })
         }
