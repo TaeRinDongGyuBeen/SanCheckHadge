@@ -11,9 +11,9 @@ import SwiftUI
 
 struct StoreView: View {
     @State var userMoney: Int = 1530
-    
     @State var buttonIsActiveArray = [false, false, false, false, false]
     
+    @State private var alertShowing: Bool = false
     var body: some View {
         VStack(spacing: 0) {
             VStack(spacing: 0) {
@@ -43,8 +43,8 @@ struct StoreView: View {
                         money: 1500,
                         imageName: "palleteSet",
                         action: {
-                        buttonActive(index: 0)
-                    })
+                            buttonActive(index: 0)
+                        })
                     .disabled(cantBuyItemDisable(userMoney: userMoney, price: 1500))
                     
                     Spacer()
@@ -56,8 +56,8 @@ struct StoreView: View {
                         money: 2000,
                         imageName: "drum",
                         action: {
-                        buttonActive(index: 1)
-                    })
+                            buttonActive(index: 1)
+                        })
                     .disabled(cantBuyItemDisable(userMoney: userMoney, price: 2000))
                     
                     Spacer()
@@ -69,8 +69,8 @@ struct StoreView: View {
                         money: 1200,
                         imageName: "books",
                         action: {
-                        buttonActive(index: 2)
-                    })
+                            buttonActive(index: 2)
+                        })
                     .disabled(cantBuyItemDisable(userMoney: userMoney, price: 1200))
                 }
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 13.5, trailing: 0))
@@ -83,8 +83,8 @@ struct StoreView: View {
                         money: 1700,
                         imageName: "trainingTools",
                         action: {
-                        buttonActive(index: 3)
-                    })
+                            buttonActive(index: 3)
+                        })
                     .disabled(cantBuyItemDisable(userMoney: userMoney, price: 1700))
                     
                     Spacer()
@@ -108,8 +108,20 @@ struct StoreView: View {
             Spacer()
             
             ButtonComponent(buttonType: .nextButton, content: "저장하기", isActive: true, action: {
-                
+                alertShowing.toggle()
             })
+            .alert("정말 구매하실건가요?", isPresented: $alertShowing) {
+                Button("취소") {
+                    
+                }
+                Button("확인") {
+                    
+                }
+                
+            } message: {
+                Text("확인 버튼을 누르면 행복코인으로 아이템을 구매합니다.")
+                    .textFontAndColor(.body4)
+            }
             .padding(EdgeInsets(top: 14, leading: 0, bottom: 0, trailing: 0))
         }
         .padding(EdgeInsets(top: 30, leading: 40, bottom: 20, trailing: 40))
