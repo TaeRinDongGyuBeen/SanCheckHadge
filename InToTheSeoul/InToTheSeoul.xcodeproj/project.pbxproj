@@ -18,6 +18,7 @@
 		3D3846112A2BA621008A9166 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3846102A2BA621008A9166 /* Point.swift */; };
 		3D3846132A2BA70C008A9166 /* TrekkingInformationInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3846122A2BA70C008A9166 /* TrekkingInformationInput.swift */; };
 		3D3846172A2BCA16008A9166 /* WayPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3846162A2BCA16008A9166 /* WayPoint.swift */; };
+		3D4D8E422A2D86910081912E /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4D8E412A2D86910081912E /* OnboardingView.swift */; };
 		C924BE182A2BD84600FF36BA /* DataReceiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C924BE172A2BD84600FF36BA /* DataReceiveView.swift */; };
 		C95D3A532A2D683D009DE078 /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95D3A522A2D683D009DE078 /* TimelineView.swift */; };
 		C95F4AA32A2AE4A800DFBFE3 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95F4AA22A2AE4A800DFBFE3 /* ColorExtension.swift */; };
@@ -44,6 +45,7 @@
 		3D3846102A2BA621008A9166 /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		3D3846122A2BA70C008A9166 /* TrekkingInformationInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrekkingInformationInput.swift; sourceTree = "<group>"; };
 		3D3846162A2BCA16008A9166 /* WayPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WayPoint.swift; sourceTree = "<group>"; };
+		3D4D8E412A2D86910081912E /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		C921EE482A27675F00290875 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C924BE172A2BD84600FF36BA /* DataReceiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataReceiveView.swift; sourceTree = "<group>"; };
 		C95D3A522A2D683D009DE078 /* TimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineView.swift; sourceTree = "<group>"; };
@@ -101,9 +103,18 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		3D4D8E402A2D866E0081912E /* OnboardingView */ = {
+			isa = PBXGroup;
+			children = (
+				3D4D8E412A2D86910081912E /* OnboardingView.swift */,
+			);
+			path = OnboardingView;
+			sourceTree = "<group>";
+		};
 		C921EE442A275C8D00290875 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3D4D8E402A2D866E0081912E /* OnboardingView */,
 				C95D3A512A2D682B009DE078 /* TimelineView */,
 				160EFE312A2C87A5005809A0 /* TrackingView */,
 				C9975FE12A2CC03600C1B4DC /* MainView */,
@@ -279,6 +290,7 @@
 			files = (
 				3D38460B2A2BA505008A9166 /* PointModel.swift in Sources */,
 				C95F4AA72A2B14DB00DFBFE3 /* FontExtension.swift in Sources */,
+				3D4D8E422A2D86910081912E /* OnboardingView.swift in Sources */,
 				C9D8CD8D2A27597000A880E8 /* ContentView.swift in Sources */,
 				C95D3A532A2D683D009DE078 /* TimelineView.swift in Sources */,
 				C9D8CD8B2A27597000A880E8 /* InToTheSeoulApp.swift in Sources */,
