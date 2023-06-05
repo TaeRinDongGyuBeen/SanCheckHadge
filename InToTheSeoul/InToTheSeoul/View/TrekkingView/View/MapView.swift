@@ -59,6 +59,7 @@ struct MapView: UIViewRepresentable {
 //            annotation.title = busStop.stop_nm
 //            mapView.addAnnotation(annotation)
 //        }
+        mapView.register(MapAnnotationView.self, forAnnotationViewWithReuseIdentifier: "annotation")
         
         let pointMarkers: [ViewPoint] = pointsModel.selectedPoints
         
@@ -204,21 +205,27 @@ struct MapView: UIViewRepresentable {
             guard !(annotation is MKUserLocation) else {
                 return nil
             }
-            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "annotation")
-            
-            if annotationView == nil {
-                //Create the View
-                annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "annotation")
-                annotationView?.canShowCallout = true
-                
-            } else {
-                annotationView?.annotation = annotation
+//            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "annotation")
+            print("변환 ㄱㄱ")
+            if let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "annotation") as? MapAnnotationView {
+                annotationView.setupUI(annotationStyle: .arrived, annotationId: 1)
+                print(annotationView)
+                return annotationView
             }
             
-            annotationView?.image = UIImage(named: "StartPoint")
+            print("변환 실패 ㅠ")
             
+//            if annotationView == nil {
+//                //Create the View
+//                annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "annotation")
+//                annotationView?.canShowCallout = true
+//
+//            } else {
+//                annotationView?.annotation = annotation
+//            }
             
-            return annotationView
+//            annotationView?.image = UIImage(named: "StartPoint")
+            return nil
         }
         
     }

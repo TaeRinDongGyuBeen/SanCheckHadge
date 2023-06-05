@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct MapAnnotation: View {
     let style: AnnotationStyle
@@ -78,5 +79,30 @@ struct MapAnnotation_Previews: PreviewProvider {
             MapAnnotation(style: .arrived, number: 1)
             MapAnnotation(style: .toGo, number: 1)
         }
+    }
+}
+
+final class MapAnnotationView: MKAnnotationView {
+    override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
+        super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
+        
+        frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        centerOffset = CGPoint(x: 0, y: -frame.size.height / 2)
+    }
+
+    @available(*, unavailable)
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    func setupUI(annotationStyle: AnnotationStyle, annotationId: Int) {
+        backgroundColor = .clear
+        
+        let vc = UIHostingController(rootView: MapAnnotation(style: annotationStyle, number: annotationId))
+        
+        vc.view.backgroundColor = .clear
+        addSubview(vc.view)
+
+        vc.view.frame = bounds
     }
 }
