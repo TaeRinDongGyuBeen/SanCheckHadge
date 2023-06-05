@@ -24,8 +24,11 @@ struct TrekkingView: View {
     
     @State var time = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
+    @State var val: Double = 0
+    
     var body: some View {
         ZStack {
+
             VStack {
                 MapView(showUserLocation: $showUserLocation, userLocation: $userLocation, region: $region, span: $span)
                     .environmentObject(pointsModel)
@@ -39,6 +42,16 @@ struct TrekkingView: View {
             .onReceive(self.time) { (_) in
                 checkIsNear()
             }
+            
+            VStack {
+                CustomProgressBar(progress: val)
+                    .frame(height: 57)
+                Spacer()
+            }
+            .padding(.top, 14)
+            .padding(.leading, 45)
+            .padding(.trailing, 45)
+
             
             //MARK: - 모달 뷰
             VStack(alignment: .trailing) {
