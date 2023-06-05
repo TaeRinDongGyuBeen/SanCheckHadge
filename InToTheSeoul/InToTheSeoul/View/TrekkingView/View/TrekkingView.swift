@@ -114,7 +114,7 @@ struct TrekkingView: View {
                 return
             }
             
-            print("CURRENTCOORDINATE :\(currentCoordinate)")
+//            print("CURRENTCOORDINATE :\(currentCoordinate)")
             
 //            let targetLocation = busStopModel.busStopList[0...3]
 //

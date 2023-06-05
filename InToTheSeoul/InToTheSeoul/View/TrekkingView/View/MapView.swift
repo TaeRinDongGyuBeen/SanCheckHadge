@@ -114,6 +114,8 @@ struct MapView: UIViewRepresentable {
         
     }
     
+    
+    
     //MARK: - Coordinator 역할 (Delegate)
     
     class MapViewCoordinator: NSObject, MKMapViewDelegate, CLLocationManagerDelegate {
@@ -168,8 +170,8 @@ struct MapView: UIViewRepresentable {
                 let span = MKCoordinateSpan(latitudeDelta: region.span.latitudeDelta, longitudeDelta: region.span.longitudeDelta)
                 region = MKCoordinateRegion(center: currentCoordinate, span: span)
                             
-                print("PPPPPPPPP \(currentCoordinate)")
-                print("region --- \(region)")
+//                print("PPPPPPPPP \(currentCoordinate)")
+//                print("region --- \(region)")
                 
             @unknown default:
                 break
