@@ -196,6 +196,31 @@ struct MapView: UIViewRepresentable {
             
             return renderer
         }
+        
+        
+        //MARK: - Annotation
+        
+        func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+            guard !(annotation is MKUserLocation) else {
+                return nil
+            }
+            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "annotation")
+            
+            if annotationView == nil {
+                //Create the View
+                annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "annotation")
+                annotationView?.canShowCallout = true
+                
+            } else {
+                annotationView?.annotation = annotation
+            }
+            
+            annotationView?.image = UIImage(named: "StartPoint")
+            
+            
+            return annotationView
+        }
+        
     }
 }
 
@@ -204,3 +229,6 @@ struct MapView: UIViewRepresentable {
 //        MapView()
 //    }
 //}
+
+
+
