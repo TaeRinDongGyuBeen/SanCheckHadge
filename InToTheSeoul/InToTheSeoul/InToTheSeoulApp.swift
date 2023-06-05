@@ -11,7 +11,7 @@ import SwiftUI
 struct InToTheSeoulApp: App {
     var body: some Scene {
         WindowGroup {
-            TrackingView()
+            ContentView()
         }
     }
 }

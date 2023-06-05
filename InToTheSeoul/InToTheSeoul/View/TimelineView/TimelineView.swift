@@ -72,16 +72,17 @@ struct ScrollCell: View {
                         .frame(width: 9, height: 15.5)
                         .foregroundColor(Color.theme.green1)
                 }
-                    
-                })
-                .frame(width: 216, height: 76)
-                .cornerRadius(20)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 20)
-                        .stroke(Color.theme.gray3, lineWidth: 1)
-                )
+                
+            })
+            .frame(width: 216, height: 76)
+            .overlay(
+                RoundedRectangle(cornerRadius: 20)
+                    .stroke(Color.theme.gray3, lineWidth: 2)
+                
+            )
+            .cornerRadius(20)
         }
-        .frame(width: .infinity, height: 103)
+        .frame(width: .infinity, height: 102)
         
     }
 }
