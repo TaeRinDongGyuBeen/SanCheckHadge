@@ -19,6 +19,7 @@
 		3D3846132A2BA70C008A9166 /* TrekkingInformationInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3846122A2BA70C008A9166 /* TrekkingInformationInput.swift */; };
 		3D3846172A2BCA16008A9166 /* WayPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3846162A2BCA16008A9166 /* WayPoint.swift */; };
 		3D4D8E422A2D86910081912E /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4D8E412A2D86910081912E /* OnboardingView.swift */; };
+		3D4D8E442A2DA5380081912E /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4D8E432A2DA5380081912E /* LoadingView.swift */; };
 		C924BE182A2BD84600FF36BA /* DataReceiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C924BE172A2BD84600FF36BA /* DataReceiveView.swift */; };
 		C95D3A532A2D683D009DE078 /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95D3A522A2D683D009DE078 /* TimelineView.swift */; };
 		C95F4AA32A2AE4A800DFBFE3 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95F4AA22A2AE4A800DFBFE3 /* ColorExtension.swift */; };
@@ -46,6 +47,7 @@
 		3D3846122A2BA70C008A9166 /* TrekkingInformationInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrekkingInformationInput.swift; sourceTree = "<group>"; };
 		3D3846162A2BCA16008A9166 /* WayPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WayPoint.swift; sourceTree = "<group>"; };
 		3D4D8E412A2D86910081912E /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		3D4D8E432A2DA5380081912E /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		C921EE482A27675F00290875 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C924BE172A2BD84600FF36BA /* DataReceiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataReceiveView.swift; sourceTree = "<group>"; };
 		C95D3A522A2D683D009DE078 /* TimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineView.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				160EFE322A2C87B2005809A0 /* TrackingView.swift */,
 				160EFE342A2C880F005809A0 /* MapView.swift */,
 				160EFE362A2C8867005809A0 /* TrackingModalView.swift */,
+				3D4D8E432A2DA5380081912E /* LoadingView.swift */,
 			);
 			path = TrackingView;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				3D38460B2A2BA505008A9166 /* PointModel.swift in Sources */,
 				C95F4AA72A2B14DB00DFBFE3 /* FontExtension.swift in Sources */,
 				3D4D8E422A2D86910081912E /* OnboardingView.swift in Sources */,
+				3D4D8E442A2DA5380081912E /* LoadingView.swift in Sources */,
 				C9D8CD8D2A27597000A880E8 /* ContentView.swift in Sources */,
 				C95D3A532A2D683D009DE078 /* TimelineView.swift in Sources */,
 				C9D8CD8B2A27597000A880E8 /* InToTheSeoulApp.swift in Sources */,
