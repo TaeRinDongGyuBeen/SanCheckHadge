@@ -19,6 +19,7 @@
 		3D3846132A2BA70C008A9166 /* TrekkingInformationInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3846122A2BA70C008A9166 /* TrekkingInformationInput.swift */; };
 		3D3846172A2BCA16008A9166 /* WayPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3846162A2BCA16008A9166 /* WayPoint.swift */; };
 		C924BE182A2BD84600FF36BA /* DataReceiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C924BE172A2BD84600FF36BA /* DataReceiveView.swift */; };
+		C927BDF92A2D89870004011B /* MyRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C927BDF82A2D89870004011B /* MyRecordView.swift */; };
 		C95D3A532A2D683D009DE078 /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95D3A522A2D683D009DE078 /* TimelineView.swift */; };
 		C95F4AA32A2AE4A800DFBFE3 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95F4AA22A2AE4A800DFBFE3 /* ColorExtension.swift */; };
 		C95F4AA52A2B134500DFBFE3 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95F4AA42A2B134500DFBFE3 /* ViewExtension.swift */; };
@@ -46,6 +47,7 @@
 		3D3846162A2BCA16008A9166 /* WayPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WayPoint.swift; sourceTree = "<group>"; };
 		C921EE482A27675F00290875 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C924BE172A2BD84600FF36BA /* DataReceiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataReceiveView.swift; sourceTree = "<group>"; };
+		C927BDF82A2D89870004011B /* MyRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRecordView.swift; sourceTree = "<group>"; };
 		C95D3A522A2D683D009DE078 /* TimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineView.swift; sourceTree = "<group>"; };
 		C95F4AA22A2AE4A800DFBFE3 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		C95F4AA42A2B134500DFBFE3 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 		C921EE442A275C8D00290875 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C927BDF72A2D89780004011B /* MyRecordView */,
 				C95D3A512A2D682B009DE078 /* TimelineView */,
 				160EFE312A2C87A5005809A0 /* TrackingView */,
 				C9975FE12A2CC03600C1B4DC /* MainView */,
@@ -130,6 +133,14 @@
 				C924BE172A2BD84600FF36BA /* DataReceiveView.swift */,
 			);
 			path = DataReceiveView;
+			sourceTree = "<group>";
+		};
+		C927BDF72A2D89780004011B /* MyRecordView */ = {
+			isa = PBXGroup;
+			children = (
+				C927BDF82A2D89870004011B /* MyRecordView.swift */,
+			);
+			path = MyRecordView;
 			sourceTree = "<group>";
 		};
 		C95D3A512A2D682B009DE078 /* TimelineView */ = {
@@ -284,6 +295,7 @@
 				C9D8CD8B2A27597000A880E8 /* InToTheSeoulApp.swift in Sources */,
 				3D3846172A2BCA16008A9166 /* WayPoint.swift in Sources */,
 				160EFE372A2C8867005809A0 /* TrackingModalView.swift in Sources */,
+				C927BDF92A2D89870004011B /* MyRecordView.swift in Sources */,
 				3D38460F2A2BA564008A9166 /* Ex+ CLocationCoordinate2D.swift in Sources */,
 				3D38460D2A2BA52A008A9166 /* JsonLoader.swift in Sources */,
 				3D3846112A2BA621008A9166 /* Point.swift in Sources */,
