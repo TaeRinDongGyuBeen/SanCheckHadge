@@ -19,6 +19,7 @@
 		3D3846132A2BA70C008A9166 /* TrekkingInformationInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3846122A2BA70C008A9166 /* TrekkingInformationInput.swift */; };
 		3D3846172A2BCA16008A9166 /* WayPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3846162A2BCA16008A9166 /* WayPoint.swift */; };
 		C924BE182A2BD84600FF36BA /* DataReceiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C924BE172A2BD84600FF36BA /* DataReceiveView.swift */; };
+		C95D3A532A2D683D009DE078 /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95D3A522A2D683D009DE078 /* TimelineView.swift */; };
 		C95F4AA32A2AE4A800DFBFE3 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95F4AA22A2AE4A800DFBFE3 /* ColorExtension.swift */; };
 		C95F4AA52A2B134500DFBFE3 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95F4AA42A2B134500DFBFE3 /* ViewExtension.swift */; };
 		C95F4AA72A2B14DB00DFBFE3 /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95F4AA62A2B14DB00DFBFE3 /* FontExtension.swift */; };
@@ -45,6 +46,7 @@
 		3D3846162A2BCA16008A9166 /* WayPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WayPoint.swift; sourceTree = "<group>"; };
 		C921EE482A27675F00290875 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C924BE172A2BD84600FF36BA /* DataReceiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataReceiveView.swift; sourceTree = "<group>"; };
+		C95D3A522A2D683D009DE078 /* TimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineView.swift; sourceTree = "<group>"; };
 		C95F4AA22A2AE4A800DFBFE3 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		C95F4AA42A2B134500DFBFE3 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		C95F4AA62A2B14DB00DFBFE3 /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 		C921EE442A275C8D00290875 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C95D3A512A2D682B009DE078 /* TimelineView */,
 				160EFE312A2C87A5005809A0 /* TrackingView */,
 				C9975FE12A2CC03600C1B4DC /* MainView */,
 				C976C6472A2BED38009E0D24 /* StoreView */,
@@ -127,6 +130,14 @@
 				C924BE172A2BD84600FF36BA /* DataReceiveView.swift */,
 			);
 			path = DataReceiveView;
+			sourceTree = "<group>";
+		};
+		C95D3A512A2D682B009DE078 /* TimelineView */ = {
+			isa = PBXGroup;
+			children = (
+				C95D3A522A2D683D009DE078 /* TimelineView.swift */,
+			);
+			path = TimelineView;
 			sourceTree = "<group>";
 		};
 		C95F4AA12A2AE47D00DFBFE3 /* Extension */ = {
@@ -269,6 +280,7 @@
 				3D38460B2A2BA505008A9166 /* PointModel.swift in Sources */,
 				C95F4AA72A2B14DB00DFBFE3 /* FontExtension.swift in Sources */,
 				C9D8CD8D2A27597000A880E8 /* ContentView.swift in Sources */,
+				C95D3A532A2D683D009DE078 /* TimelineView.swift in Sources */,
 				C9D8CD8B2A27597000A880E8 /* InToTheSeoulApp.swift in Sources */,
 				3D3846172A2BCA16008A9166 /* WayPoint.swift in Sources */,
 				160EFE372A2C8867005809A0 /* TrackingModalView.swift in Sources */,
@@ -276,11 +288,8 @@
 				3D38460D2A2BA52A008A9166 /* JsonLoader.swift in Sources */,
 				3D3846112A2BA621008A9166 /* Point.swift in Sources */,
 				3D3846062A2B9C20008A9166 /* ButtonComponent.swift in Sources */,
-
 				160EFE352A2C880F005809A0 /* MapView.swift in Sources */,
-
 				C9975FE32A2CC05E00C1B4DC /* MainView.swift in Sources */,
-
 				3D3846132A2BA70C008A9166 /* TrekkingInformationInput.swift in Sources */,
 				C976C64B2A2BF270009E0D24 /* CoinComponent.swift in Sources */,
 				160EFE332A2C87B2005809A0 /* TrackingView.swift in Sources */,
@@ -416,7 +425,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"InToTheSeoul/Preview Content\"";
-				DEVELOPMENT_TEAM = 49256BK4G3;
+				DEVELOPMENT_TEAM = UULN4L9KLP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = InToTheSeoul/Info.plist;
@@ -448,7 +457,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"InToTheSeoul/Preview Content\"";
-				DEVELOPMENT_TEAM = 49256BK4G3;
+				DEVELOPMENT_TEAM = UULN4L9KLP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = InToTheSeoul/Info.plist;
