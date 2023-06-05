@@ -7,13 +7,14 @@
 
 import SwiftUI
 import MapKit
+import CoreLocation
 
 struct TrackingView: View {
     
     var body: some View {
         ZStack {
             VStack {
-                Text("MapKit")
+                MapView()
                 
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)

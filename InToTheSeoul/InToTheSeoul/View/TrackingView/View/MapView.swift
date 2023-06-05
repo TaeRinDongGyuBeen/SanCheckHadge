@@ -5,6 +5,8 @@
 //  Created by KimTaeHyung on 2023/06/04.
 //
 
+import CoreLocation
+import MapKit
 import SwiftUI
 
 struct MapView: View {
