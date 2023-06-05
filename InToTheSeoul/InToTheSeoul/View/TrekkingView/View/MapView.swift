@@ -64,10 +64,10 @@ struct MapView: UIViewRepresentable {
         let pointMarkers: [ViewPoint] = pointsModel.selectedPoints
         
         //MARK: - 여러 경로
-        var placemarks: [MKPlacemark] = [] // 지점들의 배열
+        var placemarks: [AnnotationPoint] = [] // 지점들의 배열
         
         for point in pointMarkers {
-            placemarks.append(MKPlacemark(coordinate: point.nowPoint.locationCoordinate))
+            placemarks.append(AnnotationPoint(viewPoint: point))
         }
 
         var directions: [MKDirections] = []
@@ -76,8 +76,8 @@ struct MapView: UIViewRepresentable {
             let request = MKDirections.Request()
             
             // 출발지와 목적지 설정
-            request.source = MKMapItem(placemark: placemarks[i])
-            request.destination = MKMapItem(placemark: placemarks[(i+1) % placemarks.count])
+//            request.source = MKMapItem(placemark: placemarks[i])
+//            request.destination = MKMapItem(placemark: placemarks[(i+1) % placemarks.count])
             
             // 경로 옵션 설정
             request.requestsAlternateRoutes = true
@@ -207,10 +207,12 @@ struct MapView: UIViewRepresentable {
             }
 //            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "annotation")
             print("변환 ㄱㄱ")
-            if let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "annotation") as? MapAnnotationView {
-                annotationView.setupUI(annotationStyle: .arrived, annotationId: 1)
-                print(annotationView)
-                return annotationView
+            if let annotation = annotation as? AnnotationPoint {
+                if let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "annotation") as? MapAnnotationView {
+                    annotationView.setupUI(annotationStyle: .visited, annotationId: 1, annotation: annotation)
+                    print(annotationView)
+                    return annotationView
+                }
             }
             
             print("변환 실패 ㅠ")
