@@ -9,9 +9,14 @@ import SwiftUI
 
 @main
 struct InToTheSeoulApp: App {
+    @StateObject var pointsModel: PointsModel = PointsModel()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack {
+                TrekkingInformationInput()
+                    .environmentObject(pointsModel)
+            }
         }
     }
 }

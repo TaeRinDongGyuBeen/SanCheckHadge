@@ -9,7 +9,7 @@ import SwiftUI
 import CoreLocation
 
 struct TrekkingInformationInput: View {
-    @StateObject var pointsModel: PointsModel = PointsModel()
+    @EnvironmentObject var pointsModel: PointsModel
     
     @State var trekkingTime: Float = 60
     
@@ -32,14 +32,34 @@ struct TrekkingInformationInput: View {
             WaypointPicker
                 .padding(.bottom, 109)
             
-            ButtonComponent(buttonType: .nextButton, content: "시작하기", isActive: true) {
+            NavigationLink(destination: TrekkingView().environmentObject(pointsModel)) {
+                Text("시작하기")
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 45)
+                    .textFontAndColor(.button1)
+                
+            }
+            .background(Color.theme.green1)
+            .cornerRadius(30)
+            .simultaneousGesture(TapGesture().onEnded({
                 do {
                     try pointsModel.recommendPoint(nowPostion: CLLocationCoordinate2D(latitude: 37.4753668, longitude: 126.9625635), walkTimeMin: Int(trekkingTime), mustWaypoint: Waypoint(hospital: isSelectedWaypointHospital, pharmacy: isSelectedWaypointPharmacy, library: isSelectedWaypointLibrary, park: isSelectedWaypointPark, busStop: isSelectedWaypointBusStop))
                 } catch {
                     print(error)
                     isRecommendError.toggle()
                 }
-            }
+            }))
+
+                
+//                ButtonComponent(buttonType: .nextButton, content: "시작하기", isActive: true) {
+//                    do {
+//                        try pointsModel.recommendPoint(nowPostion: CLLocationCoordinate2D(latitude: 37.4753668, longitude: 126.9625635), walkTimeMin: Int(trekkingTime), mustWaypoint: Waypoint(hospital: isSelectedWaypointHospital, pharmacy: isSelectedWaypointPharmacy, library: isSelectedWaypointLibrary, park: isSelectedWaypointPark, busStop: isSelectedWaypointBusStop))
+//                    } catch {
+//                        print(error)
+//                        isRecommendError.toggle()
+//                    }
+//                }
+
             
         }
         .padding(.horizontal, 40)
@@ -140,5 +160,6 @@ extension TrekkingInformationInput {
 struct TrekkingInformationInput_Previews: PreviewProvider {
     static var previews: some View {
         TrekkingInformationInput()
+            .environmentObject(PointsModel())
     }
 }

@@ -7,17 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		160EFE332A2C87B2005809A0 /* TrackingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160EFE322A2C87B2005809A0 /* TrackingView.swift */; };
-		160EFE352A2C880F005809A0 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160EFE342A2C880F005809A0 /* MapView.swift */; };
-		160EFE372A2C8867005809A0 /* TrackingModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160EFE362A2C8867005809A0 /* TrackingModalView.swift */; };
+		162FE5FB2A2D654A00DCDFA3 /* DefaultLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162FE5FA2A2D654A00DCDFA3 /* DefaultLocation.swift */; };
+		162FE6012A2DAA1A00DCDFA3 /* MapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162FE6002A2DAA1A00DCDFA3 /* MapAnnotation.swift */; };
 		3D3846062A2B9C20008A9166 /* ButtonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3846052A2B9C20008A9166 /* ButtonComponent.swift */; };
 		3D3846092A2B9CE9008A9166 /* Points.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D3846082A2B9CE9008A9166 /* Points.json */; };
 		3D38460B2A2BA505008A9166 /* PointModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D38460A2A2BA505008A9166 /* PointModel.swift */; };
 		3D38460D2A2BA52A008A9166 /* JsonLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D38460C2A2BA52A008A9166 /* JsonLoader.swift */; };
 		3D38460F2A2BA564008A9166 /* Ex+ CLocationCoordinate2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D38460E2A2BA564008A9166 /* Ex+ CLocationCoordinate2D.swift */; };
 		3D3846112A2BA621008A9166 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3846102A2BA621008A9166 /* Point.swift */; };
-		3D3846132A2BA70C008A9166 /* TrekkingInformationInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3846122A2BA70C008A9166 /* TrekkingInformationInput.swift */; };
 		3D3846172A2BCA16008A9166 /* WayPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3846162A2BCA16008A9166 /* WayPoint.swift */; };
+		3D4D8E422A2D86910081912E /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4D8E412A2D86910081912E /* OnboardingView.swift */; };
+		3D4D8E4A2A2DC0590081912E /* TrekkingModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4D8E452A2DC0590081912E /* TrekkingModalView.swift */; };
+		3D4D8E4B2A2DC0590081912E /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4D8E462A2DC0590081912E /* MapView.swift */; };
+		3D4D8E4C2A2DC0590081912E /* TrekkingInformationInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4D8E472A2DC0590081912E /* TrekkingInformationInput.swift */; };
+		3D4D8E4D2A2DC0590081912E /* TrekkingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4D8E482A2DC0590081912E /* TrekkingView.swift */; };
+		3D4D8E4E2A2DC0590081912E /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4D8E492A2DC0590081912E /* LoadingView.swift */; };
 		C924BE182A2BD84600FF36BA /* DataReceiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C924BE172A2BD84600FF36BA /* DataReceiveView.swift */; };
 		C927BDF92A2D89870004011B /* MyRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C927BDF82A2D89870004011B /* MyRecordView.swift */; };
 		C95D3A532A2D683D009DE078 /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95D3A522A2D683D009DE078 /* TimelineView.swift */; };
@@ -34,17 +38,21 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		160EFE322A2C87B2005809A0 /* TrackingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingView.swift; sourceTree = "<group>"; };
-		160EFE342A2C880F005809A0 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
-		160EFE362A2C8867005809A0 /* TrackingModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingModalView.swift; sourceTree = "<group>"; };
+		162FE5FA2A2D654A00DCDFA3 /* DefaultLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLocation.swift; sourceTree = "<group>"; };
+		162FE6002A2DAA1A00DCDFA3 /* MapAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotation.swift; sourceTree = "<group>"; };
 		3D3846052A2B9C20008A9166 /* ButtonComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonComponent.swift; sourceTree = "<group>"; };
 		3D3846082A2B9CE9008A9166 /* Points.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Points.json; sourceTree = "<group>"; };
 		3D38460A2A2BA505008A9166 /* PointModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointModel.swift; sourceTree = "<group>"; };
 		3D38460C2A2BA52A008A9166 /* JsonLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonLoader.swift; sourceTree = "<group>"; };
 		3D38460E2A2BA564008A9166 /* Ex+ CLocationCoordinate2D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex+ CLocationCoordinate2D.swift"; sourceTree = "<group>"; };
 		3D3846102A2BA621008A9166 /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
-		3D3846122A2BA70C008A9166 /* TrekkingInformationInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrekkingInformationInput.swift; sourceTree = "<group>"; };
 		3D3846162A2BCA16008A9166 /* WayPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WayPoint.swift; sourceTree = "<group>"; };
+		3D4D8E412A2D86910081912E /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		3D4D8E452A2DC0590081912E /* TrekkingModalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrekkingModalView.swift; sourceTree = "<group>"; };
+		3D4D8E462A2DC0590081912E /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		3D4D8E472A2DC0590081912E /* TrekkingInformationInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrekkingInformationInput.swift; sourceTree = "<group>"; };
+		3D4D8E482A2DC0590081912E /* TrekkingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrekkingView.swift; sourceTree = "<group>"; };
+		3D4D8E492A2DC0590081912E /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		C921EE482A27675F00290875 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C924BE172A2BD84600FF36BA /* DataReceiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataReceiveView.swift; sourceTree = "<group>"; };
 		C927BDF82A2D89870004011B /* MyRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRecordView.swift; sourceTree = "<group>"; };
@@ -73,14 +81,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		160EFE312A2C87A5005809A0 /* TrackingView */ = {
+		160EFE312A2C87A5005809A0 /* TrekkingView */ = {
 			isa = PBXGroup;
 			children = (
-				160EFE322A2C87B2005809A0 /* TrackingView.swift */,
-				160EFE342A2C880F005809A0 /* MapView.swift */,
-				160EFE362A2C8867005809A0 /* TrackingModalView.swift */,
+				162FE5F92A2D652500DCDFA3 /* View */,
+				162FE5F82A2D651A00DCDFA3 /* Model */,
 			);
-			path = TrackingView;
+			path = TrekkingView;
+			sourceTree = "<group>";
+		};
+		162FE5F82A2D651A00DCDFA3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				162FE5FA2A2D654A00DCDFA3 /* DefaultLocation.swift */,
+				162FE6002A2DAA1A00DCDFA3 /* MapAnnotation.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		162FE5F92A2D652500DCDFA3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3D4D8E492A2DC0590081912E /* LoadingView.swift */,
+				3D4D8E462A2DC0590081912E /* MapView.swift */,
+				3D4D8E472A2DC0590081912E /* TrekkingInformationInput.swift */,
+				3D4D8E452A2DC0590081912E /* TrekkingModalView.swift */,
+				3D4D8E482A2DC0590081912E /* TrekkingView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		3D3846042A2B9C20008A9166 /* Components */ = {
@@ -103,17 +131,25 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		3D4D8E402A2D866E0081912E /* OnboardingView */ = {
+			isa = PBXGroup;
+			children = (
+				3D4D8E412A2D86910081912E /* OnboardingView.swift */,
+			);
+			path = OnboardingView;
+			sourceTree = "<group>";
+		};
 		C921EE442A275C8D00290875 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				C927BDF72A2D89780004011B /* MyRecordView */,
+				C9D8CD8C2A27597000A880E8 /* ContentView.swift */,
+				3D4D8E402A2D866E0081912E /* OnboardingView */,
 				C95D3A512A2D682B009DE078 /* TimelineView */,
-				160EFE312A2C87A5005809A0 /* TrackingView */,
+				160EFE312A2C87A5005809A0 /* TrekkingView */,
 				C9975FE12A2CC03600C1B4DC /* MainView */,
 				C976C6472A2BED38009E0D24 /* StoreView */,
 				C924BE162A2BD82E00FF36BA /* DataReceiveView */,
-				C9D8CD8C2A27597000A880E8 /* ContentView.swift */,
-				3D3846122A2BA70C008A9166 /* TrekkingInformationInput.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -290,6 +326,8 @@
 			files = (
 				3D38460B2A2BA505008A9166 /* PointModel.swift in Sources */,
 				C95F4AA72A2B14DB00DFBFE3 /* FontExtension.swift in Sources */,
+				162FE6012A2DAA1A00DCDFA3 /* MapAnnotation.swift in Sources */,
+				3D4D8E422A2D86910081912E /* OnboardingView.swift in Sources */,
 				C9D8CD8D2A27597000A880E8 /* ContentView.swift in Sources */,
 				C95D3A532A2D683D009DE078 /* TimelineView.swift in Sources */,
 				C9D8CD8B2A27597000A880E8 /* InToTheSeoulApp.swift in Sources */,
@@ -299,15 +337,18 @@
 				3D38460F2A2BA564008A9166 /* Ex+ CLocationCoordinate2D.swift in Sources */,
 				3D38460D2A2BA52A008A9166 /* JsonLoader.swift in Sources */,
 				3D3846112A2BA621008A9166 /* Point.swift in Sources */,
+				3D4D8E4A2A2DC0590081912E /* TrekkingModalView.swift in Sources */,
 				3D3846062A2B9C20008A9166 /* ButtonComponent.swift in Sources */,
-				160EFE352A2C880F005809A0 /* MapView.swift in Sources */,
 				C9975FE32A2CC05E00C1B4DC /* MainView.swift in Sources */,
-				3D3846132A2BA70C008A9166 /* TrekkingInformationInput.swift in Sources */,
+				3D4D8E4B2A2DC0590081912E /* MapView.swift in Sources */,
 				C976C64B2A2BF270009E0D24 /* CoinComponent.swift in Sources */,
-				160EFE332A2C87B2005809A0 /* TrackingView.swift in Sources */,
 				C95F4AA32A2AE4A800DFBFE3 /* ColorExtension.swift in Sources */,
 				C95F4AA52A2B134500DFBFE3 /* ViewExtension.swift in Sources */,
+				3D4D8E4D2A2DC0590081912E /* TrekkingView.swift in Sources */,
 				C976C6492A2BED4A009E0D24 /* StoreView.swift in Sources */,
+				3D4D8E4E2A2DC0590081912E /* LoadingView.swift in Sources */,
+				3D4D8E4C2A2DC0590081912E /* TrekkingInformationInput.swift in Sources */,
+				162FE5FB2A2D654A00DCDFA3 /* DefaultLocation.swift in Sources */,
 				C924BE182A2BD84600FF36BA /* DataReceiveView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -441,6 +482,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = InToTheSeoul/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "사용자의 위치를 확인하기 위해 사용자 위치 정보 권한이 필요합니다.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자의 위치를 확인하기 위해 사용자 위치 정보 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -473,6 +515,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = InToTheSeoul/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "사용자의 위치를 확인하기 위해 사용자 위치 정보 권한이 필요합니다.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자의 위치를 확인하기 위해 사용자 위치 정보 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
