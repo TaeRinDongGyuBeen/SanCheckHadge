@@ -78,6 +78,7 @@
 		160EFE312A2C87A5005809A0 /* TrackingView */ = {
 			isa = PBXGroup;
 			children = (
+				3D3846122A2BA70C008A9166 /* TrekkingInformationInput.swift */,
 				160EFE322A2C87B2005809A0 /* TrackingView.swift */,
 				160EFE342A2C880F005809A0 /* MapView.swift */,
 				160EFE362A2C8867005809A0 /* TrackingModalView.swift */,
@@ -117,14 +118,13 @@
 		C921EE442A275C8D00290875 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C9D8CD8C2A27597000A880E8 /* ContentView.swift */,
 				3D4D8E402A2D866E0081912E /* OnboardingView */,
 				C95D3A512A2D682B009DE078 /* TimelineView */,
 				160EFE312A2C87A5005809A0 /* TrackingView */,
 				C9975FE12A2CC03600C1B4DC /* MainView */,
 				C976C6472A2BED38009E0D24 /* StoreView */,
 				C924BE162A2BD82E00FF36BA /* DataReceiveView */,
-				C9D8CD8C2A27597000A880E8 /* ContentView.swift */,
-				3D3846122A2BA70C008A9166 /* TrekkingInformationInput.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
