@@ -78,25 +78,12 @@ struct CustomProgressBar: View {
                         .stroke(style: StrokeStyle(lineWidth: 2))
                         .foregroundColor(Color.theme.gray4)
                         .frame(width: geometry.size.width - 60, height: 1)
-//                        .padding(.leading, 30)
-//                        .padding(.trailing, 30)
-                    
                     Text("2.5km · 40분 예상")
                         .textFontAndColor(.h5)
                     
                     Spacer()
-                    
-                    
-                    
+  
                 }
-//                Capsule()
-//                    .foregroundColor(Color.red)
-//                    .frame(width: geometry.size.width, height: 10)
-                
-                
-//                Rectangle()
-//                    .foregroundColor(.blue)
-//                    .frame(width: CGFloat(self.progress) * geometry.size.width, height: 10)
             }
             .cornerRadius(20)
         }
