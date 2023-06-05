@@ -19,7 +19,9 @@ struct MapView: UIViewRepresentable {
     
     @Binding var span: MKCoordinateSpan
     
-    @ObservedObject var pointModel: PointsModel
+    @EnvironmentObject var pointsModel: PointsModel
+    
+//    @ObservedObject var viewPoint: ViewPoint
     
     //UIViewRepresentable이 만들 View에 대한 정의를 해줘야 함
     typealias UIViewType = MKMapView
@@ -58,21 +60,14 @@ struct MapView: UIViewRepresentable {
 //            mapView.addAnnotation(annotation)
 //        }
         
+        let pointMarkers: [ViewPoint] = pointsModel.selectedPoints
         
-        
-        //NYC
-        let p1 = MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: 40.71, longitude: -74))
-        
-        //Boston
-        let p2 = MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: 42.36, longitude: -71.05))
-        
-        let p3 = MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: 43.36, longitude: -72))
-        
-        let p4 = MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: 44.01, longitude: -71.25))
-        let p5 = MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: 41.12, longitude: -73.3))
-
         //MARK: - 여러 경로
-        let placemarks: [MKPlacemark] = [p1, p2, p3, p4, p5] // 지점들의 배열
+        var placemarks: [MKPlacemark] = [] // 지점들의 배열
+        
+        for point in pointMarkers {
+            placemarks.append(MKPlacemark(coordinate: point.nowPoint.locationCoordinate))
+        }
 
         var directions: [MKDirections] = []
 
@@ -97,7 +92,17 @@ struct MapView: UIViewRepresentable {
                 mapView.addOverlay(route.polyline)
             }
         }
-
+        
+//        //MARK: - 시작점
+//        let start = MKPointAnnotation()
+//        start.coordinate = placemarks.first!.coordinate
+//
+//        let annotationView = MKMarkerAnnotationView(annotation: start, reuseIdentifier: "startAnnotation")
+//        annotationView.markerTintColor = .black // Set the desired color for the annotation
+//
+//        mapView.addAnnotation(annotationView.annotation!) // Add the customized annotation view to the mapView
+        
+        
         // p1, p2, p3에 어노테이션 찍기
         mapView.addAnnotations(placemarks)
 

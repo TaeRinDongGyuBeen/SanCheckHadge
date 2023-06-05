@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TrackingModalView: View {
+struct TrekkingModalView: View {
     
     @State var height: CGFloat = 80
     let minHeight: CGFloat = 80
@@ -119,6 +119,6 @@ struct TrackingModalView: View {
 
 struct TrackingModalView_Previews: PreviewProvider {
     static var previews: some View {
-        TrackingModalView()
+        TrekkingModalView()
     }
 }

@@ -9,7 +9,8 @@ import SwiftUI
 import MapKit
 import CoreLocation
 
-struct TrackingView: View {
+struct TrekkingView: View {
+    @EnvironmentObject var pointsModel: PointsModel
     
     @State private var showUserLocation = false
     
@@ -19,8 +20,6 @@ struct TrackingView: View {
 
     @State private var span = DefaultLocation.defaultSpan
     
-    @StateObject var pointModel = PointsModel()
-    
     @State private var isNearby = false
     
     @State var time = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -28,7 +27,8 @@ struct TrackingView: View {
     var body: some View {
         ZStack {
             VStack {
-                MapView(showUserLocation: $showUserLocation, userLocation: $userLocation, region: $region, span: $span, pointModel: pointModel)
+                MapView(showUserLocation: $showUserLocation, userLocation: $userLocation, region: $region, span: $span)
+                    .environmentObject(pointsModel)
                 
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -65,7 +65,7 @@ struct TrackingView: View {
 
                 })
                 .padding()
-                TrackingModalView()
+                TrekkingModalView()
                     .shadow(radius: 10)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
@@ -144,7 +144,8 @@ struct TrackingView: View {
 
 struct TrackingView_Previews: PreviewProvider {
     static var previews: some View {
-        TrackingView()
+        TrekkingView()
+            .environmentObject(PointsModel())
     }
 }
 
