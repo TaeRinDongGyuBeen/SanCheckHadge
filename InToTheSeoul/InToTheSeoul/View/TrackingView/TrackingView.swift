@@ -53,4 +53,3 @@ struct TrackingView_Previews: PreviewProvider {
         TrackingView()
     }
 }
-

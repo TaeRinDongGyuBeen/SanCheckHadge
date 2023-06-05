@@ -11,12 +11,12 @@ struct ContentView: View {
     @State var test = ""
     @State var isTapped = false
     var body: some View {
-        StoreView()
+        TimelineView()
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        TimelineView()
     }
 }
