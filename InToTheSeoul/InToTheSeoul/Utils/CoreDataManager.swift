@@ -18,7 +18,7 @@ class CoreDataManager {
         persistentContainer = NSPersistentContainer(name:"UserDataModel")
         persistentContainer.loadPersistentStores {(description, error) in
             if let error = error {
-                fatalError("Core Data Store failed \(error.localizedDescription)")
+                fatalError("CoreData 저장소 오류 \(error.localizedDescription)")
             }
         }
         
@@ -30,6 +30,8 @@ class CoreDataManager {
         user.username = "김예은"
         user.age = 200
         user.gender = ""
+        user.accumulateCoin = 0
+        user.accumulateDistance = 0.0
         
         do {
             try persistentContainer.viewContext.save()
