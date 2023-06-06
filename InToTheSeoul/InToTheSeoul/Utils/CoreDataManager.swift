@@ -41,6 +41,7 @@ class CoreDataManager {
     }
     
     func createCharacter() {
+        
         let character = Character(context: persistentContainer.viewContext)
         character.clothes = [String]()
         character.emotion = "bad"
@@ -50,6 +51,25 @@ class CoreDataManager {
         } catch {
             print("캐릭터 생성 에러 \(error)")
         }
+    }
+    
+    func createWorkData(date: Date, distance: Double, gainPoint: Int, moveRoute: [(Double)], checkPoint: [String], startPoint: String) {
+        let workData = WorkData(context: persistentContainer.viewContext)
+        workData.date = date
+        workData.totalDistance = distance
+        workData.gainCoin = Int16(gainPoint)
+        workData.moveRoute = moveRoute
+        workData.checkPoint = checkPoint
+        workData.startPoint = startPoint
+        
+        do {
+            try persistentContainer.viewContext.save()
+        } catch {
+            print("운동 데이터 생성 에러 \(error)")
+        }
+        
+        // TODO: USER의 누적 포인트, 누적 총 거리 +하는 update 메서드 실행 필요
+        
     }
 
     func readAllUser() -> [User] {
@@ -62,6 +82,8 @@ class CoreDataManager {
             return []
         }
     }
+    
+    
     
     func update() {
         
