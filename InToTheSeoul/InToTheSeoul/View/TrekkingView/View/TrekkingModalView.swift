@@ -10,6 +10,7 @@ import SwiftUI
 struct TrekkingModalView: View {
     
     @State var height: CGFloat = 80
+    @Binding var isNearby: Bool
     let minHeight: CGFloat = 80
     let maxHeight: CGFloat = 320
     var percentage: Double {
@@ -56,9 +57,15 @@ struct TrekkingModalView: View {
                 }
                 .padding(.bottom, 20)
 
-                ButtonComponent(buttonType: .nextButton, content: "리워드 받기", isActive: false, action: {
+                ButtonComponent(buttonType: .nextButton, content: "리워드 받기", isActive: isNearby,action: {
                     
                 })
+                .disabled(!isNearby)
+                .onChange(of: isNearby) { newValue in
+                    DispatchQueue.main.async {
+                        self.isNearby = newValue
+                    }
+                }
                 .padding(.bottom, 12)
 
                 Button(action: {
@@ -117,8 +124,8 @@ struct TrekkingModalView: View {
 }
 
 
-struct TrackingModalView_Previews: PreviewProvider {
-    static var previews: some View {
-        TrekkingModalView()
-    }
-}
+//struct TrackingModalView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        TrekkingModalView()
+//    }
+//}
