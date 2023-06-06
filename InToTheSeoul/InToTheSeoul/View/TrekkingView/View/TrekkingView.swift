@@ -140,7 +140,7 @@ struct TrekkingView: View {
                 let currentLocation = CLLocation(latitude: currentCoordinate.latitude, longitude: currentCoordinate.longitude)
                 
                 //MARK: - 활성화 기준
-                let maxDistance: CLLocationDistance = 400 // 최대 허용 거리 (예: 500 미터)
+                let maxDistance: CLLocationDistance = 20 // 최대 허용 거리 (예: 500 미터)
 
                 let isNearby = targetLocation.contains { location in
                     let locationCoordinate = CLLocationCoordinate2D(latitude: location.locationCoordinate.latitude, longitude: location.locationCoordinate.longitude)
