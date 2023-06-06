@@ -11,6 +11,7 @@ import CoreLocation
 
 struct TrekkingView: View {
     @EnvironmentObject var pointsModel: PointsModel
+    let mkMapView: MKMapView = MKMapView()
     
     @State private var showUserLocation = false
     
@@ -25,12 +26,11 @@ struct TrekkingView: View {
     
     @State var val: Double = 0
     
-    
     var body: some View {
         ZStack {
 
             VStack {
-                MapView(showUserLocation: $showUserLocation, userLocation: $userLocation, region: $region, span: $span)
+                MapView(mkMapView: mkMapView, showUserLocation: $showUserLocation, userLocation: $userLocation, region: $region, span: $span)
                     .environmentObject(pointsModel)
                 
             }
@@ -75,7 +75,7 @@ struct TrekkingView: View {
 
                 })
                 .padding()
-                TrekkingModalView(isNearby: $isNearby, toVisitPointIndex: $toVisitPointIndex)
+                TrekkingModalView(isNearby: $isNearby, toVisitPointIndex: $toVisitPointIndex, mkMapView: mkMapView)
                     .shadow(radius: 10)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)

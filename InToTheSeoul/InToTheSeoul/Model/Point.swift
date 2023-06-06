@@ -25,12 +25,26 @@ struct Point: Hashable, Codable, Identifiable {
 struct ViewPoint: Hashable, Codable, Identifiable {
     var id: Int
     var mustWaypoint: Bool = false
+    var isVisited: Bool = false
+    var isStartPoint: Bool = false
     var nowPoint: Point
 }
 
 class AnnotationPoint: NSObject, MKAnnotation, ObservableObject {
     var coordinate: CLLocationCoordinate2D
     @Published var viewPoint: ViewPoint
+    
+    var annotationStyle: AnnotationStyle {
+        if viewPoint.isStartPoint {
+           return .start
+        } else {
+            if viewPoint.isVisited {
+                return .visited
+            } else {
+                return .toVisit
+            }
+        }
+    }
     
     init(viewPoint: ViewPoint) {
         self.viewPoint = viewPoint

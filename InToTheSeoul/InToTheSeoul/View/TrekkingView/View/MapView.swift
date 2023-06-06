@@ -10,7 +10,7 @@ import MapKit
 import SwiftUI
 
 struct MapView: UIViewRepresentable {
-    
+    let mkMapView: MKMapView
     @Binding var showUserLocation: Bool
     
     @Binding var userLocation: CLLocationCoordinate2D?
@@ -33,7 +33,7 @@ struct MapView: UIViewRepresentable {
     
 
     func makeUIView(context: Context) -> MKMapView {
-        let mapView = MKMapView()
+        let mapView = mkMapView
         
         //MapViewCoordinator에게 delegate 위임
         mapView.delegate = context.coordinator
@@ -52,47 +52,33 @@ struct MapView: UIViewRepresentable {
         mapView.setRegion(region, animated: true)
         
         // MARK: - JSON을 통해 불러온 데이터 어노테이션 추가
-//
-//        for busStop in busStopModel.busStopList {
-//            let annotation = MKPointAnnotation()
-//            annotation.coordinate = busStop.locationCoordinate
-//            annotation.title = busStop.stop_nm
-//            mapView.addAnnotation(annotation)
-//        }
         mapView.register(MapAnnotationView.self, forAnnotationViewWithReuseIdentifier: "annotation")
         
-        let pointMarkers: [ViewPoint] = pointsModel.selectedPoints
-        
         //MARK: - 여러 경로
-        var placemarks: [AnnotationPoint] = [] // 지점들의 배열
-        
-        for point in pointMarkers {
-            placemarks.append(AnnotationPoint(viewPoint: point))
-        }
 
-        var directions: [MKDirections] = []
+//        var directions: [MKDirections] = []
 
-        for _ in 0..<placemarks.count {
-            let request = MKDirections.Request()
-            
-            // 출발지와 목적지 설정
+//        for _ in 0..<placemarks.count {
+//            let request = MKDirections.Request()
+//
+//            // 출발지와 목적지 설정
 //            request.source = MKMapItem(placemark: placemarks[i])
 //            request.destination = MKMapItem(placemark: placemarks[(i+1) % placemarks.count])
-            
-            // 경로 옵션 설정
-            request.requestsAlternateRoutes = true
-            request.transportType = .walking
-            
-            let directionsRequest = MKDirections(request: request)
-            directions.append(directionsRequest)
-        }
-
-        for direction in directions {
-            direction.calculate { response, error in
-                guard let route = response?.routes.first else { return }
-                mapView.addOverlay(route.polyline)
-            }
-        }
+//
+//            // 경로 옵션 설정
+//            request.requestsAlternateRoutes = true
+//            request.transportType = .walking
+//
+//            let directionsRequest = MKDirections(request: request)
+//            directions.append(directionsRequest)
+//        }
+//
+//        for direction in directions {
+//            direction.calculate { response, error in
+//                guard let route = response?.routes.first else { return }
+//                mapView.addOverlay(route.polyline)
+//            }
+//        }
         
 //        //MARK: - 시작점
 //        let start = MKPointAnnotation()
@@ -105,13 +91,27 @@ struct MapView: UIViewRepresentable {
         
         
         // p1, p2, p3에 어노테이션 찍기
-        mapView.addAnnotations(placemarks)
+        mapView.addAnnotations(pointsModel.annotationPoints)
 
         return mapView
     }
     
     func updateUIView(_ uiView: MKMapView, context: Context) {
         uiView.setRegion(region, animated: true)
+        uiView.setNeedsDisplay()
+        print(pointsModel.annotationPoints.first?.viewPoint)
+//        let pointMarkers: [ViewPoint] = pointsModel.selectedPoints
+//
+//        //MARK: - 여러 경로
+//        var placemarks: [AnnotationPoint] = [] // 지점들의 배열
+//
+//        for point in pointMarkers {
+//            placemarks.append(AnnotationPoint(viewPoint: point))
+//        }
+//
+//        uiView.removeAnnotations(uiView.annotations)
+//        uiView.addAnnotations(placemarks)
+        
         
     }
     
@@ -122,7 +122,6 @@ struct MapView: UIViewRepresentable {
     class MapViewCoordinator: NSObject, MKMapViewDelegate, CLLocationManagerDelegate {
         
         //MARK: - 위치에 대한 변수
-        
         var locationManager: CLLocationManager?
 
         @Binding var userLocation: CLLocationCoordinate2D?
@@ -205,11 +204,11 @@ struct MapView: UIViewRepresentable {
             guard !(annotation is MKUserLocation) else {
                 return nil
             }
-//            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "annotation")
+
             print("변환 ㄱㄱ")
             if let annotation = annotation as? AnnotationPoint {
                 if let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "annotation") as? MapAnnotationView {
-                    annotationView.setupUI(annotationStyle: .visited, annotationId: 1, annotation: annotation)
+                    annotationView.setupUI(annotationStyle: annotation.annotationStyle, annotationId: 1, annotation: annotation)
                     print(annotationView)
                     return annotationView
                 }
@@ -230,6 +229,9 @@ struct MapView: UIViewRepresentable {
             return nil
         }
         
+        func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, didChange newState: MKAnnotationView.DragState, fromOldState oldState: MKAnnotationView.DragState) {
+            print("왓")
+        }
     }
 }
 

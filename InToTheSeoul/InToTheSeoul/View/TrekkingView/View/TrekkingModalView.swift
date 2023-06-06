@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreLocation
+import MapKit
 
 struct TrekkingModalView: View {
     @EnvironmentObject var pointsModel: PointsModel
@@ -16,6 +17,8 @@ struct TrekkingModalView: View {
     @Binding var toVisitPointIndex: Int
     
     @State var time = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
+    let mkMapView: MKMapView
     
     let minHeight: CGFloat = 80
     let maxHeight: CGFloat = 320
@@ -64,6 +67,9 @@ struct TrekkingModalView: View {
                 .padding(.bottom, 20)
 
                 ButtonComponent(buttonType: .nextButton, content: "리워드 받기", isActive: isNearby,action: {
+                    pointsModel.annotationPoints[toVisitPointIndex].viewPoint.isVisited = true
+                    mkMapView.removeAnnotation(pointsModel.annotationPoints[toVisitPointIndex])
+                    mkMapView.addAnnotation(pointsModel.annotationPoints[toVisitPointIndex])
                     toVisitPointIndex += 1
                 })
                 .disabled(!isNearby)

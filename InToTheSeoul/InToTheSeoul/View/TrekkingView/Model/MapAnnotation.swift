@@ -9,7 +9,7 @@ import SwiftUI
 import MapKit
 
 struct MapAnnotation: View {
-    let style: AnnotationStyle
+    @State var style: AnnotationStyle
     let number: Int
     let annotation: AnnotationPoint
     
