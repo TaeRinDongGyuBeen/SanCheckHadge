@@ -11,6 +11,7 @@ import CoreLocation
 final class PointsModel: ObservableObject {
     @Published var points: [Point] = jsonLoader("Points.json")
     @Published var selectedPoints: [ViewPoint] = []
+    @Published var annotationPoints: [AnnotationPoint] = []
     var mustWaypointNumber: [Int] = []
     
     func recommendPoint(nowPostion: CLLocationCoordinate2D, walkTimeMin: Int, mustWaypoint: Waypoint) throws -> Void {
@@ -106,7 +107,13 @@ final class PointsModel: ObservableObject {
             }
         }
         
+        resultPoints[resultPoints.count - 1].isStartPoint = true
+        
         self.selectedPoints = resultPoints
+        
+        for point in self.selectedPoints {
+            annotationPoints.append(AnnotationPoint(viewPoint: point))
+        }
     }
     
     private func selectFirstPoint(_ candidatePoints: [Point], nowPosition: CLLocationCoordinate2D) throws -> Point {
