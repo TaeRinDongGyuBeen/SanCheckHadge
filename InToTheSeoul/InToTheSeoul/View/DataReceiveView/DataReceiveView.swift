@@ -57,6 +57,8 @@ struct DataReceiveView: View {
         }
     }
     
+    @Binding var isFirstLaunch: Bool
+    
     // MARK: - body
     
     var body: some View {
@@ -258,8 +260,8 @@ struct DataReceiveView: View {
                     action: {
                         CoreDataManager.coreDM.createUser(username: nameLimiter, age: findAgeOrGener(checkList: ageCheckList), gender: findAgeOrGener(checkList: genderActivatedList))
                         CoreDataManager.coreDM.createCharacter()
+                        isFirstLaunch = false
                         print("데이터 저장됨")
-                        print(CoreDataManager.coreDM.readAllUser())
                     }
                 )
             })
@@ -304,8 +306,10 @@ class TextLimiter: ObservableObject {
 
 
 struct DataReceiveView_Previewer: PreviewProvider {
+    @State static var isFirstLaunch = false
+    
     static var previews: some View {
-        DataReceiveView()
+        DataReceiveView(isFirstLaunch: $isFirstLaunch)
     }
 }
 

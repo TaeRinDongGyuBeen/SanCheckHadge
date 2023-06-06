@@ -8,15 +8,20 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var test = ""
-    @State var isTapped = false
+    
+    @AppStorage("_isFirstLaunch") var isFirst: Bool = true
+    
     var body: some View {
-        DataReceiveView()
+        if isFirst {
+            OnboardingView(isFirstLaunch: $isFirst)
+        } else {
+            MainView()
+        }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        TimelineView()
+        MainView()
     }
 }
