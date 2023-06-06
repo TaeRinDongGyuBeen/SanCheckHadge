@@ -7,9 +7,9 @@
 import SwiftUI
 
 struct MainView: View {
-    @State var userMoney: Int = 0
-    @State var username: String = "태린동규빈"
-    @State var userAccumulateDistance = 24
+    @State var userMoney: Int = Int(CoreDataManager.coreDM.readUser()[0].accumulateCoin)
+    @State var username: String = (CoreDataManager.coreDM.readUser()[0].username ?? "태린동규빈")
+    @State var userAccumulateDistance = (CoreDataManager.coreDM.readUser()[0].accumulateDistance)
     var body: some View {
             VStack(spacing: 0) {
                 Spacer()
@@ -67,7 +67,7 @@ struct MainView: View {
                         Text("총 누적 산책거리")
                             .textFontAndColor(.body1)
                         Spacer()
-                        Text("\(userAccumulateDistance)km")
+                        Text("\(userAccumulateDistance, specifier: "%.2f")km")
                             .foregroundColor(Color.theme.gray5)
                             .font(Font.seoul(.body6))
                         
