@@ -16,10 +16,14 @@ struct TrekkingModalView: View {
     @Binding var isNearby: Bool
     
     @Binding var showRewardView: Bool
+    
+    @Binding var showResultView: Bool
   
     @Binding var toVisitPointIndex: Int
     
     @State var time = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
+    @State private var showAlert = false
     
     let mkMapView: MKMapView
     
@@ -89,13 +93,23 @@ struct TrekkingModalView: View {
                 .padding(.bottom, 12)
 
                 Button(action: {
-
+                    showAlert = true
                 }, label: {
                     Text("오늘은 그만할래요")
                         .textFontAndColor(.h5)
                 })
                 .padding(.bottom, 16)
             }
+            .alert(isPresented: $showAlert, content: {
+                Alert(
+                    title: Text("정말 그만하실건가요?"),
+                    message: Text("리워드 받은 지점까지만 기록 저장이 되니,\n신중하게 결정해주세요!"),
+                    primaryButton: .destructive(Text("취소")),
+                    secondaryButton: .default(Text("확인"), action: {
+                        showResultView = true
+                    })
+                )
+            })
             .padding(.leading, 40)
             .padding(.trailing, 40)
             .padding(.top, 20)

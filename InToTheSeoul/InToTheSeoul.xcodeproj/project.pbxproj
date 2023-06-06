@@ -11,6 +11,7 @@
 		162FE6012A2DAA1A00DCDFA3 /* MapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162FE6002A2DAA1A00DCDFA3 /* MapAnnotation.swift */; };
 		162FE6032A2DC2FC00DCDFA3 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162FE6022A2DC2FC00DCDFA3 /* ProgressView.swift */; };
 		167692962A2F047E0077B106 /* RewardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167692952A2F047E0077B106 /* RewardView.swift */; };
+		167692982A2F6C100077B106 /* TrekkingResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167692972A2F6C100077B106 /* TrekkingResultView.swift */; };
 		3D3846062A2B9C20008A9166 /* ButtonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3846052A2B9C20008A9166 /* ButtonComponent.swift */; };
 		3D3846092A2B9CE9008A9166 /* Points.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D3846082A2B9CE9008A9166 /* Points.json */; };
 		3D38460B2A2BA505008A9166 /* PointModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D38460A2A2BA505008A9166 /* PointModel.swift */; };
@@ -52,6 +53,7 @@
 		162FE6002A2DAA1A00DCDFA3 /* MapAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotation.swift; sourceTree = "<group>"; };
 		162FE6022A2DC2FC00DCDFA3 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		167692952A2F047E0077B106 /* RewardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardView.swift; sourceTree = "<group>"; };
+		167692972A2F6C100077B106 /* TrekkingResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrekkingResultView.swift; sourceTree = "<group>"; };
 		3D3846052A2B9C20008A9166 /* ButtonComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonComponent.swift; sourceTree = "<group>"; };
 		3D3846082A2B9CE9008A9166 /* Points.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Points.json; sourceTree = "<group>"; };
 		3D38460A2A2BA505008A9166 /* PointModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointModel.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				3D4D8E462A2DC0590081912E /* MapView.swift */,
 				3D4D8E472A2DC0590081912E /* TrekkingInformationInput.swift */,
 				3D4D8E452A2DC0590081912E /* TrekkingModalView.swift */,
+				167692972A2F6C100077B106 /* TrekkingResultView.swift */,
 				3D4D8E482A2DC0590081912E /* TrekkingView.swift */,
 				167692952A2F047E0077B106 /* RewardView.swift */,
 			);
@@ -426,6 +429,7 @@
 				C976C6492A2BED4A009E0D24 /* StoreView.swift in Sources */,
 				167692962A2F047E0077B106 /* RewardView.swift in Sources */,
 				3D4D8E4E2A2DC0590081912E /* LoadingView.swift in Sources */,
+				167692982A2F6C100077B106 /* TrekkingResultView.swift in Sources */,
 				3D4D8E4C2A2DC0590081912E /* TrekkingInformationInput.swift in Sources */,
 				162FE5FB2A2D654A00DCDFA3 /* DefaultLocation.swift in Sources */,
 				C924BE182A2BD84600FF36BA /* DataReceiveView.swift in Sources */,

@@ -13,7 +13,10 @@ struct InToTheSeoulApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack {
+                TrekkingInformationInput()
+                    .environmentObject(pointsModel)
+            }
         }
     }
 }

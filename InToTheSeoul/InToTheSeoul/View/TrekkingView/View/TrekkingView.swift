@@ -26,7 +26,9 @@ struct TrekkingView: View {
     
     @State var val: Double = 0
     
-    @State private var showRewardView = false
+    @State private var showRewardView = false   //해찌 나오는 보상뷰
+
+    @State private var showResultView = false   //모달 바꾸기
     
     
     var body: some View {
@@ -78,9 +80,12 @@ struct TrekkingView: View {
 
                 })
                 .padding()
-
-                TrekkingModalView(isNearby: $isNearby, showRewardView: $showRewardView, toVisitPointIndex: $toVisitPointIndex, mkMapView: mkMapView)
-                    .shadow(radius: 10)
+                if !showResultView {
+                    TrekkingModalView(isNearby: $isNearby, showRewardView: $showRewardView, showResultView: $showResultView, toVisitPointIndex: $toVisitPointIndex, mkMapView: mkMapView)
+                } else {
+                    TrekkingResultView()
+                }
+                
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
             .ignoresSafeArea(edges: .bottom)
