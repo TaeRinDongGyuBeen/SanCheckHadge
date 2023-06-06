@@ -6,10 +6,23 @@
 //
 
 import SwiftUI
+import CoreLocation
+import MapKit
 
 struct TrekkingModalView: View {
+    @EnvironmentObject var pointsModel: PointsModel
     
     @State var height: CGFloat = 80
+    @Binding var isNearby: Bool
+    
+    @Binding var showRewardView: Bool
+  
+    @Binding var toVisitPointIndex: Int
+    
+    @State var time = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
+    let mkMapView: MKMapView
+    
     let minHeight: CGFloat = 80
     let maxHeight: CGFloat = 320
     var percentage: Double {
@@ -34,14 +47,14 @@ struct TrekkingModalView: View {
                 HStack(alignment: .top) {
                     Image(systemName: "heart")
                     VStack(alignment: .leading, spacing: 16) {
-                        Text("행복한 소나무에 도착하면")
+                        Text("\(pointsModel.selectedPoints[toVisitPointIndex].nowPoint.name)에 도착하면")
                             .textFontAndColor(.body1)
                         
                         Text("40 행복코인 지급")
                             .textFontAndColor(.body2)
                         
                         HStack {
-                            Text("현재 위치에서 4km")
+                            Text("이전 지점에서 4km")
                                 .font(Font.seoul(.h5))
                                 .foregroundColor(Color.theme.gray5)
                             
@@ -56,9 +69,23 @@ struct TrekkingModalView: View {
                 }
                 .padding(.bottom, 20)
 
-                ButtonComponent(buttonType: .nextButton, content: "리워드 받기", isActive: false, action: {
+                ButtonComponent(buttonType: .nextButton, content: "리워드 받기", isActive: isNearby,action: {
+                    showRewardView = true
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                        showRewardView = false
+                    }
                     
+                    pointsModel.annotationPoints[toVisitPointIndex].viewPoint.isVisited = true
+                    mkMapView.removeAnnotation(pointsModel.annotationPoints[toVisitPointIndex])
+                    mkMapView.addAnnotation(pointsModel.annotationPoints[toVisitPointIndex])
+                    toVisitPointIndex += 1
                 })
+                .disabled(!isNearby)
+                .onChange(of: isNearby) { newValue in
+                    DispatchQueue.main.async {
+                        self.isNearby = newValue
+                    }
+                }
                 .padding(.bottom, 12)
 
                 Button(action: {
@@ -85,6 +112,9 @@ struct TrekkingModalView: View {
         .frame(height: height, alignment: .top)
         .background(Color.white)
         .clipShape(RoundedRectangle(cornerRadius: 20))
+        .onReceive(self.time) { (_) in
+            checkIsNear()
+        }
     }
     
     var dragGesture: some Gesture {
@@ -116,9 +146,55 @@ struct TrekkingModalView: View {
     }
 }
 
+// MARK: 현재위치 관련 함수
+extension TrekkingModalView {
+    func getCurrentLocation(completion: @escaping (CLLocationCoordinate2D?) -> Void) {
+        let locationManager = CLLocationManager()
+        locationManager.requestWhenInUseAuthorization()
 
-struct TrackingModalView_Previews: PreviewProvider {
-    static var previews: some View {
-        TrekkingModalView()
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.startUpdatingLocation()
+            
+            if let location = locationManager.location {
+                completion(location.coordinate)
+            } else {
+                completion(nil)
+            }
+        } else {
+            completion(nil)
+        }
+    }
+    
+    func checkIsNear() {
+
+        getCurrentLocation { coordinate in
+            guard let currentCoordinate = coordinate else {
+                print("현재 위치를 가져올 수 없음()")
+                return
+            }
+
+            let targetLocation: Point = pointsModel.selectedPoints[toVisitPointIndex].nowPoint
+            
+            DispatchQueue.global(qos: .background).async {
+                let currentLocation = CLLocationCoordinate2D(latitude: currentCoordinate.latitude, longitude: currentCoordinate.longitude)
+                
+                //MARK: - 활성화 기준
+                let maxDistance: CLLocationDistance = 20 // 최대 허용 거리 (예: 500 미터)
+
+                let isNearby: Bool = currentLocation.distance(from: targetLocation.locationCoordinate) <= maxDistance
+
+                DispatchQueue.main.async {
+                    self.isNearby = isNearby
+                }
+            }
+        }
     }
 }
+
+
+//struct TrackingModalView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        TrekkingModalView()
+//    }
+//}

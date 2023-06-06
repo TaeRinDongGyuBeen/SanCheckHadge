@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreLocation
+import MapKit
 
 struct Point: Hashable, Codable, Identifiable {
     var name: String
@@ -24,7 +25,32 @@ struct Point: Hashable, Codable, Identifiable {
 struct ViewPoint: Hashable, Codable, Identifiable {
     var id: Int
     var mustWaypoint: Bool = false
+    var isVisited: Bool = false
+    var isStartPoint: Bool = false
     var nowPoint: Point
+}
+
+class AnnotationPoint: NSObject, MKAnnotation, ObservableObject {
+    var coordinate: CLLocationCoordinate2D
+    @Published var viewPoint: ViewPoint
+    
+    var annotationStyle: AnnotationStyle {
+        if viewPoint.isStartPoint {
+           return .start
+        } else {
+            if viewPoint.isVisited {
+                return .visited
+            } else {
+                return .toVisit
+            }
+        }
+    }
+    
+    init(viewPoint: ViewPoint) {
+        self.viewPoint = viewPoint
+        self.coordinate = viewPoint.nowPoint.locationCoordinate
+    }
+    
 }
 
 // enum 생성

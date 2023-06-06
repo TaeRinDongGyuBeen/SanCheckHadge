@@ -11,6 +11,7 @@ import CoreLocation
 
 struct TrekkingView: View {
     @EnvironmentObject var pointsModel: PointsModel
+    let mkMapView: MKMapView = MKMapView()
     
     @State private var showUserLocation = false
     
@@ -20,14 +21,19 @@ struct TrekkingView: View {
 
     @State private var span = DefaultLocation.defaultSpan
     
+    @State var toVisitPointIndex: Int = 0
     @State private var isNearby = false
     
-    @State var time = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @State var val: Double = 0
+    
+    @State private var showRewardView = false
+    
     
     var body: some View {
         ZStack {
+
             VStack {
-                MapView(showUserLocation: $showUserLocation, userLocation: $userLocation, region: $region, span: $span)
+                MapView(mkMapView: mkMapView, showUserLocation: $showUserLocation, userLocation: $userLocation, region: $region, span: $span)
                     .environmentObject(pointsModel)
                 
             }
@@ -36,9 +42,16 @@ struct TrekkingView: View {
             .onAppear {
                 startBackgroundTask()
             }
-            .onReceive(self.time) { (_) in
-                checkIsNear()
+            
+            VStack {
+                CustomProgressBar(progress: val)
+                    .frame(height: 57)
+                Spacer()
             }
+            .padding(.top, 14)
+            .padding(.leading, 45)
+            .padding(.trailing, 45)
+
             
             //MARK: - 모달 뷰
             VStack(alignment: .trailing) {
@@ -65,12 +78,29 @@ struct TrekkingView: View {
 
                 })
                 .padding()
-                TrekkingModalView()
+
+                TrekkingModalView(isNearby: $isNearby, showRewardView: $showRewardView, toVisitPointIndex: $toVisitPointIndex, mkMapView: mkMapView)
                     .shadow(radius: 10)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
             .ignoresSafeArea(edges: .bottom)
         }
+        .overlay(
+            Group {
+                if showRewardView {
+                    Color.black.opacity(0.4)
+                        .edgesIgnoringSafeArea(.all)
+                        .overlay(
+                            withAnimation(.easeInOut(duration: 4)) {
+                                VStack {
+                                    RewardView()
+                                }
+                            }
+                        )
+                }
+            }
+        )
+        .navigationBarBackButtonHidden()
     }
     
     func getCurrentLocation(completion: @escaping (CLLocationCoordinate2D?) -> Void) {
@@ -105,47 +135,11 @@ struct TrekkingView: View {
             }
         }
     }
-    
-    func checkIsNear() {
-
-        getCurrentLocation { coordinate in
-            guard let currentCoordinate = coordinate else {
-                print("현재 위치를 가져올 수 없음")
-                return
-            }
-            
-//            print("CURRENTCOORDINATE :\(currentCoordinate)")
-            
-//            let targetLocation = busStopModel.busStopList[0...3]
-//
-//            DispatchQueue.global(qos: .background).async {
-//                let currentLocation = CLLocation(latitude: currentCoordinate.latitude, longitude: currentCoordinate.longitude)
-//                let maxDistance: CLLocationDistance = 400 // 최대 허용 거리 (예: 500 미터)
-//
-//                let isNearby = targetLocation.contains { location in
-//                    let locationCoordinate = CLLocationCoordinate2D(latitude: location.locationCoordinate.latitude, longitude: location.locationCoordinate.longitude)
-//                    let locationLocation = CLLocation(latitude: locationCoordinate.latitude, longitude: locationCoordinate.longitude)
-//
-////                                    print("current location : \(currentLocation)")
-//
-//                    let distance = currentLocation.distance(from: locationLocation)
-//
-//                    print("Distance : \(distance)")
-//                    return distance <= maxDistance
-//                }
-//
-//                DispatchQueue.main.async {
-//                    self.isNearby = isNearby
-//                }
-//            }
-        }
-    }
 }
 
-struct TrackingView_Previews: PreviewProvider {
-    static var previews: some View {
-        TrekkingView()
-            .environmentObject(PointsModel())
-    }
-}
-
+//struct TrackingView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        TrekkingView()
+//            .environmentObject(PointsModel())
+//    }
+//}
