@@ -16,7 +16,7 @@ extension Character {
         return NSFetchRequest<Character>(entityName: "Character")
     }
 
-    @NSManaged public var clothes: NSObject?
+    @NSManaged public var clothes: [String]?
     @NSManaged public var emotion: String?
 
 }

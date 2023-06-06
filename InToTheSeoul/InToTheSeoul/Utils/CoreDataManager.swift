@@ -36,10 +36,21 @@ class CoreDataManager {
         do {
             try persistentContainer.viewContext.save()
         } catch {
-            print("Failed to save profile \(error)")
+            print("유저 데이터 생성 에러 \(error)")
         }
     }
     
+    func createCharacter() {
+        let character = Character(context: persistentContainer.viewContext)
+        character.clothes = [String]()
+        character.emotion = "bad"
+        
+        do {
+            try persistentContainer.viewContext.save()
+        } catch {
+            print("캐릭터 생성 에러 \(error)")
+        }
+    }
 //    func createBunny() {
 //
 //        let bunny = Bunny(context: persistentContainer.viewContext)
