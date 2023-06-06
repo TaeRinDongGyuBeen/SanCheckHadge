@@ -32,21 +32,34 @@ struct MyRecordView: View {
             }
             Spacer(minLength: 40)
             Group {
-                HStack(spacing: 0) {
-                    Text("산책 경로")
-                        .textFontAndColor(.h3)
-                    Text("\(workData.checkPoint?.count ?? 0)개의 포인트를 달성했어요!")
-                        .textFontAndColor(.h4)
-                        .padding(EdgeInsets(top: 0, leading: 18, bottom: 0, trailing: 0))
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                
-                
-                ScrollView {
+                VStack {
+                    HStack(spacing: 0) {
+                        Text("산책 경로")
+                            .textFontAndColor(.h3)
+                        Text("\(workData.checkPoint?.count ?? 0)개의 포인트를 달성했어요!")
+                            .textFontAndColor(.h4)
+                            .padding(EdgeInsets(top: 0, leading: 18, bottom: 0, trailing: 0))
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     
+                    
+                    ScrollView {
+                        VStack(spacing: 0) {
+                            ForEach(0 ..< workData.checkPoint!.count) { index in
+                                
+                                
+                                if index == workData.checkPoint!.count - 1 {
+                                    RecordCell(isLastCell: true, workData: workData, index: index)
+                                    
+                                } else {
+                                    RecordCell(workData: workData, index: index)
+                                }
+                            }
+                        }
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: 160)
+                    .padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0))
                 }
-                .frame(maxWidth: .infinity, maxHeight: 160)
-                .padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0))
             }
             Spacer(minLength: 40)
             Group {
@@ -144,6 +157,8 @@ struct MyRecordView: View {
     }
     
 }
+
+
 //
 //struct MyRecordView_Previewer: PreviewProvider {
 //    static var previews: some View {
