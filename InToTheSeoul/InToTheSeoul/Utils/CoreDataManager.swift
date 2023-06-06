@@ -24,12 +24,12 @@ class CoreDataManager {
         
     }
     
-    func createUser() {
+    func createUser(username: String, age: Int, gender: String) {
         
         let user = User(context: persistentContainer.viewContext)
-        user.username = "김예은"
-        user.age = 200
-        user.gender = ""
+        user.username = username
+        user.age = Int16(age)
+        user.gender = gender
         user.accumulateCoin = 0
         user.accumulateDistance = 0.0
         
