@@ -84,12 +84,8 @@ struct MainView: View {
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0))
                 
                 HStack(spacing: 0) {
-                    NavigationLink(destination: {
-                        
-                    }, label: {
-                        ButtonComponent(buttonType: .mainViewButton, content: "산책하기", isActive: false, imageName: "walkingStartButton", action: {
-                            showTrakingDestination = true
-                        })
+                    ButtonComponent(buttonType: .mainViewButton, content: "산책하기", isActive: false, imageName: "walkingStartButton", action: {
+                        showTrakingDestination = true
                     })
                     
                     NavigationLink(destination: TrekkingInformationInput(), isActive: $showTrakingDestination) {
@@ -98,7 +94,6 @@ struct MainView: View {
                     .hidden()
                     
                     Spacer()
-                    
                     
                     ButtonComponent(buttonType: .mainViewButton, content: "기록보기", isActive: false, imageName: "recordCheckButton", action: {
                         showTimeDestination = true
@@ -116,7 +111,7 @@ struct MainView: View {
             .padding(EdgeInsets(top: 0, leading: 40, bottom: 40, trailing: 40))
         }
     }
-        
+    
 }
 
 struct MainView_Previewer: PreviewProvider {
