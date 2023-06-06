@@ -8,13 +8,6 @@
 import CoreData
 import UIKit
 
-enum ReadWhat {
-    case mainView
-    case storeView
-    case timelineView
-}
-
-
 class CoreDataManager {
     
     static var coreDM: CoreDataManager = CoreDataManager()
@@ -28,7 +21,6 @@ class CoreDataManager {
                 fatalError("CoreData 저장소 오류 \(error.localizedDescription)")
             }
         }
-        
     }
     
     func createUser(username: String, age: Int, gender: Int) {
@@ -79,11 +71,11 @@ class CoreDataManager {
         
     }
     
-    func readUser(view: ReadWhat) -> [User] {
+    func readUser() -> [User] {
         
         let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
         
-        do{
+        do {
             return try persistentContainer.viewContext.fetch(fetchRequest)
         } catch {
             return []
@@ -94,7 +86,7 @@ class CoreDataManager {
     func readWorkData() -> [WorkData] {
         let fetchRequest: NSFetchRequest<WorkData> = WorkData.fetchRequest()
         
-        do{
+        do {
             return try persistentContainer.viewContext.fetch(fetchRequest)
         } catch {
             return []
@@ -104,7 +96,7 @@ class CoreDataManager {
     func readCharacter() -> [Character] {
         let fetchRequest: NSFetchRequest<Character> = Character.fetchRequest()
         
-        do{
+        do {
             return try persistentContainer.viewContext.fetch(fetchRequest)
         } catch {
             return []
@@ -115,7 +107,7 @@ class CoreDataManager {
     func updateCharacterEmotion(_ emotion: String) {
         CoreDataManager.coreDM.readCharacter()[0].emotion = emotion
         
-        do{
+        do {
             try persistentContainer.viewContext.save()
         } catch {
             persistentContainer.viewContext.rollback() // 오류나면 오류난 걸 지워버린다. 오류나지 않은 가장 최신의 것을 불러온다.
@@ -125,7 +117,7 @@ class CoreDataManager {
     func updateCharacterPresentClothes(_ presentClothes: String) {
         CoreDataManager.coreDM.readCharacter()[0].presentClothes = presentClothes
         
-        do{
+        do {
             try persistentContainer.viewContext.save()
         } catch {
             persistentContainer.viewContext.rollback() // 오류나면 오류난 걸 지워버린다. 오류나지 않은 가장 최신의 것을 불러온다.
@@ -137,7 +129,7 @@ class CoreDataManager {
         tempClothes?.append(clothes)
         CoreDataManager.coreDM.readCharacter()[0].clothes = tempClothes
         
-        do{
+        do {
             try persistentContainer.viewContext.save()
         } catch {
             persistentContainer.viewContext.rollback() // 오류나면 오류난 걸 지워버린다. 오류나지 않은 가장 최신의 것을 불러온다.
@@ -145,11 +137,23 @@ class CoreDataManager {
     }
     
     func updateCoin(_ gainCoin: Int) {
+        CoreDataManager.coreDM.readUser()[0].accumulateCoin = Int16(gainCoin)
         
+        do {
+            try persistentContainer.viewContext.save()
+        } catch {
+            persistentContainer.viewContext.rollback() // 오류나면 오류난 걸 지워버린다. 오류나지 않은 가장 최신의 것을 불러온다.
+        }
     }
     
-    func updateAccumulateDistance(_ gainDistance: Int) {
+    func updateAccumulateDistance(_ gainDistance: Double) {
+        CoreDataManager.coreDM.readUser()[0].accumulateDistance = gainDistance
         
+        do {
+            try persistentContainer.viewContext.save()
+        } catch {
+            persistentContainer.viewContext.rollback() // 오류나면 오류난 걸 지워버린다. 오류나지 않은 가장 최신의 것을 불러온다.
+        }
         
     }
     
