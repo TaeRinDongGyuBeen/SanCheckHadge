@@ -18,6 +18,7 @@ extension Character {
 
     @NSManaged public var clothes: [String]?
     @NSManaged public var emotion: String?
+    @NSManaged public var presentClothes: String?
 
 }
 
