@@ -259,7 +259,6 @@ struct DataReceiveView: View {
                         CoreDataManager.coreDM.createUser(username: nameLimiter, age: findAgeOrGener(checkList: ageCheckList), gender: findAgeOrGener(checkList: genderActivatedList))
                         CoreDataManager.coreDM.createCharacter()
                         print("데이터 저장됨")
-                        print(CoreDataManager.coreDM.readAllUser())
                     }
                 )
             })
