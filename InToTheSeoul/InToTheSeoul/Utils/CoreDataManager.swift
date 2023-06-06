@@ -51,18 +51,6 @@ class CoreDataManager {
             print("캐릭터 생성 에러 \(error)")
         }
     }
-//    func createBunny() {
-//
-//        let bunny = Bunny(context: persistentContainer.viewContext)
-//        bunny.characterName = "이동재"
-//        bunny.level = 1
-//
-//        do {
-//            try persistentContainer.viewContext.save()
-//        } catch {
-//            print("Failed to save profile \(error)")
-//        }
-//    }
 
     func readAllUser() -> [User] {
         
@@ -74,17 +62,6 @@ class CoreDataManager {
             return []
         }
     }
-//
-//    func readAllBunny() -> [Bunny] {
-//
-//        let fetchRequest: NSFetchRequest<Bunny> = Bunny.fetchRequest()
-//
-//        do{
-//            return try persistentContainer.viewContext.fetch(fetchRequest)
-//        } catch {
-//            return []
-//        }
-//    }
     
     func update() {
         
