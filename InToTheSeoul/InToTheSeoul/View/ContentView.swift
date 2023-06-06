@@ -11,7 +11,7 @@ struct ContentView: View {
     @State var test = ""
     @State var isTapped = false
     var body: some View {
-        TimelineView()
+        DataReceiveView()
     }
 }
 
