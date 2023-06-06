@@ -37,14 +37,18 @@ struct TimelineView: View {
 
 struct ScrollCell: View {
     // TODO: 코어데이터 매니저로 데이터를 가져와야 함.
-    // 임시로 gainCoin 등의 변수를 둠.
-    
-    @State var gainCoin: Int = 0
+
     @State var isFirstCell: Bool = false
     @State var workData: WorkData
+    
+    var formattedDate: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy년 MM월 dd일"
+        return formatter.string(from: workData.date ?? Date())
+    }
     var body: some View {
         HStack(spacing: 0) {
-            Text("+\(gainCoin)")
+            Text("+\(workData.gainCoin)")
                 .textFontAndColor(.h5)
             Spacer()
             ZStack {
@@ -62,16 +66,16 @@ struct ScrollCell: View {
             Spacer()
             
             NavigationLink(destination: {
-                
+                MyRecordView(workData: workData, buttonUse: false)
             }, label: {
                 HStack(spacing: 0) {
                     VStack {
-                        Text("오늘 날짜")
+                        Text("\(formattedDate)")
                             .frame(width: 171, alignment: .leading)
                             .textFontAndColor(.body3)
                         Spacer()
                         HStack(spacing: 0) {
-                            Text("(시간)분 동안 (거리)km 산책")
+                            Text("\(workData.totalTime)분 동안 \(workData.totalDistance, specifier: "%.2f")km 산책")
                                 .textFontAndColor(.h2)
                         }
                         .frame(width: 171, alignment: .leading)

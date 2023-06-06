@@ -8,16 +8,23 @@
 import SwiftUI
 
 struct MyRecordView: View {
+    @State var workData: WorkData
     
     // 내 기록보기에서 버튼을 감추기 위한 변수
     @State var buttonUse: Bool = true
+    
+    var formattedDate: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy년 MM월 dd일"
+        return formatter.string(from: workData.date ?? Date())
+    }
     
     var body: some View {
         VStack(spacing: 0) {
             
             Spacer(minLength: 30)
             Group {
-                Text("(날짜)의 기록")
+                Text("\(formattedDate)의 기록")
                     .textFontAndColor(.h1)
                     .padding(EdgeInsets(top: 0, leading: 0, bottom: 3, trailing: 0))
                 Text("포기하지 않고 끝까지 완주하신 것을 축하드려요!")
@@ -28,25 +35,17 @@ struct MyRecordView: View {
                 HStack(spacing: 0) {
                     Text("산책 경로")
                         .textFontAndColor(.h3)
-                    Text("(경로 숫자)개의 포인트를 달성했어요!")
+                    Text("\(workData.checkPoint?.count ?? 0)개의 포인트를 달성했어요!")
                         .textFontAndColor(.h4)
                         .padding(EdgeInsets(top: 0, leading: 18, bottom: 0, trailing: 0))
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 
-                HStack(spacing: 0) {
-                    Image("storeCharacter")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 150)
-                    Spacer()
-                    ScrollView {
-                        
-                    }
-                    .frame(maxWidth: 140, maxHeight: 160)
+                
+                ScrollView {
                     
-                    .background(.black)
                 }
+                .frame(maxWidth: .infinity, maxHeight: 160)
                 .padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0))
             }
             Spacer(minLength: 40)
@@ -77,7 +76,7 @@ struct MyRecordView: View {
                                     .textFontAndColor(.body3)
                                 Spacer()
                                 HStack(alignment: .bottom, spacing: 0) {
-                                    Text("거리")
+                                    Text("\(workData.totalDistance, specifier: "%.2f")")
                                         .textFontAndColor(.body4)
                                     
                                     Text("km")
@@ -92,7 +91,7 @@ struct MyRecordView: View {
                                     .textFontAndColor(.body3)
                                 Spacer()
                                 HStack(alignment: .bottom, spacing: 0) {
-                                    Text("시간")
+                                    Text("\(workData.totalTime)")
                                         .textFontAndColor(.body4)
                                     Text("분")
                                         .textFontAndColor(.h5)
@@ -123,7 +122,7 @@ struct MyRecordView: View {
                     Image(systemName: "dollarsign.circle.fill")
                         .foregroundColor(Color.theme.yellow)
                     Spacer()
-                    Text("NN")
+                    Text("\(workData.gainCoin)")
                         .textFontAndColor(.body5)
                     Spacer()
                     Text("획득")
@@ -145,9 +144,9 @@ struct MyRecordView: View {
     }
     
 }
-
-struct MyRecordView_Previewer: PreviewProvider {
-    static var previews: some View {
-        MyRecordView()
-    }
-}
+//
+//struct MyRecordView_Previewer: PreviewProvider {
+//    static var previews: some View {
+//        MyRecordView(workData: )
+//    }
+//}
