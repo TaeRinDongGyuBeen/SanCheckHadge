@@ -16,6 +16,8 @@ struct TrekkingModalView: View {
     @Binding var isNearby: Bool
     
     @Binding var showRewardView: Bool
+    
+    @Binding var showResultView: Bool
   
     @Binding var toVisitPointIndex: Int
     
@@ -104,7 +106,7 @@ struct TrekkingModalView: View {
                     message: Text("리워드 받은 지점까지만 기록 저장이 되니,\n신중하게 결정해주세요!"),
                     primaryButton: .destructive(Text("취소")),
                     secondaryButton: .default(Text("확인"), action: {
-                        // 그만둘 때 수행할 동작 추가
+                        showResultView = true
                     })
                 )
             })
