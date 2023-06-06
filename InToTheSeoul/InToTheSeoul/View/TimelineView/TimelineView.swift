@@ -8,18 +8,29 @@
 import SwiftUI
 
 struct TimelineView: View {
+    @State var workDatum = CoreDataManager.coreDM.readWorkData()
+    
     var body: some View {
-        ScrollView {
-            VStack(spacing: 0) {
-                ForEach(0 ..< 100) { index in
-                    if index == 0 {
-                        ScrollCell(isFirstCell: true)
+        if workDatum.count != 0 {
+            ScrollView {
+                VStack(spacing: 0) {
+                    ForEach(0 ..< workDatum.count) { index in
+                        if index == 0 {
+                            ScrollCell(isFirstCell: true, workData: workDatum[index])
+                        }
+                        ScrollCell(workData: workDatum[index])
                     }
-                    ScrollCell()
                 }
+                
             }
+            .padding(EdgeInsets(top: 0, leading: 40, bottom: 0, trailing: 40))
+            
+        } else {
+            Text("데이터가 없습니다.")
+            Button("시험데이터 생성", action: {
+                CoreDataManager.coreDM.createWorkData(date: Date(), distance: 3.2, gainPoint: 350, moveRoute: [(39.323)], checkPoint: ["강남", "홍대", "서초", "이건희집", "봉천동"], startPoint: "청와대")
+            })
         }
-        .padding(EdgeInsets(top: 0, leading: 40, bottom: 0, trailing: 40))
     }
 }
 
@@ -30,6 +41,7 @@ struct ScrollCell: View {
     
     @State var gainCoin: Int = 0
     @State var isFirstCell: Bool = false
+    @State var workData: WorkData
     var body: some View {
         HStack(spacing: 0) {
             Text("+\(gainCoin)")
