@@ -14,6 +14,7 @@ struct InToTheSeoulApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(pointsModel)
         }
     }
 }

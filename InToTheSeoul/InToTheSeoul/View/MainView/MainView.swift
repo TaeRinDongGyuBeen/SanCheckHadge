@@ -10,7 +10,13 @@ struct MainView: View {
     @State var userMoney: Int = Int(CoreDataManager.coreDM.readUser()[0].accumulateCoin)
     @State var username: String = (CoreDataManager.coreDM.readUser()[0].username ?? "태린동규빈")
     @State var userAccumulateDistance = (CoreDataManager.coreDM.readUser()[0].accumulateDistance)
+    
+    @State var showTimeDestination = false
+    @State var showTrakingDestination = false
+    @EnvironmentObject var pointsModel: PointsModel
+    
     var body: some View {
+        NavigationStack {
             VStack(spacing: 0) {
                 Spacer()
                 HStack(spacing: 0) {
@@ -18,7 +24,7 @@ struct MainView: View {
                     
                     Spacer()
                     NavigationLink(destination: {
-                        
+                        StoreView()
                     }, label: {
                         Image("storeButton")
                             .resizable()
@@ -78,20 +84,39 @@ struct MainView: View {
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0))
                 
                 HStack(spacing: 0) {
-                    ButtonComponent(buttonType: .mainViewButton, content: "산책하기", isActive: false, imageName: "walkingStartButton", action: {
+                    NavigationLink(destination: {
                         
+                    }, label: {
+                        ButtonComponent(buttonType: .mainViewButton, content: "산책하기", isActive: false, imageName: "walkingStartButton", action: {
+                            showTrakingDestination = true
+                        })
                     })
+                    
+                    NavigationLink(destination: TrekkingInformationInput(), isActive: $showTrakingDestination) {
+                        
+                    }
+                    .hidden()
                     
                     Spacer()
                     
+                    
                     ButtonComponent(buttonType: .mainViewButton, content: "기록보기", isActive: false, imageName: "recordCheckButton", action: {
-                        
+                        showTimeDestination = true
                     })
+                    
+                    NavigationLink(destination: TimelineView(), isActive: $showTimeDestination) {
+                        
+                    }
+                    .hidden()
+                    
+                    
                 }
                 Spacer()
             }
             .padding(EdgeInsets(top: 0, leading: 40, bottom: 40, trailing: 40))
         }
+    }
+        
 }
 
 struct MainView_Previewer: PreviewProvider {
