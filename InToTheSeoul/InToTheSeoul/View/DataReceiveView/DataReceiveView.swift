@@ -104,8 +104,8 @@ struct DataReceiveView: View {
                             content: "여성",
                             isActive: genderActivatedList[0],
                             action: {
+                                genderActivatedList = [false, false]
                                 genderActivatedList[0].toggle()
-                                genderActivatedList[1] = false
                             }
                         )
                     })
@@ -120,8 +120,9 @@ struct DataReceiveView: View {
                             content: "남성",
                             isActive: genderActivatedList[1],
                             action: {
+                                genderActivatedList = [false, false]
                                 genderActivatedList[1].toggle()
-                                genderActivatedList[0] = false
+                                
                             }
                         )
                     })
@@ -255,7 +256,9 @@ struct DataReceiveView: View {
                     content: "시작하기",
                     isActive: nextButtonActivated,
                     action: {
-                        // 메인뷰로 넘어가기
+                        CoreDataManager.coreDM.createUser(username: nameLimiter, age: findAgeOrGener(checkList: ageCheckList), gender: findAgeOrGener(checkList: genderActivatedList))
+                        print("데이터 저장됨")
+                        print(CoreDataManager.coreDM.readAllUser())
                     }
                 )
             })
@@ -263,6 +266,15 @@ struct DataReceiveView: View {
         }
         .padding(EdgeInsets(top: 30, leading: 40, bottom: 50, trailing: 40))
         
+    }
+    
+    func findAgeOrGener(checkList: [Bool]) -> Int {
+        for (index, i) in checkList.enumerated() {
+            if i == true {
+                return index
+            }
+        }
+        return 0
     }
 }
 

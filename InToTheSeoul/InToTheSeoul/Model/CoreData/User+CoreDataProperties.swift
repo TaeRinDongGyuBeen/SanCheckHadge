@@ -17,7 +17,7 @@ extension User {
     }
 
     @NSManaged public var username: String?
-    @NSManaged public var gender: String?
+    @NSManaged public var gender: Int16
     @NSManaged public var age: Int16
     @NSManaged public var accumulateCoin: Int16
     @NSManaged public var accumulateDistance: Double
