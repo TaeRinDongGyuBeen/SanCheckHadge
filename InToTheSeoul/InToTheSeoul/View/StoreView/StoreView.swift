@@ -10,7 +10,15 @@ import SwiftUI
 // TODO: CoreDataManager를 활용하여 돈의 변화와 아이템 소장 여부를 CRU 해주어야 함.
 
 struct StoreView: View {
-    @State var userMoney: Int = 1530
+    @State var userMoney: Int = 1500
+    
+    //Int(CoreDataManager.coreDM.readUser()[0].accumulateCoin)
+    @State var presentClothes: String = (CoreDataManager.coreDM.readCharacter()[0].presentClothes ?? "")
+    @State var clothes: [String] = CoreDataManager.coreDM.readCharacter()[0].clothes ?? [String]()
+    @State var characterEmotion: String = CoreDataManager.coreDM.readCharacter()[0].emotion ?? "Bad"
+    
+    @State var puttingClothes: String = ""
+    
     @State var buttonIsActiveArray = [false, false, false, false, false]
     
     @State private var alertShowing: Bool = false
@@ -26,7 +34,7 @@ struct StoreView: View {
                             .foregroundColor(Color.theme.green1)
                     }
                     .frame(maxHeight: 208, alignment: .bottom)
-                    Image("storeCharacter")
+                    Image("Character")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 153, height: 167)
@@ -44,6 +52,7 @@ struct StoreView: View {
                         imageName: "palleteSet",
                         action: {
                             buttonActive(index: 0)
+                            puttingClothes = "palleteSet"
                         })
                     .disabled(cantBuyItemDisable(userMoney: userMoney, price: 1500))
                     
@@ -57,6 +66,7 @@ struct StoreView: View {
                         imageName: "drum",
                         action: {
                             buttonActive(index: 1)
+                            puttingClothes = "drum"
                         })
                     .disabled(cantBuyItemDisable(userMoney: userMoney, price: 2000))
                     
@@ -65,11 +75,12 @@ struct StoreView: View {
                     StoreProductButton(
                         isActive: buttonIsActiveArray[2],
                         color: canBuyItemColor(userMoney: userMoney, price: 1200),
-                        isOwnItem: true,
+                        isOwnItem: clothes.contains("books"),
                         money: 1200,
                         imageName: "books",
                         action: {
                             buttonActive(index: 2)
+                            puttingClothes = "books"
                         })
                     .disabled(cantBuyItemDisable(userMoney: userMoney, price: 1200))
                 }
@@ -84,6 +95,7 @@ struct StoreView: View {
                         imageName: "trainingTools",
                         action: {
                             buttonActive(index: 3)
+                            puttingClothes = "trainingTools"
                         })
                     .disabled(cantBuyItemDisable(userMoney: userMoney, price: 1700))
                     
@@ -91,6 +103,7 @@ struct StoreView: View {
                     
                     StoreProductButton(isActive: buttonIsActiveArray[4], color: canBuyItemColor(userMoney: userMoney, price: 1500), isOwnItem: checkOwnItem(itemName: "macbook"), money: 1500, imageName: "macbook", action: {
                         buttonActive(index: 4)
+                        puttingClothes = "macbook"
                     })
                     .disabled(cantBuyItemDisable(userMoney: userMoney, price: 1500))
                     
