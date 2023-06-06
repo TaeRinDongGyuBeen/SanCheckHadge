@@ -78,12 +78,13 @@ struct TrekkingView: View {
 
                 })
                 .padding()
-                TrekkingModalView()
+                TrekkingModalView(isNearby: $isNearby)
                     .shadow(radius: 10)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
             .ignoresSafeArea(edges: .bottom)
         }
+        .navigationBarBackButtonHidden()
     }
     
     func getCurrentLocation(completion: @escaping (CLLocationCoordinate2D?) -> Void) {
@@ -123,34 +124,40 @@ struct TrekkingView: View {
 
         getCurrentLocation { coordinate in
             guard let currentCoordinate = coordinate else {
-                print("현재 위치를 가져올 수 없음")
+                print("현재 위치를 가져올 수 없음()")
                 return
             }
             
-//            print("CURRENTCOORDINATE :\(currentCoordinate)")
+            let targetLocationPoints = pointsModel.selectedPoints
             
-//            let targetLocation = busStopModel.busStopList[0...3]
-//
-//            DispatchQueue.global(qos: .background).async {
-//                let currentLocation = CLLocation(latitude: currentCoordinate.latitude, longitude: currentCoordinate.longitude)
-//                let maxDistance: CLLocationDistance = 400 // 최대 허용 거리 (예: 500 미터)
-//
-//                let isNearby = targetLocation.contains { location in
-//                    let locationCoordinate = CLLocationCoordinate2D(latitude: location.locationCoordinate.latitude, longitude: location.locationCoordinate.longitude)
-//                    let locationLocation = CLLocation(latitude: locationCoordinate.latitude, longitude: locationCoordinate.longitude)
-//
-////                                    print("current location : \(currentLocation)")
-//
-//                    let distance = currentLocation.distance(from: locationLocation)
-//
+            var targetLocation: [Point] = []
+            
+            for points in targetLocationPoints {
+                targetLocation.append(points.nowPoint)
+            }
+            
+            DispatchQueue.global(qos: .background).async {
+                let currentLocation = CLLocation(latitude: currentCoordinate.latitude, longitude: currentCoordinate.longitude)
+                
+                //MARK: - 활성화 기준
+                let maxDistance: CLLocationDistance = 400 // 최대 허용 거리 (예: 500 미터)
+
+                let isNearby = targetLocation.contains { location in
+                    let locationCoordinate = CLLocationCoordinate2D(latitude: location.locationCoordinate.latitude, longitude: location.locationCoordinate.longitude)
+                    let locationLocation = CLLocation(latitude: locationCoordinate.latitude, longitude: locationCoordinate.longitude)
+
+//                                    print("current location : \(currentLocation)")
+
+                    let distance = currentLocation.distance(from: locationLocation)
+
 //                    print("Distance : \(distance)")
-//                    return distance <= maxDistance
-//                }
-//
-//                DispatchQueue.main.async {
-//                    self.isNearby = isNearby
-//                }
-//            }
+                    return distance <= maxDistance
+                }
+
+                DispatchQueue.main.async {
+                    self.isNearby = isNearby
+                }
+            }
         }
     }
 }
@@ -161,4 +168,3 @@ struct TrackingView_Previews: PreviewProvider {
             .environmentObject(PointsModel())
     }
 }
-
