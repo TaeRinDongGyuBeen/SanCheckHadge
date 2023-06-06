@@ -38,7 +38,7 @@
 		C9D5BAE62A2DFF3000533F32 /* UserDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C9D5BAE42A2DFF3000533F32 /* UserDataModel.xcdatamodeld */; };
 		C9D5BAEA2A2E003100533F32 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D5BAE82A2E003100533F32 /* User+CoreDataClass.swift */; };
 		C9D5BAEB2A2E003100533F32 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D5BAE92A2E003100533F32 /* User+CoreDataProperties.swift */; };
-		C9D5BAF02A2E00B100533F32 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D5BAEF2A2E00B100533F32 /* File.swift */; };
+		C9D5BAF02A2E00B100533F32 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D5BAEF2A2E00B100533F32 /* CoreDataManager.swift */; };
 		C9D8CD8B2A27597000A880E8 /* InToTheSeoulApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D8CD8A2A27597000A880E8 /* InToTheSeoulApp.swift */; };
 		C9D8CD8D2A27597000A880E8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D8CD8C2A27597000A880E8 /* ContentView.swift */; };
 		C9D8CD8F2A27597100A880E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9D8CD8E2A27597100A880E8 /* Assets.xcassets */; };
@@ -78,7 +78,7 @@
 		C9D5BAE52A2DFF3000533F32 /* UserDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserDataModel.xcdatamodel; sourceTree = "<group>"; };
 		C9D5BAE82A2E003100533F32 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C9D5BAE92A2E003100533F32 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		C9D5BAEF2A2E00B100533F32 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		C9D5BAEF2A2E00B100533F32 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		C9D8CD872A27597000A880E8 /* InToTheSeoul.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InToTheSeoul.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9D8CD8A2A27597000A880E8 /* InToTheSeoulApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InToTheSeoulApp.swift; sourceTree = "<group>"; };
 		C9D8CD8C2A27597000A880E8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -263,7 +263,7 @@
 		C9D5BAEE2A2E008900533F32 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				C9D5BAEF2A2E00B100533F32 /* File.swift */,
+				C9D5BAEF2A2E00B100533F32 /* CoreDataManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -394,7 +394,7 @@
 				162FE6012A2DAA1A00DCDFA3 /* MapAnnotation.swift in Sources */,
 				3D4D8E422A2D86910081912E /* OnboardingView.swift in Sources */,
 				C9D8CD8D2A27597000A880E8 /* ContentView.swift in Sources */,
-				C9D5BAF02A2E00B100533F32 /* File.swift in Sources */,
+				C9D5BAF02A2E00B100533F32 /* CoreDataManager.swift in Sources */,
 				C9D5BAEA2A2E003100533F32 /* User+CoreDataClass.swift in Sources */,
 				C95D3A532A2D683D009DE078 /* TimelineView.swift in Sources */,
 				C9D8CD8B2A27597000A880E8 /* InToTheSeoulApp.swift in Sources */,
