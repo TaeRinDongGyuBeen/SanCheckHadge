@@ -25,7 +25,7 @@ struct DataReceiveView: View {
     
     /**
      여성(0), 남성(1)이 각각 클릭될 때, 상호 작용하도록 만드는 Bool Array
-    */
+     */
     @State var genderActivatedList = [false, false] {
         willSet {
             dataCheckList[1] = true
@@ -258,6 +258,7 @@ struct DataReceiveView: View {
                     content: "시작하기",
                     isActive: nextButtonActivated,
                     action: {
+                        
                         CoreDataManager.coreDM.createUser(username: nameLimiter, age: findAgeOrGener(checkList: ageCheckList), gender: findAgeOrGener(checkList: genderActivatedList))
                         CoreDataManager.coreDM.createCharacter()
                         isFirstLaunch = false

@@ -7,11 +7,13 @@
 import SwiftUI
 
 struct MainView: View {
+    
     @State var userMoney: Int = Int(CoreDataManager.coreDM.readUser()[0].accumulateCoin)
     @State var username: String = (CoreDataManager.coreDM.readUser()[0].username ?? "태린동규빈")
     @State var userAccumulateDistance = CoreDataManager.coreDM.readUser()[0].accumulateDistance
     @State var characterEmotion = CoreDataManager.coreDM.readCharacter()[0].emotion ?? "Bad"
     @State var characterPresentClothes = CoreDataManager.coreDM.readCharacter()[0].presentClothes ?? ""
+    @State var clothes: [String] = CoreDataManager.coreDM.readCharacter()[0].clothes ?? [String]()
     
     @State var showTimeDestination = false
     @State var showTrakingDestination = false
@@ -22,11 +24,11 @@ struct MainView: View {
             VStack(spacing: 0) {
                 Spacer()
                 HStack(spacing: 0) {
-                    CoinComponent(money: userMoney, color: Color.theme.green1)
+                    CoinComponent(money: $userMoney, color: Color.theme.green1)
                     
                     Spacer()
                     NavigationLink(destination: {
-                        StoreView()
+                        StoreView(userMoney: $userMoney, presentClothes: $characterPresentClothes, clothes: $clothes, characterEmotion: $characterEmotion)
                     }, label: {
                         Image("storeButton")
                             .resizable()

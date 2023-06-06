@@ -7,12 +7,14 @@
 
 import CoreData
 import UIKit
+import Combine
 
-class CoreDataManager {
+class CoreDataManager: ObservableObject {
     
-    static var coreDM: CoreDataManager = CoreDataManager()
+    static let coreDM: CoreDataManager = CoreDataManager()
     
     let persistentContainer: NSPersistentContainer
+    private var cancellables = Set<AnyCancellable>()
     
     init() {
         persistentContainer = NSPersistentContainer(name:"UserDataModel")
@@ -29,7 +31,7 @@ class CoreDataManager {
         user.username = username
         user.age = Int16(age)
         user.gender = Int16(gender)
-        user.accumulateCoin = 0
+        user.accumulateCoin = 4000
         user.accumulateDistance = 0.0
         
         do {
@@ -44,6 +46,7 @@ class CoreDataManager {
         let character = Character(context: persistentContainer.viewContext)
         character.clothes = [String]()
         character.emotion = "Bad"
+        character.presentClothes = ""
         
         do {
             try persistentContainer.viewContext.save()
@@ -126,7 +129,9 @@ class CoreDataManager {
     
     func updateCharacterClothes(_ clothes: String) {
         var tempClothes = CoreDataManager.coreDM.readCharacter()[0].clothes
+        print("updateCharacterClothes 내부 :", tempClothes!)
         tempClothes?.append(clothes)
+        print("updateCharacterClothes append 이후 :", tempClothes!)
         CoreDataManager.coreDM.readCharacter()[0].clothes = tempClothes
         
         do {
@@ -137,7 +142,7 @@ class CoreDataManager {
     }
     
     func updateCoin(_ gainCoin: Int) {
-        CoreDataManager.coreDM.readUser()[0].accumulateCoin = Int16(gainCoin)
+        CoreDataManager.coreDM.readUser()[0].accumulateCoin += Int16(gainCoin)
         
         do {
             try persistentContainer.viewContext.save()

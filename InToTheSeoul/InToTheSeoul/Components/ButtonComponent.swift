@@ -158,9 +158,9 @@ struct NextButton: View {
  */
 struct StoreProductButton: View {
     var isActive: Bool
-    var color: Color
-    var isOwnItem: Bool
-    let money: Int
+    @State var color: Color
+    @State var isOwnItem: Bool
+    @State var money: Int
     let imageName: String
     let action: () -> Void
     
@@ -202,7 +202,7 @@ struct StoreProductButton: View {
                     .foregroundColor(Color.theme.yellow)
                     .padding(EdgeInsets(top: 4, leading: 0, bottom: 0, trailing: 0))
             } else {
-                CoinComponent(money: money, color: color)
+                CoinComponent(money: $money, color: color)
                     .padding(EdgeInsets(top: 4, leading: 0, bottom: 0, trailing: 0))
             }
         }
