@@ -20,11 +20,11 @@ struct TrekkingView: View {
 
     @State private var span = DefaultLocation.defaultSpan
     
+    @State var toVisitPointIndex: Int = 0
     @State private var isNearby = false
     
-    @State var time = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    
     @State var val: Double = 0
+    
     
     var body: some View {
         ZStack {
@@ -38,9 +38,6 @@ struct TrekkingView: View {
             .ignoresSafeArea()
             .onAppear {
                 startBackgroundTask()
-            }
-            .onReceive(self.time) { (_) in
-                checkIsNear()
             }
             
             VStack {
@@ -78,7 +75,7 @@ struct TrekkingView: View {
 
                 })
                 .padding()
-                TrekkingModalView(isNearby: $isNearby)
+                TrekkingModalView(isNearby: $isNearby, toVisitPointIndex: $toVisitPointIndex)
                     .shadow(radius: 10)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
@@ -116,47 +113,6 @@ struct TrekkingView: View {
             while true {
                 // 백그라운드 작업 수행
                 Thread.sleep(forTimeInterval: 1)
-            }
-        }
-    }
-    
-    func checkIsNear() {
-
-        getCurrentLocation { coordinate in
-            guard let currentCoordinate = coordinate else {
-                print("현재 위치를 가져올 수 없음()")
-                return
-            }
-            
-            let targetLocationPoints = pointsModel.selectedPoints
-            
-            var targetLocation: [Point] = []
-            
-            for points in targetLocationPoints {
-                targetLocation.append(points.nowPoint)
-            }
-            
-            DispatchQueue.global(qos: .background).async {
-                let currentLocation = CLLocation(latitude: currentCoordinate.latitude, longitude: currentCoordinate.longitude)
-                
-                //MARK: - 활성화 기준
-                let maxDistance: CLLocationDistance = 20 // 최대 허용 거리 (예: 500 미터)
-
-                let isNearby = targetLocation.contains { location in
-                    let locationCoordinate = CLLocationCoordinate2D(latitude: location.locationCoordinate.latitude, longitude: location.locationCoordinate.longitude)
-                    let locationLocation = CLLocation(latitude: locationCoordinate.latitude, longitude: locationCoordinate.longitude)
-
-//                                    print("current location : \(currentLocation)")
-
-                    let distance = currentLocation.distance(from: locationLocation)
-
-//                    print("Distance : \(distance)")
-                    return distance <= maxDistance
-                }
-
-                DispatchQueue.main.async {
-                    self.isNearby = isNearby
-                }
             }
         }
     }

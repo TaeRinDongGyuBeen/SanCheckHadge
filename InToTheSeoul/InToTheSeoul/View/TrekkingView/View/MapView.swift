@@ -72,7 +72,7 @@ struct MapView: UIViewRepresentable {
 
         var directions: [MKDirections] = []
 
-        for i in 0..<placemarks.count {
+        for _ in 0..<placemarks.count {
             let request = MKDirections.Request()
             
             // 출발지와 목적지 설정
