@@ -26,6 +26,9 @@ struct TrekkingView: View {
     
     @State var val: Double = 0
     
+    @State private var showRewardView = false
+    
+    
     var body: some View {
         ZStack {
 
@@ -78,12 +81,27 @@ struct TrekkingView: View {
 
                 })
                 .padding()
-                TrekkingModalView(isNearby: $isNearby)
+                TrekkingModalView(isNearby: $isNearby, showRewardView: $showRewardView)
                     .shadow(radius: 10)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
             .ignoresSafeArea(edges: .bottom)
         }
+        .overlay(
+            Group {
+                if showRewardView {
+                    Color.black.opacity(0.4)
+                        .edgesIgnoringSafeArea(.all)
+                        .overlay(
+                            withAnimation(.easeInOut(duration: 4)) {
+                                VStack {
+                                    RewardView()
+                                }
+                            }
+                        )
+                }
+            }
+        )
         .navigationBarBackButtonHidden()
     }
     
@@ -162,9 +180,9 @@ struct TrekkingView: View {
     }
 }
 
-struct TrackingView_Previews: PreviewProvider {
-    static var previews: some View {
-        TrekkingView()
-            .environmentObject(PointsModel())
-    }
-}
+//struct TrackingView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        TrekkingView()
+//            .environmentObject(PointsModel())
+//    }
+//}

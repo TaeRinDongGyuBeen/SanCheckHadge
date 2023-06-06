@@ -11,6 +11,9 @@ struct TrekkingModalView: View {
     
     @State var height: CGFloat = 80
     @Binding var isNearby: Bool
+    
+    @Binding var showRewardView: Bool
+    
     let minHeight: CGFloat = 80
     let maxHeight: CGFloat = 320
     var percentage: Double {
@@ -58,6 +61,10 @@ struct TrekkingModalView: View {
                 .padding(.bottom, 20)
 
                 ButtonComponent(buttonType: .nextButton, content: "리워드 받기", isActive: isNearby,action: {
+                    showRewardView = true
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                        showRewardView = false
+                    }
                     
                 })
                 .disabled(!isNearby)

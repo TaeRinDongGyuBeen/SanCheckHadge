@@ -7,17 +7,16 @@
 
 import SwiftUI
 
-struct RewardView: View {
+struct Home: View {
     var body: some View {
-        Home()
+        RewardView()
     }
 }
 
-struct Home: View {
+struct RewardView: View {
     
     @State private var points: Int = 30
     @State private var wish = false
-    
     @State private var finishWish = false
     
     var body: some View {
@@ -37,25 +36,15 @@ struct Home: View {
                 .padding(.trailing, 40)
                 .foregroundColor(.white)
                 .font(.system(size: 36, weight: .bold))
-                
-            
-            //임시
-            VStack {
-                Spacer()
-                Button(action: {
-                    doAnimation()
-                }, label: {
-                    Text("click")
-                })
-            }
-            .disabled(wish)
             
             EmitterView()
                 .scaleEffect(wish ? 1 : 0, anchor: .top)
                 .opacity(wish && !finishWish ? 1 : 0)
                 .ignoresSafeArea()
                 
-
+        }
+        .onAppear {
+            doAnimation()
         }
     }
     
@@ -63,16 +52,16 @@ struct Home: View {
         withAnimation(.spring()) {
             wish = true
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            withAnimation(.easeInOut(duration: 0.5)) {
-                finishWish = true
-            }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+//            withAnimation(.easeInOut(duration: 0.5)) {
+//                finishWish = true
+//            }
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                finishWish = false
-                wish = false
-            }
-        }
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+//                finishWish = false
+//                wish = false
+//            }
+//        }
     }
     
 }
@@ -118,21 +107,20 @@ struct EmitterView: UIViewRepresentable {
     
     func createEmitterCells() -> [CAEmitterCell] {
 
-        
         var emitterCells: [CAEmitterCell] = []
         
         
-        for index in 1...12 {
+        for index in 1...5 {
             let cell = CAEmitterCell()
             
-            cell.contents = UIImage(systemName: "banknote")?.cgImage
+            cell.contents = UIImage(named: "Coin")?.cgImage
             
-            cell.color = UIColor.green.cgColor // 색상 변경
+//            cell.color = UIColor.green.cgColor // 색상 변경
             //New particle Creation
             cell.birthRate = 3
             
             //Particle Existence
-            cell.lifetimeRange = 20
+            cell.lifetimeRange = 30
             
             cell.velocity = 150
             
@@ -148,6 +136,5 @@ struct EmitterView: UIViewRepresentable {
         
         return emitterCells
     }
-    
     
 }
