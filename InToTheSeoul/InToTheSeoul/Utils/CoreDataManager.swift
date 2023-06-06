@@ -111,23 +111,46 @@ class CoreDataManager {
         }
     }
     
-    /**
-     가지고 있는 옷, 감정, 현재 입고 있는 옷을 변경할 수 있음.
-     기본갑은 clothes: 빈배열, emotion: Bad, presentClothes: "" 임.
-     */
-    func updateCharacter(_ clothes: String, _ emotion: String, presentClothes: String) {
-        var characterData = CoreDataManager.coreDM.readCharacter()[0]
-        
-        var clothes: [String] = characterData.clothes ?? [String]()
-        var emotion: String = characterData.emotion ?? "Bad"
-        var presentClothes: String = characterData.presentClothes ?? ""
-        
+
+    func updateCharacterEmotion(_ emotion: String) {
+        CoreDataManager.coreDM.readCharacter()[0].emotion = emotion
         
         do{
             try persistentContainer.viewContext.save()
         } catch {
             persistentContainer.viewContext.rollback() // 오류나면 오류난 걸 지워버린다. 오류나지 않은 가장 최신의 것을 불러온다.
         }
+    }
+    
+    func updateCharacterPresentClothes(_ presentClothes: String) {
+        CoreDataManager.coreDM.readCharacter()[0].presentClothes = presentClothes
+        
+        do{
+            try persistentContainer.viewContext.save()
+        } catch {
+            persistentContainer.viewContext.rollback() // 오류나면 오류난 걸 지워버린다. 오류나지 않은 가장 최신의 것을 불러온다.
+        }
+    }
+    
+    func updateCharacterClothes(_ clothes: String) {
+        var tempClothes = CoreDataManager.coreDM.readCharacter()[0].clothes
+        tempClothes?.append(clothes)
+        CoreDataManager.coreDM.readCharacter()[0].clothes = tempClothes
+        
+        do{
+            try persistentContainer.viewContext.save()
+        } catch {
+            persistentContainer.viewContext.rollback() // 오류나면 오류난 걸 지워버린다. 오류나지 않은 가장 최신의 것을 불러온다.
+        }
+    }
+    
+    func updateCoin(_ gainCoin: Int) {
+        
+    }
+    
+    func updateAccumulateDistance(_ gainDistance: Int) {
+        
+        
     }
     
     func deleteUser(user: User) {
