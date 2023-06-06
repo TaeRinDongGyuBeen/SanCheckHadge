@@ -14,6 +14,9 @@ struct TrekkingModalView: View {
     
     @State var height: CGFloat = 80
     @Binding var isNearby: Bool
+    
+    @Binding var showRewardView: Bool
+  
     @Binding var toVisitPointIndex: Int
     
     @State var time = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -67,6 +70,11 @@ struct TrekkingModalView: View {
                 .padding(.bottom, 20)
 
                 ButtonComponent(buttonType: .nextButton, content: "리워드 받기", isActive: isNearby,action: {
+                    showRewardView = true
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                        showRewardView = false
+                    }
+                    
                     pointsModel.annotationPoints[toVisitPointIndex].viewPoint.isVisited = true
                     mkMapView.removeAnnotation(pointsModel.annotationPoints[toVisitPointIndex])
                     mkMapView.addAnnotation(pointsModel.annotationPoints[toVisitPointIndex])
