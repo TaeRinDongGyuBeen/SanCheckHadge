@@ -17,7 +17,6 @@ struct StoreView: View {
     @State var clothes: [String] = CoreDataManager.coreDM.readCharacter()[0].clothes ?? [String]()
     @State var characterEmotion: String = CoreDataManager.coreDM.readCharacter()[0].emotion ?? "Bad"
     
-    @State var puttingClothes: String = ""
     
     @State var buttonIsActiveArray = [false, false, false, false, false]
     
@@ -34,10 +33,16 @@ struct StoreView: View {
                             .foregroundColor(Color.theme.green1)
                     }
                     .frame(maxHeight: 208, alignment: .bottom)
-                    Image("\(characterEmotion)_Hedge")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 153, height: 167)
+                    ZStack {
+                        Image("\(characterEmotion)_Hedge")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 208, height: 207)
+                        Image("\(presentClothes)")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 208, height: 207)
+                    }
                 }
             }
             .padding(EdgeInsets(top: 10, leading: 0, bottom: 13.5, trailing: 0))
@@ -52,7 +57,7 @@ struct StoreView: View {
                         imageName: "palleteSet",
                         action: {
                             buttonActive(index: 0)
-                            puttingClothes = "palleteSet"
+                            presentClothes = "palleteSet"
                         })
                     .disabled(cantBuyItemDisable(userMoney: userMoney, price: 1500))
                     
@@ -66,7 +71,7 @@ struct StoreView: View {
                         imageName: "drum",
                         action: {
                             buttonActive(index: 1)
-                            puttingClothes = "drum"
+                            presentClothes = "drum"
                         })
                     .disabled(cantBuyItemDisable(userMoney: userMoney, price: 2000))
                     
@@ -80,7 +85,7 @@ struct StoreView: View {
                         imageName: "books",
                         action: {
                             buttonActive(index: 2)
-                            puttingClothes = "books"
+                            presentClothes = "books"
                         })
                     .disabled(cantBuyItemDisable(userMoney: userMoney, price: 1200))
                 }
@@ -95,7 +100,7 @@ struct StoreView: View {
                         imageName: "trainingTools",
                         action: {
                             buttonActive(index: 3)
-                            puttingClothes = "trainingTools"
+                            presentClothes = "trainingTools"
                         })
                     .disabled(cantBuyItemDisable(userMoney: userMoney, price: 1700))
                     
@@ -103,7 +108,7 @@ struct StoreView: View {
                     
                     StoreProductButton(isActive: buttonIsActiveArray[4], color: canBuyItemColor(userMoney: userMoney, price: 1500), isOwnItem: checkOwnItem(itemName: "macbook"), money: 1500, imageName: "macbook", action: {
                         buttonActive(index: 4)
-                        puttingClothes = "macbook"
+                        presentClothes = "macbook"
                     })
                     .disabled(cantBuyItemDisable(userMoney: userMoney, price: 1500))
                     
