@@ -43,7 +43,7 @@ class CoreDataManager {
         
         let character = Character(context: persistentContainer.viewContext)
         character.clothes = [String]()
-        character.emotion = "bad"
+        character.emotion = "Bad"
         
         do {
             try persistentContainer.viewContext.save()

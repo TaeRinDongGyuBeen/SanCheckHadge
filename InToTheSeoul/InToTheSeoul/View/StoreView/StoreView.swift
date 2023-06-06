@@ -34,7 +34,7 @@ struct StoreView: View {
                             .foregroundColor(Color.theme.green1)
                     }
                     .frame(maxHeight: 208, alignment: .bottom)
-                    Image("Character")
+                    Image("\(characterEmotion)_Hedge")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 153, height: 167)

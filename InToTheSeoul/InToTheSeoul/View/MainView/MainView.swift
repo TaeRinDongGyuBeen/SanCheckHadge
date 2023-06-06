@@ -9,7 +9,9 @@ import SwiftUI
 struct MainView: View {
     @State var userMoney: Int = Int(CoreDataManager.coreDM.readUser()[0].accumulateCoin)
     @State var username: String = (CoreDataManager.coreDM.readUser()[0].username ?? "태린동규빈")
-    @State var userAccumulateDistance = (CoreDataManager.coreDM.readUser()[0].accumulateDistance)
+    @State var userAccumulateDistance = CoreDataManager.coreDM.readUser()[0].accumulateDistance
+    @State var characterEmotion = CoreDataManager.coreDM.readCharacter()[0].emotion ?? "Bad"
+    @State var characterPresentClothes = CoreDataManager.coreDM.readCharacter()[0].presentClothes ?? ""
     
     @State var showTimeDestination = false
     @State var showTrakingDestination = false
@@ -54,10 +56,16 @@ struct MainView: View {
                                 .foregroundColor(Color.theme.gray3)
                         }
                         .frame(maxHeight: 245, alignment: .bottom)
-                        Image("storeCharacter")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 189, height: 207)
+                        ZStack {
+                            Image("\(characterEmotion)_Hedge")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 250, height: 240)
+                            Image("\(characterPresentClothes)")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 250, height: 240)
+                        }
                     }
                 }
                 
