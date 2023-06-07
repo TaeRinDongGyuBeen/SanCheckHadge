@@ -13,6 +13,8 @@ struct TrekkingResultView: View {
     
     @State var isRecordViewPresented = false
     
+//    @Binding var timeInterval: Int
+    
     let minHeight: CGFloat = 80
     let maxHeight: CGFloat = 400
     var percentage: Double {

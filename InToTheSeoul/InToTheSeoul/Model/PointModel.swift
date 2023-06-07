@@ -96,7 +96,6 @@ final class PointsModel: ObservableObject {
         
         // 집으로 Back
         selectedPoints.append(Point(name: "출발지점", lat: String(nowPostion.latitude), lon: String(nowPostion.longitude), category: "출발지점", address: "출발지점", id: 999999999))
-        
         for selectedPoint in selectedPoints.enumerated() {
             if !mustWaypointNumber.isEmpty && selectedPoint.offset == mustWaypointNumber[0] {
                 resultPoints.append(ViewPoint(id: selectedPoint.offset, mustWaypoint: true, nowPoint: selectedPoint.element))

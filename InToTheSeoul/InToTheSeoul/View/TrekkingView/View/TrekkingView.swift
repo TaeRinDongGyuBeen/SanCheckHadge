@@ -27,6 +27,8 @@ struct TrekkingView: View {
     @State private var showRewardView = false   //해찌 나오는 보상뷰
     @State private var showResultView = false   //모달 바꾸기
     @State private var showLoadingView = true
+    @Binding var firstTime: Date
+    
     var body: some View {
         ZStack {
             //            if showLoadingView {
@@ -85,7 +87,7 @@ struct TrekkingView: View {
                 .padding()
                 
                 if !showResultView {
-                    TrekkingModalView(isNearby: $isNearby, showRewardView: $showRewardView, showResultView: $showResultView, toVisitPointIndex: $toVisitPointIndex, mkMapView: mkMapView)
+                    TrekkingModalView(isNearby: $isNearby, showRewardView: $showRewardView, showResultView: $showResultView, toVisitPointIndex: $toVisitPointIndex, firstTime: $firstTime, mkMapView: mkMapView)
                 } else {
                     TrekkingResultView()
                 }

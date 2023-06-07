@@ -124,8 +124,8 @@ struct MainView: View {
     
 }
 
-struct MainView_Previewer: PreviewProvider {
-    static var previews: some View {
-        MainView()
-    }
-}
+//struct MainView_Previewer: PreviewProvider {
+//    static var previews: some View {
+//        MainView()
+//    }
+//}
