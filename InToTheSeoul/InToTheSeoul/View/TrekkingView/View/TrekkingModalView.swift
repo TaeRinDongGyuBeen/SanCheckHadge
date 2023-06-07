@@ -11,30 +11,20 @@ import MapKit
 
 struct TrekkingModalView: View {
     @EnvironmentObject var pointsModel: PointsModel
-    
     @State var height: CGFloat = 80
     @Binding var isNearby: Bool
-    
     @Binding var showRewardView: Bool
-    
     @Binding var showResultView: Bool
   
     @Binding var toVisitPointIndex: Int
-    
-    @State var time = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    
     @State private var showAlert = false
-    
+    @State var time = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State var lastTime = Date()
-    
     @State var isLast = false
-    
     @Binding var firstTime: Date
-    
     @State var timeInterval: Int = 0
     
     let mkMapView: MKMapView
-    
     let minHeight: CGFloat = 80
     let maxHeight: CGFloat = 320
     var percentage: Double {
