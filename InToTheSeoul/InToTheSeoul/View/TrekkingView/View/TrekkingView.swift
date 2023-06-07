@@ -27,6 +27,7 @@ struct TrekkingView: View {
     @State private var showRewardView = false   //해찌 나오는 보상뷰
     @State private var showResultView = false   //모달 바꾸기
     @State private var showLoadingView = true
+    
     var body: some View {
         ZStack {
             //            if showLoadingView {

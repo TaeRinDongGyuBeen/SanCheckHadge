@@ -25,6 +25,15 @@ struct TrekkingModalView: View {
     
     @State private var showAlert = false
     
+    @State var lastTime = Date()
+    
+    @State var isLast = false
+    
+//    @Binding var firstTime: Date
+    
+//    @State var timeline = Calendar.current.dateComponents([.minute], from: firstTime, to: lastTime).minute ?? 0
+
+    
     let mkMapView: MKMapView
     
     let minHeight: CGFloat = 80
@@ -50,8 +59,9 @@ struct TrekkingModalView: View {
             VStack {
                 HStack(alignment: .top) {
                     Image(systemName: "heart")
+                    
                     VStack(alignment: .leading, spacing: 16) {
-                        Text("\(pointsModel.selectedPoints[toVisitPointIndex].nowPoint.name)에 도착하면")
+                        Text("\(pointsModel.selectedPoints[toVisitPointIndex].isStartPoint ? "최종지점" : pointsModel.selectedPoints[toVisitPointIndex].nowPoint.name)에 도착하면")
                             .textFontAndColor(.body1)
                         
                         Text("40 행복코인 지급")
@@ -72,8 +82,16 @@ struct TrekkingModalView: View {
                     }
                 }
                 .padding(.bottom, 20)
+                
+                //최종 지점이 아닐 때
+                if !isLast { ButtonComponent(buttonType: .nextButton, content: "리워드 받기", isActive: isNearby,action: {
+                    lastTime = Date()
+                    
+                    //                    let minutes = Calendar.current.dateComponents([.minute], from: firstTime, to: lastTime).minute ?? 0
+                    
+                    
+                    print("last time : \(lastTime)")
 
-                ButtonComponent(buttonType: .nextButton, content: "리워드 받기", isActive: isNearby,action: {
                     showRewardView = true
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                         showRewardView = false
@@ -91,6 +109,36 @@ struct TrekkingModalView: View {
                     }
                 }
                 .padding(.bottom, 12)
+                } else {    //최종 지점일 때
+                    ButtonComponent(buttonType: .nextButton, content: "리워드 받기", isActive: isNearby,action: {
+                        lastTime = Date()
+                        
+                        //                    let minutes = Calendar.current.dateComponents([.minute], from: firstTime, to: lastTime).minute ?? 0
+                        
+                        
+                        print("last time : \(lastTime)")
+
+                        showRewardView = true
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            showRewardView = false
+                        }
+                        
+                        pointsModel.annotationPoints[toVisitPointIndex].viewPoint.isVisited = true
+                        mkMapView.removeAnnotation(pointsModel.annotationPoints[toVisitPointIndex])
+                        mkMapView.addAnnotation(pointsModel.annotationPoints[toVisitPointIndex])
+//                        toVisitPointIndex += 1
+                        showResultView = true
+                        
+                    })
+                    .disabled(!isNearby)
+                    .onChange(of: isNearby) { newValue in
+                        DispatchQueue.main.async {
+                            self.isNearby = newValue
+                        }
+                    }
+                    .padding(.bottom, 12)
+                }
 
                 Button(action: {
                     showAlert = true
@@ -128,6 +176,7 @@ struct TrekkingModalView: View {
         .clipShape(RoundedRectangle(cornerRadius: 20))
         .onReceive(self.time) { (_) in
             checkIsNear()
+            checkIsLast()
         }
     }
     
@@ -156,6 +205,15 @@ struct TrekkingModalView: View {
             withAnimation(Animation.easeOut(duration: 0.3)) {
                 height = finalHeight
             }
+        }
+    }
+    
+    func checkIsLast() {
+        if pointsModel.selectedPoints[toVisitPointIndex].isStartPoint {
+            print("=========")
+            print(pointsModel.selectedPoints.last)
+            isLast = true
+        } else {
         }
     }
 }

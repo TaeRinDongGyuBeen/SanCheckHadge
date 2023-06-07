@@ -21,6 +21,8 @@ struct TrekkingInformationInput: View {
     
     @State var isRecommendError: Bool = false
     
+    @State var firstTime = Date()
+    
     var body: some View {
         VStack {
             Title
@@ -42,6 +44,9 @@ struct TrekkingInformationInput: View {
             .background(Color.theme.green1)
             .cornerRadius(30)
             .simultaneousGesture(TapGesture().onEnded({
+                
+                firstTime = Date()
+                print("first time \(firstTime)")
                 do {
                     try pointsModel.recommendPoint(nowPostion: CLLocationCoordinate2D(latitude: 37.4753668, longitude: 126.9625635), walkTimeMin: Int(trekkingTime), mustWaypoint: Waypoint(hospital: isSelectedWaypointHospital, pharmacy: isSelectedWaypointPharmacy, library: isSelectedWaypointLibrary, park: isSelectedWaypointPark, busStop: isSelectedWaypointBusStop))
                 } catch {
