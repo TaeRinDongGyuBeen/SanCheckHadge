@@ -40,6 +40,7 @@ struct ScrollCell: View {
 
     @State var isFirstCell: Bool = false
     @State var workData: WorkData
+    @State static var money = 1000
     
     var formattedDate: String {
         let formatter = DateFormatter()
@@ -66,7 +67,7 @@ struct ScrollCell: View {
             Spacer()
             
             NavigationLink(destination: {
-                MyRecordView(workData: workData, buttonUse: false)
+                MyRecordView(userMoney: ScrollCell.$money, workData: workData, buttonUse: false)
             }, label: {
                 HStack(spacing: 0) {
                     VStack {

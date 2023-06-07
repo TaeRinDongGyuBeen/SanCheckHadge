@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TrekkingResultView: View {
-
+    @Binding var userMoney: Int
     @State var recentWorkData = CoreDataManager.coreDM.readWorkData().last
     
     @State var height: CGFloat = 400
@@ -143,7 +143,7 @@ struct TrekkingResultView: View {
                 .frame(maxWidth: 118)
             }
             
-            NavigationLink(destination: MyRecordView(workData: CoreDataManager.coreDM.readWorkData().last ?? CoreDataManager.coreDM.readWorkData()[0], buttonUse: true), isActive: $isRecordViewPresented) {
+            NavigationLink(destination: MyRecordView(userMoney: $userMoney, workData: CoreDataManager.coreDM.readWorkData().last ?? CoreDataManager.coreDM.readWorkData()[0], buttonUse: true), isActive: $isRecordViewPresented) {
                 ButtonComponent(buttonType: .nextButton, content: "산책 기록 보기", isActive: true, action: {
                     isRecordViewPresented = true
                 })
@@ -169,8 +169,8 @@ struct TrekkingResultView: View {
     
 }
 
-struct TrekkingResultView_Previews: PreviewProvider {
-    static var previews: some View {
-        TrekkingResultView()
-    }
-}
+//struct TrekkingResultView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        TrekkingResultView()
+//    }
+//}

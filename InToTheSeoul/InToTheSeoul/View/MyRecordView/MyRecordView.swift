@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MyRecordView: View {
-    
+    @Binding var userMoney: Int
     @State var workData: WorkData
     
     // 내 기록보기에서 버튼을 감추기 위한 변수
@@ -148,7 +148,10 @@ struct MyRecordView: View {
             Spacer(minLength: 41)
             if buttonUse {
                 ButtonComponent(buttonType: .nextButton, content: "기록 저장하기", isActive: true, action: {
+                    CoreDataManager.coreDM.updateCoin(Int(workData.gainCoin))
+                    userMoney += Int(workData.gainCoin)
                     NavigationUtil.popToRootView()
+                    
                 })
                 
             }
