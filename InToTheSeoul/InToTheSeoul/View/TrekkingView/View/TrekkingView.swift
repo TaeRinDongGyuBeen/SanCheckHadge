@@ -12,7 +12,7 @@ import CoreLocation
 struct TrekkingView: View {
     @EnvironmentObject var pointsModel: PointsModel
     
-    let mkMapView: MKMapView = MKMapView()
+    @State var mkMapView: MKMapView = MKMapView()
     
     @State private var showUserLocation = false
     @State private var userLocation: CLLocationCoordinate2D?
@@ -40,7 +40,7 @@ struct TrekkingView: View {
             //                    }
             //            } else {
             VStack {
-                MapView(mkMapView: mkMapView, showUserLocation: $showUserLocation, userLocation: $userLocation, region: $region, span: $span)
+                MapView(mkMapView: $mkMapView, showUserLocation: $showUserLocation, userLocation: $userLocation, region: $region, span: $span)
                     .environmentObject(pointsModel)
                 
             }
@@ -87,7 +87,7 @@ struct TrekkingView: View {
                 .padding()
                 
                 if !showResultView {
-                    TrekkingModalView(isNearby: $isNearby, showRewardView: $showRewardView, showResultView: $showResultView, toVisitPointIndex: $toVisitPointIndex, firstTime: $firstTime, mkMapView: mkMapView)
+                    TrekkingModalView(isNearby: $isNearby, showRewardView: $showRewardView, showResultView: $showResultView, toVisitPointIndex: $toVisitPointIndex, firstTime: $firstTime, mkMapView: $mkMapView)
                 } else {
                     TrekkingResultView()
                 }

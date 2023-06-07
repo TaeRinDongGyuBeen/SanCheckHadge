@@ -9,8 +9,10 @@ import CoreLocation
 import MapKit
 import SwiftUI
 
+extension MKMapView: ObservableObject { }
+
 struct MapView: UIViewRepresentable {
-    let mkMapView: MKMapView
+    @Binding var mkMapView: MKMapView
     @Binding var showUserLocation: Bool
     
     @Binding var userLocation: CLLocationCoordinate2D?
@@ -92,7 +94,9 @@ struct MapView: UIViewRepresentable {
         
         // p1, p2, p3에 어노테이션 찍기
         mapView.addAnnotations(pointsModel.annotationPoints)
-
+        
+        print("----> MapView 어노테이션들 \(mapView.annotations)")
+        
         return mapView
     }
     

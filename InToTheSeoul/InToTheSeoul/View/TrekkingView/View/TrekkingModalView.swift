@@ -18,7 +18,7 @@ struct TrekkingModalView: View {
     @Binding var showRewardView: Bool
     
     @Binding var showResultView: Bool
-  
+    
     @Binding var toVisitPointIndex: Int
     
     @State var time = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -33,7 +33,7 @@ struct TrekkingModalView: View {
     
     @State var timeInterval: Int = 0
     
-    let mkMapView: MKMapView
+    @Binding var mkMapView: MKMapView
     
     let minHeight: CGFloat = 80
     let maxHeight: CGFloat = 320
@@ -42,7 +42,7 @@ struct TrekkingModalView: View {
     }
     
     var body: some View {
-
+        
         VStack(spacing: 0) {
             
             //Handle
@@ -54,7 +54,7 @@ struct TrekkingModalView: View {
             .frame(height: 60)
             .frame(maxWidth: .infinity)
             .gesture(dragGesture)
-
+            
             VStack {
                 HStack(alignment: .top) {
                     Image(systemName: "heart")
@@ -87,10 +87,8 @@ struct TrekkingModalView: View {
                     lastTime = Date()
                     
                     //                    let minutes = Calendar.current.dateComponents([.minute], from: firstTime, to: lastTime).minute ?? 0
-                    
-                    
                     print("last time : \(lastTime)")
-
+                    
                     showRewardView = true
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                         showRewardView = false
@@ -108,6 +106,7 @@ struct TrekkingModalView: View {
                     }
                 }
                 .padding(.bottom, 12)
+                    
                 } else {    //최종 지점일 때
                     ButtonComponent(buttonType: .nextButton, content: "리워드 받기", isActive: isNearby,action: {
                         lastTime = Date()
@@ -116,9 +115,9 @@ struct TrekkingModalView: View {
                         print("최종----------")
                         print("first time : \(firstTime)")
                         print("last time : \(lastTime)")
-
+                        
                         timeInterval = Int(lastTime.timeIntervalSince(firstTime) / 60) // 시간 간격 (분 단위)
-
+                        
                         print("timeInterval : \(timeInterval)")
                         
                         showRewardView = true
@@ -130,7 +129,7 @@ struct TrekkingModalView: View {
                         pointsModel.annotationPoints[toVisitPointIndex].viewPoint.isVisited = true
                         mkMapView.removeAnnotation(pointsModel.annotationPoints[toVisitPointIndex])
                         mkMapView.addAnnotation(pointsModel.annotationPoints[toVisitPointIndex])
-//                        toVisitPointIndex += 1
+                        //                        toVisitPointIndex += 1
                         showResultView = true
                         
                     })
@@ -142,7 +141,7 @@ struct TrekkingModalView: View {
                     }
                     .padding(.bottom, 12)
                 }
-
+                
                 Button(action: {
                     showAlert = true
                 }, label: {
@@ -167,11 +166,11 @@ struct TrekkingModalView: View {
             
             Spacer()
             
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(RoundedRectangle(cornerRadius: 20)
-                .foregroundColor(.white)
-            )
-            .opacity(1.5 * (percentage - 0.3))
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(RoundedRectangle(cornerRadius: 20)
+                    .foregroundColor(.white)
+                )
+                .opacity(1.5 * (percentage - 0.3))
         }
         .frame(maxWidth: .infinity)
         .frame(height: height, alignment: .top)
@@ -185,30 +184,30 @@ struct TrekkingModalView: View {
     
     var dragGesture: some Gesture {
         DragGesture(minimumDistance: 0)
-        .onChanged { val in
-            
-            var newHeight = height - val.translation.height
-            
-            if newHeight > maxHeight {
-                newHeight = maxHeight
+            .onChanged { val in
+                
+                var newHeight = height - val.translation.height
+                
+                if newHeight > maxHeight {
+                    newHeight = maxHeight
+                }
+                else if newHeight < minHeight {
+                    newHeight = minHeight
+                }
+                height = newHeight
+                
             }
-            else if newHeight < minHeight {
-                newHeight = minHeight
+            .onEnded { val in
+                let percentage = height / maxHeight
+                var finalHeight = maxHeight
+                
+                if percentage < 0.45 {
+                    finalHeight = minHeight
+                }
+                withAnimation(Animation.easeOut(duration: 0.3)) {
+                    height = finalHeight
+                }
             }
-            height = newHeight
-            
-        }
-        .onEnded { val in
-            let percentage = height / maxHeight
-            var finalHeight = maxHeight
-            
-            if percentage < 0.45 {
-                finalHeight = minHeight
-            }
-            withAnimation(Animation.easeOut(duration: 0.3)) {
-                height = finalHeight
-            }
-        }
     }
     
     func checkIsLast() {
@@ -226,7 +225,7 @@ extension TrekkingModalView {
     func getCurrentLocation(completion: @escaping (CLLocationCoordinate2D?) -> Void) {
         let locationManager = CLLocationManager()
         locationManager.requestWhenInUseAuthorization()
-
+        
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.startUpdatingLocation()
@@ -242,13 +241,13 @@ extension TrekkingModalView {
     }
     
     func checkIsNear() {
-
+        
         getCurrentLocation { coordinate in
             guard let currentCoordinate = coordinate else {
                 print("현재 위치를 가져올 수 없음()")
                 return
             }
-
+            
             let targetLocation: Point = pointsModel.selectedPoints[toVisitPointIndex].nowPoint
             
             DispatchQueue.global(qos: .background).async {
@@ -256,9 +255,9 @@ extension TrekkingModalView {
                 
                 //MARK: - 활성화 기준
                 let maxDistance: CLLocationDistance = 20 // 최대 허용 거리 (예: 500 미터)
-
+                
                 let isNearby: Bool = currentLocation.distance(from: targetLocation.locationCoordinate) <= maxDistance
-
+                
                 DispatchQueue.main.async {
                     self.isNearby = isNearby
                 }
