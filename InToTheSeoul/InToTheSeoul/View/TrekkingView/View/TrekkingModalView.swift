@@ -29,7 +29,9 @@ struct TrekkingModalView: View {
     
     @State var isLast = false
     
-//    @Binding var firstTime: Date
+    @Binding var firstTime: Date
+    
+    @State var timeInterval: Int = 0
     
 //    @State var timeline = Calendar.current.dateComponents([.minute], from: firstTime, to: lastTime).minute ?? 0
 
@@ -114,10 +116,14 @@ struct TrekkingModalView: View {
                         lastTime = Date()
                         
                         //                    let minutes = Calendar.current.dateComponents([.minute], from: firstTime, to: lastTime).minute ?? 0
-                        
-                        
+                        print("최종----------")
+                        print("first time : \(firstTime)")
                         print("last time : \(lastTime)")
 
+                        timeInterval = Int(lastTime.timeIntervalSince(firstTime) / 60) // 시간 간격 (분 단위)
+
+                        print("timeInterval : \(timeInterval)")
+                        
                         showRewardView = true
                         
                         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {

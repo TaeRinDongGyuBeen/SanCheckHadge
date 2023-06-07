@@ -34,7 +34,7 @@ struct TrekkingInformationInput: View {
             WaypointPicker
                 .padding(.bottom, 109)
             
-            NavigationLink(destination: TrekkingView().environmentObject(pointsModel)) {
+            NavigationLink(destination: TrekkingView(firstTime: $firstTime).environmentObject(pointsModel)) {
                 Text("시작하기")
                     .frame(maxWidth: .infinity)
                     .frame(height: 45)
