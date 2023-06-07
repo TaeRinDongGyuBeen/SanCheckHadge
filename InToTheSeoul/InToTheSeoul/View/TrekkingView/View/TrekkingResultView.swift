@@ -88,7 +88,7 @@ struct TrekkingResultView: View {
                                     .textFontAndColor(.body3)
                                 Spacer()
                                 HStack(alignment: .bottom, spacing: 0) {
-                                    Text("")
+                                    Text("\(recentWorkData?.totalDistance ?? 0.00, specifier: "%.2f")")
                                         .textFontAndColor(.body4)
                                     
                                     Text("km")
@@ -103,7 +103,7 @@ struct TrekkingResultView: View {
                                     .textFontAndColor(.body3)
                                 Spacer()
                                 HStack(alignment: .bottom, spacing: 0) {
-                                    Text("시간")
+                                    Text("\(recentWorkData?.totalTime ?? 0)")
                                         .textFontAndColor(.body4)
                                     Text("분")
                                         .textFontAndColor(.h5)
@@ -134,7 +134,7 @@ struct TrekkingResultView: View {
                     Image(systemName: "dollarsign.circle.fill")
                         .foregroundColor(Color.theme.yellow)
                     Spacer()
-                    Text("NN")
+                    Text("\(recentWorkData?.gainCoin ?? 0)")
                         .textFontAndColor(.body5)
                     Spacer()
                     Text("획득")
@@ -148,6 +148,7 @@ struct TrekkingResultView: View {
                     isRecordViewPresented = true
                 })
             }
+            
             
             Spacer()
             

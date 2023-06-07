@@ -161,8 +161,7 @@ struct TrekkingModalView: View {
                     secondaryButton: .default(Text("확인"), action: {
                         // TODO: CoreData WorkData Create 필요
                         // distance값 변환 필요
-                        CoreDataManager.coreDM.createWorkData(date: Date(), distance: 3.56, totalTime: timeInterval, gainPoint: Int(3.56 * 100), moveRoute: [(2.53)], checkPoint: checkPointToString(pointsModel.annotationPoints), startPoint: checkStartPointToString(pointsModel.annotationPoints))
-                        
+                        CoreDataManager.coreDM.createWorkData(date: Date(), distance: 3.76, totalTime: timeInterval, gainPoint: Int(3.76 * 100), moveRoute: [(2.53)], checkPoint: checkPointToString(pointsModel.annotationPoints), startPoint: checkStartPointToString(pointsModel.annotationPoints))
                         showResultView = true
                     })
                 )
