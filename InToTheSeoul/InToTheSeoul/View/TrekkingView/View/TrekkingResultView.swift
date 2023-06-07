@@ -139,8 +139,9 @@ struct TrekkingResultView: View {
                 .frame(maxWidth: 118)
             }
             
-            NavigationLink(destination: MyRecordView(), isActive: $isRecordViewPresented) {
+            NavigationLink(destination: MyRecordView(workData: CoreDataManager.coreDM.readWorkData().last ?? CoreDataManager.coreDM.readWorkData()[0], buttonUse: true), isActive: $isRecordViewPresented) {
                 ButtonComponent(buttonType: .nextButton, content: "산책 기록 보기", isActive: true, action: {
+                    CoreDataManager.coreDM.createWorkData(date: Date(), distance: 2.3, gainPoint: 230, moveRoute: [(0.1)], checkPoint: ["푸른 소나무", "홈프라스", "섹시한 버드나무"], startPoint: "서울시 봉천동 시발")
                     isRecordViewPresented = true
                 })
             }
