@@ -8,7 +8,11 @@
 import SwiftUI
 
 struct TrekkingResultView: View {
-
+    @Binding var userMoney: Int
+    @Binding var accumulateDistance: Double
+    
+    @State var recentWorkData = CoreDataManager.coreDM.readWorkData().last
+    
     @State var height: CGFloat = 400
     
     @State var isRecordViewPresented = false
@@ -86,7 +90,7 @@ struct TrekkingResultView: View {
                                     .textFontAndColor(.body3)
                                 Spacer()
                                 HStack(alignment: .bottom, spacing: 0) {
-                                    Text("거리")
+                                    Text("\(recentWorkData?.totalDistance ?? 0.00, specifier: "%.2f")")
                                         .textFontAndColor(.body4)
                                     
                                     Text("km")
@@ -101,7 +105,7 @@ struct TrekkingResultView: View {
                                     .textFontAndColor(.body3)
                                 Spacer()
                                 HStack(alignment: .bottom, spacing: 0) {
-                                    Text("시간")
+                                    Text("\(recentWorkData?.totalTime ?? 0)")
                                         .textFontAndColor(.body4)
                                     Text("분")
                                         .textFontAndColor(.h5)
@@ -132,7 +136,7 @@ struct TrekkingResultView: View {
                     Image(systemName: "dollarsign.circle.fill")
                         .foregroundColor(Color.theme.yellow)
                     Spacer()
-                    Text("NN")
+                    Text("\(recentWorkData?.gainCoin ?? 0)")
                         .textFontAndColor(.body5)
                     Spacer()
                     Text("획득")
@@ -141,12 +145,12 @@ struct TrekkingResultView: View {
                 .frame(maxWidth: 118)
             }
             
-            NavigationLink(destination: MyRecordView(workData: CoreDataManager.coreDM.readWorkData().last ?? CoreDataManager.coreDM.readWorkData()[0], buttonUse: true), isActive: $isRecordViewPresented) {
+            NavigationLink(destination: MyRecordView(userMoney: $userMoney, accumulateDistance: $accumulateDistance, workData: CoreDataManager.coreDM.readWorkData().last ?? CoreDataManager.coreDM.readWorkData()[0], buttonUse: true), isActive: $isRecordViewPresented) {
                 ButtonComponent(buttonType: .nextButton, content: "산책 기록 보기", isActive: true, action: {
-                    CoreDataManager.coreDM.createWorkData(date: Date(), distance: 2.3, gainPoint: 230, moveRoute: [(0.1)], checkPoint: ["푸른 소나무", "홈프라스", "섹시한 버드나무"], startPoint: "서울시 봉천동 시발")
                     isRecordViewPresented = true
                 })
             }
+            
             
             Spacer()
             
@@ -167,8 +171,8 @@ struct TrekkingResultView: View {
     
 }
 
-struct TrekkingResultView_Previews: PreviewProvider {
-    static var previews: some View {
-        TrekkingResultView()
-    }
-}
+//struct TrekkingResultView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        TrekkingResultView()
+//    }
+//}
