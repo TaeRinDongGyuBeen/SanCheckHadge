@@ -98,7 +98,7 @@ struct MainView: View {
                         showTrakingDestination = true
                     })
                     
-                    NavigationLink(destination: TrekkingInformationInput(userMoney: $userMoney), isActive: $showTrakingDestination) {
+                    NavigationLink(destination: TrekkingInformationInput(userMoney: $userMoney, accumulateDistance: $userAccumulateDistance), isActive: $showTrakingDestination) {
                         
                     }
                     .hidden()

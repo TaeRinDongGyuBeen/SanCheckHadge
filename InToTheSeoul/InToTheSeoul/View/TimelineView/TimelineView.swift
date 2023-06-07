@@ -40,7 +40,10 @@ struct ScrollCell: View {
 
     @State var isFirstCell: Bool = false
     @State var workData: WorkData
+    
+    // Scroll에서는 필요없는 변수
     @State static var money = 1000
+    @State static var accumulateDistance = 5.5
     
     var formattedDate: String {
         let formatter = DateFormatter()
@@ -67,7 +70,7 @@ struct ScrollCell: View {
             Spacer()
             
             NavigationLink(destination: {
-                MyRecordView(userMoney: ScrollCell.$money, workData: workData, buttonUse: false)
+                MyRecordView(userMoney: ScrollCell.$money, accumulateDistance: ScrollCell.$accumulateDistance, workData: workData, buttonUse: false)
             }, label: {
                 HStack(spacing: 0) {
                     VStack {
