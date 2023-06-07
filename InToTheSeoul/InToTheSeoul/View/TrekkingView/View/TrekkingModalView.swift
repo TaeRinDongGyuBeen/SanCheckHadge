@@ -33,9 +33,6 @@ struct TrekkingModalView: View {
     
     @State var timeInterval: Int = 0
     
-//    @State var timeline = Calendar.current.dateComponents([.minute], from: firstTime, to: lastTime).minute ?? 0
-
-    
     let mkMapView: MKMapView
     
     let minHeight: CGFloat = 80
