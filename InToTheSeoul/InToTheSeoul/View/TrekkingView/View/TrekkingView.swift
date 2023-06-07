@@ -18,7 +18,7 @@ struct TrekkingView: View {
     @State private var userLocation: CLLocationCoordinate2D?
     
     @State private var region = MKCoordinateRegion(center: DefaultLocation.startingLocation, span: DefaultLocation.defaultSpan)
-
+    
     @State private var span = DefaultLocation.defaultSpan
     
     @State var toVisitPointIndex: Int = 0
@@ -30,62 +30,69 @@ struct TrekkingView: View {
 
     @State private var showResultView = false   //모달 바꾸기
     
-    
+    @State private var showLoadingView = true
     var body: some View {
         ZStack {
-
-            VStack {
-                MapView(mkMapView: mkMapView, showUserLocation: $showUserLocation, userLocation: $userLocation, region: $region, span: $span)
-                    .environmentObject(pointsModel)
-                
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .ignoresSafeArea()
-            .onAppear {
-                startBackgroundTask()
-            }
-            
-            VStack {
-                CustomProgressBar(progress: val)
-                    .frame(height: 57)
-                Spacer()
-            }
-            .padding(.top, 14)
-            .padding(.leading, 45)
-            .padding(.trailing, 45)
-
-            
-            //MARK: - 모달 뷰
-            VStack(alignment: .trailing) {
-                Button(action: {
-                    getCurrentLocation { location in
-                        if let current = location {
-                            userLocation = current
-                            region = MKCoordinateRegion(center: current, span: span)
+            if showLoadingView {
+                LoadingView()
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                            showLoadingView = false
                         }
                     }
-                }, label: {
-                    ZStack {
-                        Circle()
-                            .fill(Color.white)
-                            .frame(width: 40)
-                            .overlay(
-                                Circle()
-                                    .stroke(Color.black, lineWidth: 0.3)
-                            )
-                            .shadow(radius: 3, x: 0, y: 2)
-                        Image(systemName: "scope")
-                            .foregroundColor(.black)
-                    }
-
-                })
-                .padding()
+            } else {
+                VStack {
+                    MapView(mkMapView: mkMapView, showUserLocation: $showUserLocation, userLocation: $userLocation, region: $region, span: $span)
+                        .environmentObject(pointsModel)
+                    
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .ignoresSafeArea()
+                .onAppear {
+                    startBackgroundTask()
+                }
+                
+                VStack {
+                    CustomProgressBar(progress: val)
+                        .frame(height: 57)
+                    Spacer()
+                }
+                .padding(.top, 14)
+                .padding(.leading, 45)
+                .padding(.trailing, 45)
+                
+                
+                //MARK: - 모달 뷰
+                VStack(alignment: .trailing) {
+                    Button(action: {
+                        getCurrentLocation { location in
+                            if let current = location {
+                                userLocation = current
+                                region = MKCoordinateRegion(center: current, span: span)
+                            }
+                        }
+                    }, label: {
+                        ZStack {
+                            Circle()
+                                .fill(Color.white)
+                                .frame(width: 40)
+                                .overlay(
+                                    Circle()
+                                        .stroke(Color.black, lineWidth: 0.3)
+                                )
+                                .shadow(radius: 3, x: 0, y: 2)
+                            Image(systemName: "scope")
+                                .foregroundColor(.black)
+                        }
+                        
+                    })
+                    .padding()
+                    
                 if !showResultView {
                     TrekkingModalView(isNearby: $isNearby, showRewardView: $showRewardView, showResultView: $showResultView, toVisitPointIndex: $toVisitPointIndex, mkMapView: mkMapView)
                 } else {
                     TrekkingResultView()
                 }
-                
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
             .ignoresSafeArea(edges: .bottom)
@@ -106,12 +113,14 @@ struct TrekkingView: View {
             }
         )
         .navigationBarBackButtonHidden()
+            
     }
+    
     
     func getCurrentLocation(completion: @escaping (CLLocationCoordinate2D?) -> Void) {
         let locationManager = CLLocationManager()
         locationManager.requestWhenInUseAuthorization()
-
+        
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.startUpdatingLocation()
@@ -125,7 +134,7 @@ struct TrekkingView: View {
             completion(nil)
         }
     }
-
+    
     
     func startBackgroundTask() {
         var backgroundTask: UIBackgroundTaskIdentifier = .invalid

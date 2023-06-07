@@ -8,11 +8,10 @@
 import SwiftUI
 
 struct LoadingView: View {
-    @State var userName: String = "태린동규빈"
     
     var body: some View {
         VStack {
-            Text("\(userName)님만의 산책 코스를 찾고 있으니,\n조금만 기다려주세요!")
+            Text("\(CoreDataManager.coreDM.readUser()[0].username ?? "태린동규빈")님만의 산책 코스를 찾고 있으니,\n조금만 기다려주세요!")
                 .multilineTextAlignment(.center)
                 .textFontAndColor(.body1)
                 .padding(.bottom, 37)
@@ -26,6 +25,8 @@ struct LoadingView: View {
             
             
         }
+        .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+        .background(Color.theme.white)
     }
 }
 

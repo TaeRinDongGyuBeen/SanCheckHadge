@@ -10,14 +10,24 @@ import SwiftUI
 // TODO: CoreDataManager를 활용하여 돈의 변화와 아이템 소장 여부를 CRU 해주어야 함.
 
 struct StoreView: View {
-    @State var userMoney: Int = 1530
+    @Environment(\.dismiss) var dismiss
+    
+    @Binding var userMoney: Int
+    
+    //Int(CoreDataManager.coreDM.readUser()[0].accumulateCoin)
+    
+    @Binding var presentClothes: String
+    @Binding var clothes: [String]
+    @Binding var characterEmotion: String
+    
+    
     @State var buttonIsActiveArray = [false, false, false, false, false]
     
     @State private var alertShowing: Bool = false
     var body: some View {
         VStack(spacing: 0) {
             VStack(spacing: 0) {
-                CoinComponent(money: userMoney, color: Color.theme.green1)
+                CoinComponent(money: $userMoney, color: Color.theme.green1)
                 
                 ZStack {
                     VStack {
@@ -26,10 +36,16 @@ struct StoreView: View {
                             .foregroundColor(Color.theme.green1)
                     }
                     .frame(maxHeight: 208, alignment: .bottom)
-                    Image("storeCharacter")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 153, height: 167)
+                    ZStack {
+                        Image("\(characterEmotion)_Hedge")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 208, height: 207)
+                        Image("\(presentClothes)")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 208, height: 207)
+                    }
                 }
             }
             .padding(EdgeInsets(top: 10, leading: 0, bottom: 13.5, trailing: 0))
@@ -44,8 +60,9 @@ struct StoreView: View {
                         imageName: "palleteSet",
                         action: {
                             buttonActive(index: 0)
+                            presentClothes = "palleteSet"
                         })
-                    .disabled(cantBuyItemDisable(userMoney: userMoney, price: 1500))
+                    .disabled(clothes.contains("palleteSet") ? false : cantBuyItemDisable(userMoney: userMoney, price: 1500))
                     
                     Spacer()
                     
@@ -57,21 +74,23 @@ struct StoreView: View {
                         imageName: "drum",
                         action: {
                             buttonActive(index: 1)
+                            presentClothes = "drum"
                         })
-                    .disabled(cantBuyItemDisable(userMoney: userMoney, price: 2000))
+                    .disabled(clothes.contains("drum") ? false : cantBuyItemDisable(userMoney: userMoney, price: 2000))
                     
                     Spacer()
                     
                     StoreProductButton(
                         isActive: buttonIsActiveArray[2],
                         color: canBuyItemColor(userMoney: userMoney, price: 1200),
-                        isOwnItem: true,
+                        isOwnItem: checkOwnItem(itemName: "books"),
                         money: 1200,
                         imageName: "books",
                         action: {
                             buttonActive(index: 2)
+                            presentClothes = "books"
                         })
-                    .disabled(cantBuyItemDisable(userMoney: userMoney, price: 1200))
+                    .disabled(clothes.contains("books") ? false : cantBuyItemDisable(userMoney: userMoney, price: 1200))
                 }
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 13.5, trailing: 0))
                 
@@ -84,15 +103,17 @@ struct StoreView: View {
                         imageName: "trainingTools",
                         action: {
                             buttonActive(index: 3)
+                            presentClothes = "trainingTools"
                         })
-                    .disabled(cantBuyItemDisable(userMoney: userMoney, price: 1700))
+                    .disabled(clothes.contains("trainingTools") ? false : cantBuyItemDisable(userMoney: userMoney, price: 1700))
                     
                     Spacer()
                     
                     StoreProductButton(isActive: buttonIsActiveArray[4], color: canBuyItemColor(userMoney: userMoney, price: 1500), isOwnItem: checkOwnItem(itemName: "macbook"), money: 1500, imageName: "macbook", action: {
                         buttonActive(index: 4)
+                        presentClothes = "macbook"
                     })
-                    .disabled(cantBuyItemDisable(userMoney: userMoney, price: 1500))
+                    .disabled(clothes.contains("macbook") ? false : cantBuyItemDisable(userMoney: userMoney, price: 1500))
                     
                     Spacer()
                     
@@ -108,14 +129,26 @@ struct StoreView: View {
             Spacer()
             
             ButtonComponent(buttonType: .nextButton, content: "저장하기", isActive: true, action: {
-                alertShowing.toggle()
+                if clothes.contains(presentClothes) {
+                    print("clothes를 가지고 있을 경우")
+                    CoreDataManager.coreDM.updateCharacterClothes(presentClothes)
+                    dismiss()
+                } else {
+                    alertShowing.toggle()
+                }
             })
             .alert("정말 구매하실건가요?", isPresented: $alertShowing) {
                 Button("취소") {
                     
                 }
                 Button("확인") {
+                    print("확인 내부")
+                    clothes.append(presentClothes)
+                    CoreDataManager.coreDM.updateCharacterClothes(presentClothes)
+                    CoreDataManager.coreDM.updateCharacterPresentClothes(presentClothes)
+                    payCoin(buyItem: presentClothes)
                     
+                    dismiss()
                 }
                 
             } message: {
@@ -125,6 +158,9 @@ struct StoreView: View {
             .padding(EdgeInsets(top: 14, leading: 0, bottom: 0, trailing: 0))
         }
         .padding(EdgeInsets(top: 30, leading: 40, bottom: 20, trailing: 40))
+        .onAppear {
+            print(presentClothes)
+        }
     }
     
     func buttonActive(index: Int) {
@@ -142,17 +178,40 @@ struct StoreView: View {
         return userMoney >= price ? false : true
     }
     
+    func payCoin(buyItem: String) {
+        switch presentClothes {
+        case "palleteSet":
+            userMoney -= 1500
+            CoreDataManager.coreDM.updateCoin(-1500)
+        case "drum":
+            userMoney -= 2000
+            CoreDataManager.coreDM.updateCoin(-2000)
+        case "books":
+            userMoney -= 1200
+            CoreDataManager.coreDM.updateCoin(-1200)
+        case "trainingTools":
+            userMoney -= 1700
+            CoreDataManager.coreDM.updateCoin(-1700)
+        case "macbook":
+            userMoney -= 1500
+            CoreDataManager.coreDM.updateCoin(-1500)
+        default:
+            print("없는 상품입니다.")
+        }
+    }
+    
     /**
      사용자가 해당 아이템을 가지고 있는지 확인하는 메서드
      */
     func checkOwnItem(itemName: String) -> Bool {
         // TODO: 코어데이터의 데이터 값과 비교하여, 데이터가 있으면 true, 아니면 false
-        return false
+        return clothes.contains(itemName)
     }
 }
 
-struct StoreView_Previewer: PreviewProvider {
-    static var previews: some View {
-        StoreView()
-    }
-}
+//struct StoreView_Previewer: PreviewProvider {
+//
+//    static var previews: some View {
+//        StoreView(presentClothes: <#Binding<String>#>, characterEmotion: <#Binding<String>#>)
+//    }
+//}

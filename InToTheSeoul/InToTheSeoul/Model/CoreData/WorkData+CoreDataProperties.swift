@@ -18,6 +18,7 @@ extension WorkData {
 
     @NSManaged public var date: Date?
     @NSManaged public var totalDistance: Double
+    @NSManaged public var totalTime: Int16
     @NSManaged public var gainCoin: Int16
     @NSManaged public var checkPoint: [String]?
     @NSManaged public var startPoint: String?

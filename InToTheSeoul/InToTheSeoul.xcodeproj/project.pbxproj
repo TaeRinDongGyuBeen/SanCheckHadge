@@ -38,6 +38,7 @@
 		C9ABC5CC2A2F0A0400736A59 /* WorkData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ABC5CA2A2F0A0400736A59 /* WorkData+CoreDataProperties.swift */; };
 		C9ABC5CF2A2F0A8400736A59 /* Character+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ABC5CD2A2F0A8400736A59 /* Character+CoreDataClass.swift */; };
 		C9ABC5D02A2F0A8400736A59 /* Character+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ABC5CE2A2F0A8400736A59 /* Character+CoreDataProperties.swift */; };
+		C9ABC5D32A2FC25200736A59 /* RecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ABC5D22A2FC25200736A59 /* RecordCell.swift */; };
 		C9D5BAE62A2DFF3000533F32 /* UserDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C9D5BAE42A2DFF3000533F32 /* UserDataModel.xcdatamodeld */; };
 		C9D5BAEA2A2E003100533F32 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D5BAE82A2E003100533F32 /* User+CoreDataClass.swift */; };
 		C9D5BAEB2A2E003100533F32 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D5BAE92A2E003100533F32 /* User+CoreDataProperties.swift */; };
@@ -81,6 +82,7 @@
 		C9ABC5CA2A2F0A0400736A59 /* WorkData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C9ABC5CD2A2F0A8400736A59 /* Character+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Character+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C9ABC5CE2A2F0A8400736A59 /* Character+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Character+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		C9ABC5D22A2FC25200736A59 /* RecordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCell.swift; sourceTree = "<group>"; };
 		C9D5BAE52A2DFF3000533F32 /* UserDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserDataModel.xcdatamodel; sourceTree = "<group>"; };
 		C9D5BAE82A2E003100533F32 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C9D5BAE92A2E003100533F32 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				C927BDF82A2D89870004011B /* MyRecordView.swift */,
+				C9ABC5D22A2FC25200736A59 /* RecordCell.swift */,
 			);
 			path = MyRecordView;
 			sourceTree = "<group>";
@@ -422,6 +425,7 @@
 				C9975FE32A2CC05E00C1B4DC /* MainView.swift in Sources */,
 				3D4D8E4B2A2DC0590081912E /* MapView.swift in Sources */,
 				C9ABC5CB2A2F0A0400736A59 /* WorkData+CoreDataClass.swift in Sources */,
+				C9ABC5D32A2FC25200736A59 /* RecordCell.swift in Sources */,
 				C976C64B2A2BF270009E0D24 /* CoinComponent.swift in Sources */,
 				C95F4AA32A2AE4A800DFBFE3 /* ColorExtension.swift in Sources */,
 				C95F4AA52A2B134500DFBFE3 /* ViewExtension.swift in Sources */,

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct OnboardingView: View {
+    @Binding var isFirstLaunch: Bool
     @State var selection: Int = 0
     @State var isStart: Bool = false
     
@@ -50,7 +51,7 @@ struct OnboardingView: View {
         }
         .fullScreenCover(isPresented: $isStart, content: {
             NavigationStack {
-                DataReceiveView()
+                DataReceiveView(isFirstLaunch: $isFirstLaunch)
                     .toolbar {
                         ToolbarItem(placement: .navigationBarLeading) {
                             Button("취소") {
@@ -66,7 +67,9 @@ struct OnboardingView: View {
 }
 
 struct OnboardingView_Previews: PreviewProvider {
+    @State static var isFirst = true
+    
     static var previews: some View {
-        OnboardingView()
+        OnboardingView(isFirstLaunch: $isFirst)
     }
 }

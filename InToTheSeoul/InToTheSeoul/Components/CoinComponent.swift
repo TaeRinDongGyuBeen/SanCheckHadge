@@ -9,7 +9,7 @@ import SwiftUI
 
 
 struct CoinComponent: View {
-    @State var money: Int
+    @Binding var money: Int
     @State var color: Color
     
     var body: some View {
@@ -29,8 +29,8 @@ struct CoinComponent: View {
     }
 }
 
-struct CoinComponent_Previewer: PreviewProvider {
-    static var previews: some View {
-        CoinComponent(money: 1750, color: Color.theme.green1)
-    }
-}
+//struct CoinComponent_Previewer: PreviewProvider {
+//    static var previews: some View {
+//        CoinComponent(money: 1750, color: Color.theme.green1)
+//    }
+//}

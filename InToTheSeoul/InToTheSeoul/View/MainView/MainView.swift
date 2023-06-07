@@ -7,18 +7,28 @@
 import SwiftUI
 
 struct MainView: View {
-    @State var userMoney: Int = 0
-    @State var username: String = "태린동규빈"
-    @State var userAccumulateDistance = 24
+    
+    @State var userMoney: Int = Int(CoreDataManager.coreDM.readUser()[0].accumulateCoin)
+    @State var username: String = (CoreDataManager.coreDM.readUser()[0].username ?? "태린동규빈")
+    @State var userAccumulateDistance = CoreDataManager.coreDM.readUser()[0].accumulateDistance
+    @State var characterEmotion = CoreDataManager.coreDM.readCharacter()[0].emotion ?? "Bad"
+    @State var characterPresentClothes = CoreDataManager.coreDM.readCharacter()[0].presentClothes ?? ""
+    @State var clothes: [String] = CoreDataManager.coreDM.readCharacter()[0].clothes ?? [String]()
+    
+    @State var showTimeDestination = false
+    @State var showTrakingDestination = false
+    @EnvironmentObject var pointsModel: PointsModel
+    
     var body: some View {
+        NavigationStack {
             VStack(spacing: 0) {
                 Spacer()
                 HStack(spacing: 0) {
-                    CoinComponent(money: userMoney, color: Color.theme.green1)
+                    CoinComponent(money: $userMoney, color: Color.theme.green1)
                     
                     Spacer()
                     NavigationLink(destination: {
-                        
+                        StoreView(userMoney: $userMoney, presentClothes: $characterPresentClothes, clothes: $clothes, characterEmotion: $characterEmotion)
                     }, label: {
                         Image("storeButton")
                             .resizable()
@@ -48,10 +58,16 @@ struct MainView: View {
                                 .foregroundColor(Color.theme.gray3)
                         }
                         .frame(maxHeight: 245, alignment: .bottom)
-                        Image("storeCharacter")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 189, height: 207)
+                        ZStack {
+                            Image("\(characterEmotion)_Hedge")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 250, height: 240)
+                            Image("\(characterPresentClothes)")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 250, height: 240)
+                        }
                     }
                 }
                 
@@ -67,7 +83,7 @@ struct MainView: View {
                         Text("총 누적 산책거리")
                             .textFontAndColor(.body1)
                         Spacer()
-                        Text("\(userAccumulateDistance)km")
+                        Text("\(userAccumulateDistance, specifier: "%.2f")km")
                             .foregroundColor(Color.theme.gray5)
                             .font(Font.seoul(.body6))
                         
@@ -79,19 +95,33 @@ struct MainView: View {
                 
                 HStack(spacing: 0) {
                     ButtonComponent(buttonType: .mainViewButton, content: "산책하기", isActive: false, imageName: "walkingStartButton", action: {
-                        
+                        showTrakingDestination = true
                     })
+                    
+                    NavigationLink(destination: TrekkingInformationInput(), isActive: $showTrakingDestination) {
+                        
+                    }
+                    .hidden()
                     
                     Spacer()
                     
                     ButtonComponent(buttonType: .mainViewButton, content: "기록보기", isActive: false, imageName: "recordCheckButton", action: {
-                        
+                        showTimeDestination = true
                     })
+                    
+                    NavigationLink(destination: TimelineView(), isActive: $showTimeDestination) {
+                        
+                    }
+                    .hidden()
+                    
+                    
                 }
                 Spacer()
             }
             .padding(EdgeInsets(top: 0, leading: 40, bottom: 40, trailing: 40))
         }
+    }
+    
 }
 
 struct MainView_Previewer: PreviewProvider {
