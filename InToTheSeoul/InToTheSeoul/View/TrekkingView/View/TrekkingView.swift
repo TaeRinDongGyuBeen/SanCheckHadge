@@ -29,6 +29,9 @@ struct TrekkingView: View {
     @State private var showLoadingView = true
     @Binding var firstTime: Date
     
+    @Binding var userMoney: Int
+    @Binding var accumulateDistance: Double
+    
     var body: some View {
         ZStack {
             //            if showLoadingView {
@@ -89,7 +92,7 @@ struct TrekkingView: View {
                 if !showResultView {
                     TrekkingModalView(isNearby: $isNearby, showRewardView: $showRewardView, showResultView: $showResultView, toVisitPointIndex: $toVisitPointIndex, firstTime: $firstTime, mkMapView: mkMapView)
                 } else {
-                    TrekkingResultView()
+                    TrekkingResultView(userMoney: $userMoney, accumulateDistance: $accumulateDistance)
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)

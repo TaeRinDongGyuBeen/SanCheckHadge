@@ -55,10 +55,11 @@ class CoreDataManager: ObservableObject {
         }
     }
     
-    func createWorkData(date: Date, distance: Double, gainPoint: Int, moveRoute: [(Double)], checkPoint: [String], startPoint: String) {
+    func createWorkData(date: Date, distance: Double, totalTime: Int, gainPoint: Int, moveRoute: [(Double)], checkPoint: [String], startPoint: String) {
         let workData = WorkData(context: persistentContainer.viewContext)
         workData.date = date
         workData.totalDistance = distance
+        workData.totalTime = Int16(totalTime)
         workData.gainCoin = Int16(gainPoint)
         workData.moveRoute = moveRoute
         workData.checkPoint = checkPoint

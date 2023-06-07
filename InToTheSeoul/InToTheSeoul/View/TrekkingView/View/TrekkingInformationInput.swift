@@ -22,6 +22,8 @@ struct TrekkingInformationInput: View {
     @State var isRecommendError: Bool = false
     
     @State var firstTime = Date()
+    @Binding var userMoney: Int
+    @Binding var accumulateDistance: Double
     
     var body: some View {
         VStack {
@@ -34,7 +36,7 @@ struct TrekkingInformationInput: View {
             WaypointPicker
                 .padding(.bottom, 109)
             
-            NavigationLink(destination: TrekkingView(firstTime: $firstTime).environmentObject(pointsModel)) {
+            NavigationLink(destination: TrekkingView(firstTime: $firstTime, userMoney: $userMoney, accumulateDistance: $accumulateDistance).environmentObject(pointsModel)) {
                 Text("시작하기")
                     .frame(maxWidth: .infinity)
                     .frame(height: 45)
@@ -162,9 +164,9 @@ extension TrekkingInformationInput {
     }
 }
 
-struct TrekkingInformationInput_Previews: PreviewProvider {
-    static var previews: some View {
-        TrekkingInformationInput()
-            .environmentObject(PointsModel())
-    }
-}
+//struct TrekkingInformationInput_Previews: PreviewProvider {
+//    static var previews: some View {
+//        TrekkingInformationInput()
+//            .environmentObject(PointsModel())
+//    }
+//}

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct MyRecordView: View {
+    @Binding var userMoney: Int
+    @Binding var accumulateDistance: Double
     @State var workData: WorkData
     
     // 내 기록보기에서 버튼을 감추기 위한 변수
@@ -146,7 +148,12 @@ struct MyRecordView: View {
             
             Spacer(minLength: 41)
             if buttonUse {
-                ButtonComponent(buttonType: .nextButton, content: "기록 저장하기",isActive: true, action: {
+                ButtonComponent(buttonType: .nextButton, content: "기록 저장하기", isActive: true, action: {
+                    CoreDataManager.coreDM.updateCoin(Int(workData.gainCoin))
+                    CoreDataManager.coreDM.updateAccumulateDistance(workData.totalDistance)
+                    accumulateDistance += workData.totalDistance
+                    userMoney += Int(workData.gainCoin)
+                    NavigationUtil.popToRootView()
                     
                 })
                 
@@ -154,6 +161,7 @@ struct MyRecordView: View {
             
         }
         .padding(EdgeInsets(top: 0, leading: 40, bottom: 20, trailing: 40))
+        .navigationBarHidden(buttonUse)
     }
     
 }
