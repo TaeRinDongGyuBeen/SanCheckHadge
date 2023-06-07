@@ -55,6 +55,7 @@ struct TrekkingModalView: View {
             .frame(maxWidth: .infinity)
             .gesture(dragGesture)
 
+            // TODO: 거리 설정 완료되면 View 데이터 값 수정 필요.
             VStack {
                 HStack(alignment: .top) {
                     Image(systemName: "heart")
@@ -132,7 +133,8 @@ struct TrekkingModalView: View {
                         mkMapView.addAnnotation(pointsModel.annotationPoints[toVisitPointIndex])
 //                        toVisitPointIndex += 1
                         showResultView = true
-                        
+                        // TODO: CoreData WorkData Create 필요
+                        CoreDataManager.coreDM.createWorkData(date: Date(), distance: 3.56, totalTime: timeInterval, gainPoint: Int(3.56 * 100) + 75, moveRoute: [(2.53)], checkPoint: checkPointToString(pointsModel.annotationPoints), startPoint: checkStartPointToString(pointsModel.annotationPoints))
                     })
                     .disabled(!isNearby)
                     .onChange(of: isNearby) { newValue in
@@ -157,6 +159,10 @@ struct TrekkingModalView: View {
                     message: Text("리워드 받은 지점까지만 기록 저장이 되니,\n신중하게 결정해주세요!"),
                     primaryButton: .destructive(Text("취소")),
                     secondaryButton: .default(Text("확인"), action: {
+                        // TODO: CoreData WorkData Create 필요
+                        // distance값 변환 필요
+                        CoreDataManager.coreDM.createWorkData(date: Date(), distance: 3.56, totalTime: timeInterval, gainPoint: Int(3.56 * 100), moveRoute: [(2.53)], checkPoint: checkPointToString(pointsModel.annotationPoints), startPoint: checkStartPointToString(pointsModel.annotationPoints))
+                        
                         showResultView = true
                     })
                 )
@@ -218,6 +224,20 @@ struct TrekkingModalView: View {
             isLast = true
         } else {
         }
+    }
+    
+    func checkPointToString(_ checkPoint: [AnnotationPoint]) -> [String] {
+        var reachedPoint = [String]()
+        for i in checkPoint {
+            if i.viewPoint.isVisited {
+                reachedPoint.append(i.viewPoint.nowPoint.name)
+            }
+        }
+        return reachedPoint
+    }
+    
+    func checkStartPointToString(_ checkPoint: [AnnotationPoint]) -> String {
+        return checkPoint.last?.viewPoint.nowPoint.name ?? "구름 본사"
     }
 }
 

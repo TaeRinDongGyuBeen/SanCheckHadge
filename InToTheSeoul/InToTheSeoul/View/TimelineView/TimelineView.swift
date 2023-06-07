@@ -28,7 +28,7 @@ struct TimelineView: View {
         } else {
             Text("데이터가 없습니다.")
             Button("시험데이터 생성", action: {
-                CoreDataManager.coreDM.createWorkData(date: Date(), distance: 3.2, gainPoint: 350, moveRoute: [(39.323)], checkPoint: ["강남", "홍대", "서초", "이건희집", "봉천동"], startPoint: "청와대")
+                CoreDataManager.coreDM.createWorkData(date: Date(), distance: 3.2, totalTime: 25, gainPoint: 350, moveRoute: [(39.323)], checkPoint: ["강남", "홍대", "서초", "이건희집", "봉천동"], startPoint: "청와대")
             })
         }
     }
