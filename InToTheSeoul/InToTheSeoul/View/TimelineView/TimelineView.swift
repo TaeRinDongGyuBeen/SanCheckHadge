@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TimelineView: View {
-    @State var workDatum = CoreDataManager.coreDM.readWorkData()
+    @State var workDatum = Array(CoreDataManager.coreDM.readWorkData().reversed())
     
     var body: some View {
         if workDatum.count != 0 {
@@ -17,8 +17,9 @@ struct TimelineView: View {
                     ForEach(0 ..< workDatum.count) { index in
                         if index == 0 {
                             ScrollCell(isFirstCell: true, workData: workDatum[index])
+                        } else {
+                            ScrollCell(workData: workDatum[index])
                         }
-                        ScrollCell(workData: workDatum[index])
                     }
                 }
                 
@@ -27,9 +28,7 @@ struct TimelineView: View {
             
         } else {
             Text("데이터가 없습니다.")
-            Button("시험데이터 생성", action: {
-                CoreDataManager.coreDM.createWorkData(date: Date(), distance: 3.2, totalTime: 25, gainPoint: 350, moveRoute: [(39.323)], checkPoint: ["강남", "홍대", "서초", "이건희집", "봉천동"], startPoint: "청와대")
-            })
+                .textFontAndColor(.h1)
         }
     }
 }
@@ -41,7 +40,7 @@ struct ScrollCell: View {
     @State var isFirstCell: Bool = false
     @State var workData: WorkData
     
-    // Scroll에서는 필요없는 변수
+    // Scroll에서는 필요없는 변수. MyRecordView를 재사용하기 위해 있는 변수이다.
     @State static var money = 1000
     @State static var accumulateDistance = 5.5
     
@@ -54,6 +53,7 @@ struct ScrollCell: View {
         HStack(spacing: 0) {
             Text("+\(workData.gainCoin)")
                 .textFontAndColor(.h5)
+                .frame(minWidth: 55)
             Spacer()
             ZStack {
                 VStack {
