@@ -71,6 +71,7 @@ class CoreDataManager: ObservableObject {
             print("운동 데이터 생성 에러 \(error)")
         }
         
+        updateCharacterEmotion(CoreDataManager.coreDM.readWorkData().count)
         // TODO: USER의 누적 포인트, 누적 총 거리 +하는 update 메서드 실행 필요
         
     }
@@ -108,8 +109,15 @@ class CoreDataManager: ObservableObject {
     }
     
 
-    func updateCharacterEmotion(_ emotion: String) {
-        CoreDataManager.coreDM.readCharacter()[0].emotion = emotion
+    func updateCharacterEmotion(_ trekkingCount: Int) {
+        if trekkingCount <= 2 {
+            CoreDataManager.coreDM.readCharacter()[0].emotion = "Bad"
+        } else if trekkingCount <= 4 {
+            CoreDataManager.coreDM.readCharacter()[0].emotion = "Normal"
+        } else {
+            CoreDataManager.coreDM.readCharacter()[0].emotion = "Happy"
+        }
+        
         
         do {
             try persistentContainer.viewContext.save()
