@@ -96,8 +96,6 @@ struct TrekkingResultView: View {
                                     Text("km")
                                         .textFontAndColor(.h5)
                                 }
-                                
-                                
                             }
                             Spacer()
                             VStack(spacing: 0) {
@@ -144,6 +142,9 @@ struct TrekkingResultView: View {
                 }
                 .frame(maxWidth: 118)
             }
+            
+            Spacer()
+            Spacer()
             
             NavigationLink(destination: MyRecordView(userMoney: $userMoney, accumulateDistance: $accumulateDistance, workData: CoreDataManager.coreDM.readWorkData().last ?? CoreDataManager.coreDM.readWorkData()[0], buttonUse: true), isActive: $isRecordViewPresented) {
                 ButtonComponent(buttonType: .nextButton, content: "산책 기록 보기", isActive: true, action: {
