@@ -27,7 +27,6 @@
 		3D4D8E4E2A2DC0590081912E /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4D8E492A2DC0590081912E /* LoadingView.swift */; };
 		C924BE182A2BD84600FF36BA /* DataReceiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C924BE172A2BD84600FF36BA /* DataReceiveView.swift */; };
 		C927BDF92A2D89870004011B /* MyRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C927BDF82A2D89870004011B /* MyRecordView.swift */; };
-		C937A5F82A316C9600979F6D /* Gifu in Frameworks */ = {isa = PBXBuildFile; productRef = C937A5F72A316C9600979F6D /* Gifu */; };
 		C94DFE9A2A307C8F001A8B97 /* NavigationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94DFE992A307C8F001A8B97 /* NavigationUtil.swift */; };
 		C94DFE9C2A31610E001A8B97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C94DFE9B2A31610E001A8B97 /* LaunchScreen.storyboard */; };
 		C95D3A532A2D683D009DE078 /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95D3A522A2D683D009DE078 /* TimelineView.swift */; };
@@ -104,7 +103,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C937A5F82A316C9600979F6D /* Gifu in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,7 +360,6 @@
 			);
 			name = InToTheSeoul;
 			packageProductDependencies = (
-				C937A5F72A316C9600979F6D /* Gifu */,
 			);
 			productName = InToTheSeoul;
 			productReference = C9D8CD872A27597000A880E8 /* InToTheSeoul.app */;
@@ -393,7 +390,6 @@
 			);
 			mainGroup = C9D8CD7E2A27597000A880E8;
 			packageReferences = (
-				C937A5F62A316C9600979F6D /* XCRemoteSwiftPackageReference "Gifu" */,
 			);
 			productRefGroup = C9D8CD882A27597000A880E8 /* Products */;
 			projectDirPath = "";
@@ -671,25 +667,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		C937A5F62A316C9600979F6D /* XCRemoteSwiftPackageReference "Gifu" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/kaishin/Gifu.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		C937A5F72A316C9600979F6D /* Gifu */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C937A5F62A316C9600979F6D /* XCRemoteSwiftPackageReference "Gifu" */;
-			productName = Gifu;
-		};
-/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		C9D5BAE42A2DFF3000533F32 /* UserDataModel.xcdatamodeld */ = {
