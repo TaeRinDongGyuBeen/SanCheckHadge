@@ -75,6 +75,9 @@ struct TrekkingInformationInput: View {
         } message: {
             Text("위치 정보를 불러올 수 없거나\n서비스할 수 없는 지역입니다.")
         }
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: CustomBackButton())\
+        
     }
 }
 

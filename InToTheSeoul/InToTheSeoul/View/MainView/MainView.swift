@@ -120,6 +120,7 @@ struct MainView: View {
             }
             .padding(EdgeInsets(top: 0, leading: 40, bottom: 40, trailing: 40))
         }
+        
     }
     
 }

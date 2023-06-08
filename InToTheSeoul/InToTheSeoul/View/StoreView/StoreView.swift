@@ -161,6 +161,8 @@ struct StoreView: View {
         .onAppear {
             print(presentClothes)
         }
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: CustomBackButton())
     }
     
     func buttonActive(index: Int) {

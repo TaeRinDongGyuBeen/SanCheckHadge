@@ -21,7 +21,7 @@ struct DataReceiveView: View {
      genderActivatedList, ageCheckList의 경우, 하나가 체크될 경우, 나머지 버튼이 해제되어야 하기 때문에 Bool값을 Array에 담아놓았음.
      */
     // TODO: nameLimiter 최소 글자 수 설정 필요. 최소 글자 수 입력 시 dataCheckList의 0번 인덱스를 true로 만들어 주어야 함.
-    @State var nameLimiter: String = ""
+    @State var nameLimiter: TextLimiter = TextLimiter(limit: 8)
     
     /**
      여성(0), 남성(1)이 각각 클릭될 때, 상호 작용하도록 만드는 Bool Array
@@ -44,10 +44,13 @@ struct DataReceiveView: View {
     
     @State var nextButtonActivated: Bool = false
     
-    @State var dataCheckList = [true, false, false] {
+    @State var dataCheckList = [false, false, false] {
         willSet {
+            
             var checkNum = 0
+            print(checkNum)
             for i in dataCheckList {
+                print(i)
                 checkNum += i == true ? 1 : 0
                 if checkNum == 3 {
                     nextButtonActivated = true
@@ -58,7 +61,8 @@ struct DataReceiveView: View {
     }
     
     @Binding var isFirstLaunch: Bool
-    
+    @State private var focus: Bool = false
+
     // MARK: - body
     
     var body: some View {
@@ -82,11 +86,21 @@ struct DataReceiveView: View {
                     .textFontAndColor(.h3)
                     .padding(EdgeInsets(top: 0, leading: 0, bottom: 12, trailing: 0))
                 
-                TextField("이름을 입력하세요", text: $nameLimiter)
+                TextField("이름을 입력하세요", text: $nameLimiter.value , onEditingChanged: { editing in
+                    focus = editing
+                })
                     .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
                     .frame(height: 40)
                     .background(Color.theme.gray1)
                     .cornerRadius(20)
+                    .onChange(of: nameLimiter.value) { newValue in
+                        if newValue.isEmpty {
+                            dataCheckList[0] = false
+                        } else {
+                            dataCheckList[0] = true
+                        }
+//                        dataCheckList[0] = !newValue.isEmpty
+                    }
             }
             
             Spacer()
@@ -108,6 +122,7 @@ struct DataReceiveView: View {
                             action: {
                                 genderActivatedList = [false, false]
                                 genderActivatedList[0].toggle()
+                                focus = false
                             }
                         )
                     })
@@ -124,7 +139,7 @@ struct DataReceiveView: View {
                             action: {
                                 genderActivatedList = [false, false]
                                 genderActivatedList[1].toggle()
-                                
+                                focus = false
                             }
                         )
                     })
@@ -150,7 +165,9 @@ struct DataReceiveView: View {
                                 for i in stride(from: 0, through: ageCheckList.count - 1, by: 1) {
                                     ageCheckList[i] = false
                                 }
+                                focus = false
                                 ageCheckList[0].toggle()
+                                
                             }
                         )
                     })
@@ -168,6 +185,7 @@ struct DataReceiveView: View {
                                 for i in stride(from: 0, through: ageCheckList.count - 1, by: 1) {
                                     ageCheckList[i] = false
                                 }
+                                focus = false
                                 ageCheckList[1].toggle()
                             }
                         )
@@ -183,6 +201,7 @@ struct DataReceiveView: View {
                             content: "30대",
                             isActive: ageCheckList[2],
                             action: {
+                                focus = false
                                 for i in stride(from: 0, through: ageCheckList.count - 1, by: 1) {
                                     ageCheckList[i] = false
                                 }
@@ -202,6 +221,7 @@ struct DataReceiveView: View {
                             content: "40대",
                             isActive: ageCheckList[3],
                             action: {
+                                focus = false
                                 for i in stride(from: 0, through: ageCheckList.count - 1, by: 1) {
                                     ageCheckList[i] = false
                                 }
@@ -220,6 +240,7 @@ struct DataReceiveView: View {
                             content: "50대",
                             isActive: ageCheckList[4],
                             action: {
+                                focus = false
                                 for i in stride(from: 0, through: ageCheckList.count - 1, by: 1) {
                                     ageCheckList[i] = false
                                 }
@@ -238,6 +259,7 @@ struct DataReceiveView: View {
                             content: "60대 이상",
                             isActive: ageCheckList[5],
                             action: {
+                                focus = false
                                 for i in stride(from: 0, through: ageCheckList.count - 1, by: 1) {
                                     ageCheckList[i] = false
                                 }
@@ -250,25 +272,29 @@ struct DataReceiveView: View {
             }
             Spacer()
             
-            Button(action: {
-                
-            }, label: {
-                ButtonComponent(
-                    buttonType: .nextButton,
-                    content: "시작하기",
-                    isActive: nextButtonActivated,
-                    action: {
-                        
-                        CoreDataManager.coreDM.createUser(username: nameLimiter, age: findAgeOrGener(checkList: ageCheckList), gender: findAgeOrGener(checkList: genderActivatedList))
-                        CoreDataManager.coreDM.createCharacter()
-                        isFirstLaunch = false
-                        print("데이터 저장됨")
-                    }
-                )
-            })
+            
+            ButtonComponent(
+                buttonType: .nextButton,
+                content: "시작하기",
+                isActive: nextButtonActivated,
+                action: {
+                    
+                    CoreDataManager.coreDM.createUser(username: nameLimiter.value, age: findAgeOrGener(checkList: ageCheckList), gender: findAgeOrGener(checkList: genderActivatedList))
+                    CoreDataManager.coreDM.createCharacter()
+                    isFirstLaunch = false
+                    print("데이터 저장됨")
+                }
+            )
+            .disabled(!nextButtonActivated)
+            
             
         }
         .padding(EdgeInsets(top: 30, leading: 40, bottom: 50, trailing: 40))
+        .onChange(of: focus) { newValue in
+            if !newValue {
+                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+            }
+        }
         
     }
     
@@ -287,6 +313,7 @@ struct DataReceiveView: View {
  */
 class TextLimiter: ObservableObject {
     private let limit: Int
+    
     init(limit: Int) {
         self.limit = limit
     }
