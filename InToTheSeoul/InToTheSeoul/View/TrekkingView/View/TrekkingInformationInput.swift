@@ -22,6 +22,8 @@ struct TrekkingInformationInput: View {
     @State var isRecommendError: Bool = false
     
     @State var firstTime = Date()
+    @State var isRecommendSuccess: Bool = false
+    
     @Binding var userMoney: Int
     @Binding var accumulateDistance: Double
     
@@ -36,38 +38,40 @@ struct TrekkingInformationInput: View {
             WaypointPicker
                 .padding(.bottom, 109)
             
-            NavigationLink(destination: TrekkingView(firstTime: $firstTime, userMoney: $userMoney, accumulateDistance: $accumulateDistance).environmentObject(pointsModel)) {
-                Text("시작하기")
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 45)
-                    .textFontAndColor(.button1)
-                
-            }
-            .background(Color.theme.green1)
-            .cornerRadius(30)
-            .simultaneousGesture(TapGesture().onEnded({
-                
+            NavigationLink(destination: TrekkingView(firstTime: $firstTime, userMoney: $userMoney, accumulateDistance: $accumulateDistance).environmentObject(pointsModel), isActive: $isRecommendSuccess) { }
+            
+            ButtonComponent(buttonType: .nextButton, content: "시작하기", isActive: true) {
                 firstTime = Date()
                 print("first time \(firstTime)")
                 do {
                     try pointsModel.recommendPoint(nowPostion: CLLocationCoordinate2D(latitude: 37.4753668, longitude: 126.9625635), walkTimeMin: Int(trekkingTime), mustWaypoint: Waypoint(hospital: isSelectedWaypointHospital, pharmacy: isSelectedWaypointPharmacy, library: isSelectedWaypointLibrary, park: isSelectedWaypointPark, busStop: isSelectedWaypointBusStop))
+                    isRecommendSuccess.toggle()
                 } catch {
                     print(error)
                     isRecommendError.toggle()
                 }
-            }))
-
-                
-//                ButtonComponent(buttonType: .nextButton, content: "시작하기", isActive: true) {
-//                    do {
-//                        try pointsModel.recommendPoint(nowPostion: CLLocationCoordinate2D(latitude: 37.4753668, longitude: 126.9625635), walkTimeMin: Int(trekkingTime), mustWaypoint: Waypoint(hospital: isSelectedWaypointHospital, pharmacy: isSelectedWaypointPharmacy, library: isSelectedWaypointLibrary, park: isSelectedWaypointPark, busStop: isSelectedWaypointBusStop))
-//                    } catch {
-//                        print(error)
-//                        isRecommendError.toggle()
-//                    }
-//                }
-
+            }
             
+//            NavigationLink(destination: TrekkingView(firstTime: $firstTime, userMoney: $userMoney, accumulateDistance: $accumulateDistance).environmentObject(pointsModel)) {
+//                Text("시작하기")
+//                    .frame(maxWidth: .infinity)
+//                    .frame(height: 45)
+//                    .textFontAndColor(.button1)
+//
+//            }
+//            .background(Color.theme.green1)
+//            .cornerRadius(30)
+//            .simultaneousGesture(TapGesture().onEnded({
+//
+//                firstTime = Date()
+//                print("first time \(firstTime)")
+//                do {
+//                    try pointsModel.recommendPoint(nowPostion: CLLocationCoordinate2D(latitude: 37.4753668, longitude: 126.9625635), walkTimeMin: Int(trekkingTime), mustWaypoint: Waypoint(hospital: isSelectedWaypointHospital, pharmacy: isSelectedWaypointPharmacy, library: isSelectedWaypointLibrary, park: isSelectedWaypointPark, busStop: isSelectedWaypointBusStop))
+//                } catch {
+//                    print(error)
+//                    isRecommendError.toggle()
+//                }
+//            }))
         }
         .padding(.horizontal, 40)
         .alert("경로 추천 실패", isPresented: $isRecommendError) {
