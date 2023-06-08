@@ -161,7 +161,10 @@ struct MyRecordView: View {
             
         }
         .padding(EdgeInsets(top: 0, leading: 40, bottom: 20, trailing: 40))
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: CustomBackButton())
         .navigationBarHidden(buttonUse)
+        
     }
     
 }

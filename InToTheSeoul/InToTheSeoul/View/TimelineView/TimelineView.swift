@@ -103,7 +103,8 @@ struct ScrollCell: View {
             .cornerRadius(20)
         }
         .frame(width: .infinity, height: 102)
-        
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: CustomBackButton())
     }
 }
 
