@@ -36,6 +36,9 @@ struct MapView: UIViewRepresentable {
 
     func makeUIView(context: Context) -> MKMapView {
         let mapView = mkMapView
+        // 어노테이션 초기화
+        mapView.removeAnnotations(mapView.annotations)
+        
         
         //MapViewCoordinator에게 delegate 위임
         mapView.delegate = context.coordinator

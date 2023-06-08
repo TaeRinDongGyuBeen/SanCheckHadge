@@ -14,7 +14,16 @@ final class PointsModel: ObservableObject {
     @Published var annotationPoints: [AnnotationPoint] = []
     var mustWaypointNumber: [Int] = []
     
+    func initPoints() {
+        self.selectedPoints = []
+        self.annotationPoints = []
+        self.mustWaypointNumber = []
+    }
+    
     func recommendPoint(nowPostion: CLLocationCoordinate2D, walkTimeMin: Int, mustWaypoint: Waypoint) throws -> Void {
+        
+        initPoints()
+        
         var selectedPoints: [Point] = []
         var resultPoints: [ViewPoint] = []
         var pointsDistance: [Double] = []
