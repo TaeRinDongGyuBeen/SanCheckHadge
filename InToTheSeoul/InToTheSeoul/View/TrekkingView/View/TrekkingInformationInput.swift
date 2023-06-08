@@ -113,7 +113,11 @@ extension TrekkingInformationInput {
                             .textFontAndColor(.h5)
                     }
                     
-                    Slider(value: $trekkingTime, in: 0...120, step: 5)
+                    Slider(value: $trekkingTime, in: 0...120, step: 5, onEditingChanged: { _ in
+                        if trekkingTime <= 10 {
+                            trekkingTime = 10
+                        }
+                    })
                         .tint(.theme.green1)
                     HStack {
                         Text("0분")
