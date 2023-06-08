@@ -6,6 +6,36 @@
 //
 
 import SwiftUI
+import WebKit
+
+struct GifImage: UIViewRepresentable {
+    private let name: String
+    
+    init(_ name: String) {
+        self.name = name
+    }
+    
+    func makeUIView(context: Context) -> WKWebView {
+        let webView = WKWebView()
+        let url = Bundle.main.url(forResource: name, withExtension: "gif")!
+        let data = try! Data(contentsOf: url)
+        
+        webView.scrollView.isScrollEnabled = false
+        
+        webView.load(
+            data,
+            mimeType: "image/gif",
+            characterEncodingName: "UTF-8",
+            baseURL: url.deletingLastPathComponent()
+        )
+        
+        return webView
+    }
+    
+    func updateUIView(_ uiView: WKWebView, context: Context) {
+        uiView.reload()
+    }
+}
 
 struct OnboardingView: View {
     @Binding var isFirstLaunch: Bool
@@ -28,12 +58,31 @@ struct OnboardingView: View {
             Spacer()
             
             TabView(selection: $selection) {
-                RoundedRectangle(cornerRadius: 20)
+                GifImage("Onboarding_1")
+                    
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 322)
                     .tag(0)
-                RoundedRectangle(cornerRadius: 20)
+                GifImage("Onboarding_2")
+                    
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 322)
                     .tag(1)
-                RoundedRectangle(cornerRadius: 20)
+                GifImage("Onboarding_3")
+                    
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 322)
                     .tag(2)
+                GifImage("Onboarding_4")
+                    
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 322)
+                    .tag(3)
+                
+                Image("Onboarding_5")
+                    .resizable()
+                    .frame(width: 322)
+                    .tag(4)
             }
             .tabViewStyle(.page)
             
