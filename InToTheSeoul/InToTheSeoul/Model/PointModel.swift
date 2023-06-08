@@ -203,7 +203,11 @@ final class PointsModel: ObservableObject {
             
             // 150m내 포인트가 없을 시 검색 범위를 50m 늘림
             if nextCandidatePoints.isEmpty {
-                searchRange += 50.0
+                if searchRange < 1000.0 {
+                    searchRange += 50.0
+                } else {
+                    throw RecommendError.pointNotFound
+                }
                 continue
             }
             
