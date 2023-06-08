@@ -81,10 +81,14 @@ struct OnboardingView: View {
                 
                 Image("Onboarding_5")
                     .resizable()
-                    .frame(width: 322)
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 280)
                     .tag(4)
             }
-            .tabViewStyle(.page)
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
+            .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+            .accentColor(.black) // 인디케이터 점의 색상을 까만색으로 설정
+            
             
             ButtonComponent(buttonType: .nextButton, content: selection == 2 ? "시작하기" : "다음 페이지 넘어가기", isActive: true) {
                 if selection < 2 {
