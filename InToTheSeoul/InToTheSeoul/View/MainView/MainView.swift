@@ -19,6 +19,8 @@ struct MainView: View {
     @State var showTrakingDestination = false
     @EnvironmentObject var pointsModel: PointsModel
     
+    @State var totalDistance: Double = 0
+    
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
@@ -98,7 +100,7 @@ struct MainView: View {
                         showTrakingDestination = true
                     })
                     
-                    NavigationLink(destination: TrekkingInformationInput(userMoney: $userMoney, accumulateDistance: $userAccumulateDistance), isActive: $showTrakingDestination) {
+                    NavigationLink(destination: TrekkingInformationInput(userMoney: $userMoney, accumulateDistance: $userAccumulateDistance, totalDistance: $totalDistance), isActive: $showTrakingDestination) {
                         
                     }
                     .hidden()
