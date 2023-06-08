@@ -14,7 +14,16 @@ final class PointsModel: ObservableObject {
     @Published var annotationPoints: [AnnotationPoint] = []
     var mustWaypointNumber: [Int] = []
     
+    func initPoints() {
+        self.selectedPoints = []
+        self.annotationPoints = []
+        self.mustWaypointNumber = []
+    }
+    
     func recommendPoint(nowPostion: CLLocationCoordinate2D, walkTimeMin: Int, mustWaypoint: Waypoint) throws -> Void {
+        
+        initPoints()
+        
         var selectedPoints: [Point] = []
         var resultPoints: [ViewPoint] = []
         var pointsDistance: [Double] = []
@@ -44,7 +53,7 @@ final class PointsModel: ObservableObject {
             try selectedPoints.append(selectFirstPoint(candidatePoints, nowPosition: nowPostion))
         } catch {
             print(error.localizedDescription)
-            return
+            throw RecommendError.pointNotFound
         }
         
         // 첫 번째 지점 거리 입력
@@ -67,7 +76,7 @@ final class PointsModel: ObservableObject {
             remainedWalkingDistance = try selectForwardPoint(remainedDistance: remainedWalkingDistance, purposeDistance: purposeWalkingDistance, candidatePoints: candidatePoints, direction: forwardDirection, stepCount: .first, mustWaypoint: &waypoint, selectedPoints: &selectedPoints, nextDistance: &pointsDistance)
         } catch {
             print(error.localizedDescription)
-            return
+            throw RecommendError.pointNotFound
         }
         
         // if (purpose distance * 0.3) <= to walk distance 방향 전환
@@ -79,7 +88,7 @@ final class PointsModel: ObservableObject {
             remainedWalkingDistance = try selectForwardPoint(remainedDistance: remainedWalkingDistance, purposeDistance: purposeWalkingDistance, candidatePoints: candidatePoints, direction: forwardDirection, stepCount: .second, mustWaypoint: &waypoint, selectedPoints: &selectedPoints, nextDistance: &pointsDistance)
         } catch {
             print(error.localizedDescription)
-            return
+            throw RecommendError.pointNotFound
         }
         print(remainedWalkingDistance)
         
@@ -93,7 +102,7 @@ final class PointsModel: ObservableObject {
             remainedWalkingDistance = try selectForwardPoint(remainedDistance: remainedWalkingDistance, purposeDistance: purposeWalkingDistance, candidatePoints: candidatePoints, direction: forwardDirection, stepCount: .last, mustWaypoint: &waypoint, selectedPoints: &selectedPoints, nextDistance: &pointsDistance)
         } catch {
             print(error.localizedDescription)
-            return
+            throw RecommendError.pointNotFound
         }
         
         print("=====> 마지막 지점과 집까지의 거리 \(selectedPoints.last?.locationCoordinate.distance(from: nowPostion))")
