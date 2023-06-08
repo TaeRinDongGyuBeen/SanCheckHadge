@@ -56,18 +56,18 @@ struct TrekkingModalView: View {
                         Text("\(pointsModel.selectedPoints[toVisitPointIndex].isStartPoint ? "최종지점" : pointsModel.selectedPoints[toVisitPointIndex].nowPoint.name)에 도착하면")
                             .textFontAndColor(.body1)
                         
-                        Text("40 행복코인 지급")
+                        Text("\(Int(pointsModel.selectedPoints[toVisitPointIndex].distanceNextPoint)) 행복코인 지급")
                             .textFontAndColor(.body2)
                         
                         HStack {
-                            Text("이전 지점에서 4km")
+                            Text("현재 지점에서 \(Int(pointsModel.selectedPoints[toVisitPointIndex].distanceNextPoint))m")
                                 .font(Font.seoul(.h5))
                                 .foregroundColor(Color.theme.gray5)
                             
-                            Text("(3,430걸음)")
+                            Text("(\(Int(pointsModel.selectedPoints[toVisitPointIndex].distanceNextPoint * 1.2)) 걸음)")
                                 .textFontAndColor(.h5)
                             
-                            Text(" · 7분 예상")
+                            Text("약 \(Int(pointsModel.selectedPoints[toVisitPointIndex].distanceNextPoint / 83))분 예상")
                                 .font(Font.seoul(.h5))
                                 .foregroundColor(Color.theme.gray5)
                         }
