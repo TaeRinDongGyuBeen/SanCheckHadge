@@ -173,7 +173,6 @@
 			isa = PBXGroup;
 			children = (
 				C927BDF72A2D89780004011B /* MyRecordView */,
-				C9D8CD8C2A27597000A880E8 /* ContentView.swift */,
 				3D4D8E402A2D866E0081912E /* OnboardingView */,
 				C95D3A512A2D682B009DE078 /* TimelineView */,
 				160EFE312A2C87A5005809A0 /* TrekkingView */,
@@ -314,6 +313,7 @@
 				C921EE482A27675F00290875 /* Info.plist */,
 				C9D8CD8A2A27597000A880E8 /* InToTheSeoulApp.swift */,
 				C921EE442A275C8D00290875 /* View */,
+				C9D8CD8C2A27597000A880E8 /* ContentView.swift */,
 				3D3846072A2B9C37008A9166 /* Model */,
 				C9D5BAEE2A2E008900533F32 /* Utils */,
 				C921EE452A275CA400290875 /* Resource */,
