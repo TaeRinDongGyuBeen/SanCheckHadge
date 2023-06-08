@@ -41,6 +41,10 @@
 		C9ABC5CF2A2F0A8400736A59 /* Character+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ABC5CD2A2F0A8400736A59 /* Character+CoreDataClass.swift */; };
 		C9ABC5D02A2F0A8400736A59 /* Character+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ABC5CE2A2F0A8400736A59 /* Character+CoreDataProperties.swift */; };
 		C9ABC5D32A2FC25200736A59 /* RecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9ABC5D22A2FC25200736A59 /* RecordCell.swift */; };
+		C9C0C1072A319AD300D14041 /* Onboarding_2.gif in Resources */ = {isa = PBXBuildFile; fileRef = C9C0C1032A319AD300D14041 /* Onboarding_2.gif */; };
+		C9C0C1082A319AD300D14041 /* Onboarding_3.gif in Resources */ = {isa = PBXBuildFile; fileRef = C9C0C1042A319AD300D14041 /* Onboarding_3.gif */; };
+		C9C0C1092A319AD300D14041 /* Onboarding_1.gif in Resources */ = {isa = PBXBuildFile; fileRef = C9C0C1052A319AD300D14041 /* Onboarding_1.gif */; };
+		C9C0C10A2A319AD300D14041 /* Onboarding_4.gif in Resources */ = {isa = PBXBuildFile; fileRef = C9C0C1062A319AD300D14041 /* Onboarding_4.gif */; };
 		C9D5BAE62A2DFF3000533F32 /* UserDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C9D5BAE42A2DFF3000533F32 /* UserDataModel.xcdatamodeld */; };
 		C9D5BAEA2A2E003100533F32 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D5BAE82A2E003100533F32 /* User+CoreDataClass.swift */; };
 		C9D5BAEB2A2E003100533F32 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D5BAE92A2E003100533F32 /* User+CoreDataProperties.swift */; };
@@ -87,6 +91,10 @@
 		C9ABC5CD2A2F0A8400736A59 /* Character+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Character+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C9ABC5CE2A2F0A8400736A59 /* Character+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Character+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C9ABC5D22A2FC25200736A59 /* RecordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCell.swift; sourceTree = "<group>"; };
+		C9C0C1032A319AD300D14041 /* Onboarding_2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Onboarding_2.gif; sourceTree = "<group>"; };
+		C9C0C1042A319AD300D14041 /* Onboarding_3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Onboarding_3.gif; sourceTree = "<group>"; };
+		C9C0C1052A319AD300D14041 /* Onboarding_1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Onboarding_1.gif; sourceTree = "<group>"; };
+		C9C0C1062A319AD300D14041 /* Onboarding_4.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Onboarding_4.gif; sourceTree = "<group>"; };
 		C9D5BAE52A2DFF3000533F32 /* UserDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserDataModel.xcdatamodel; sourceTree = "<group>"; };
 		C9D5BAE82A2E003100533F32 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C9D5BAE92A2E003100533F32 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -216,6 +224,10 @@
 		C937A5F92A317B1400979F6D /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				C9C0C1052A319AD300D14041 /* Onboarding_1.gif */,
+				C9C0C1032A319AD300D14041 /* Onboarding_2.gif */,
+				C9C0C1042A319AD300D14041 /* Onboarding_3.gif */,
+				C9C0C1062A319AD300D14041 /* Onboarding_4.gif */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -407,6 +419,10 @@
 			files = (
 				C9D8CD922A27597100A880E8 /* Preview Assets.xcassets in Resources */,
 				C94DFE9C2A31610E001A8B97 /* LaunchScreen.storyboard in Resources */,
+				C9C0C10A2A319AD300D14041 /* Onboarding_4.gif in Resources */,
+				C9C0C1092A319AD300D14041 /* Onboarding_1.gif in Resources */,
+				C9C0C1072A319AD300D14041 /* Onboarding_2.gif in Resources */,
+				C9C0C1082A319AD300D14041 /* Onboarding_3.gif in Resources */,
 				C9D8CD8F2A27597100A880E8 /* Assets.xcassets in Resources */,
 				3D3846092A2B9CE9008A9166 /* Points.json in Resources */,
 			);
@@ -589,6 +605,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = InToTheSeoul/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "산책해찌";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "사용자의 위치를 확인하기 위해 사용자 위치 정보 권한이 필요합니다.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자의 위치를 확인하기 위해 사용자 위치 정보 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -623,6 +641,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = InToTheSeoul/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "산책해찌";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "사용자의 위치를 확인하기 위해 사용자 위치 정보 권한이 필요합니다.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자의 위치를 확인하기 위해 사용자 위치 정보 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
