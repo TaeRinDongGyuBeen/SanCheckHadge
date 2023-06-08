@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct Home: View {
+    @State var points: Int
     var body: some View {
-        RewardView()
+        RewardView(points: points)
     }
 }
 
 struct RewardView: View {
     
-    @State private var points: Int = 30
+    @State var points: Int
     @State private var wish = false
     @State private var finishWish = false
     
@@ -35,7 +36,7 @@ struct RewardView: View {
                 .padding(.top, 176)
                 .padding(.trailing, 40)
                 .foregroundColor(.white)
-                .font(.system(size: 36, weight: .bold))
+                .font(.system(size: 30, weight: .bold))
             
             EmitterView()
                 .scaleEffect(wish ? 1 : 0, anchor: .top)
@@ -68,11 +69,11 @@ struct RewardView: View {
 
 
 
-struct RewardView_Previews: PreviewProvider {
-    static var previews: some View {
-        RewardView()
-    }
-}
+//struct RewardView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        RewardView()
+//    }
+//}
 
 
 
