@@ -27,6 +27,7 @@ struct ViewPoint: Hashable, Codable, Identifiable {
     var mustWaypoint: Bool = false
     var isVisited: Bool = false
     var isStartPoint: Bool = false
+    var distanceNextPoint: Double = 0
     var nowPoint: Point
 }
 
