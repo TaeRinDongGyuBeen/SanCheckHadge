@@ -17,6 +17,7 @@ final class PointsModel: ObservableObject {
     func recommendPoint(nowPostion: CLLocationCoordinate2D, walkTimeMin: Int, mustWaypoint: Waypoint) throws -> Void {
         var selectedPoints: [Point] = []
         var resultPoints: [ViewPoint] = []
+        var pointsDistance: [Double] = []
         var waypoint: Waypoint = mustWaypoint
         
         // 입력된 시간을 거리로 환산 (if 10분 : 3km/h * 10/60h -> 0.5km -> 500m) => remained walking distance(purposeWalkDistance)
@@ -46,6 +47,9 @@ final class PointsModel: ObservableObject {
             return
         }
         
+        // 첫 번째 지점 거리 입력
+        pointsDistance.append((selectedPoints.first?.locationCoordinate.distance(from: nowPostion))!)
+        
         print("======> selectedPoint \(selectedPoints)")
 
         // 현재 위치에서 선택된 포인트로의 방향 및 거리를 계산
@@ -60,7 +64,7 @@ final class PointsModel: ObservableObject {
         remainedWalkingDistance -= selectedPoints[0].locationCoordinate.distance(from: nowPostion)
         print("남은거리 : \(remainedWalkingDistance)")
         do {
-            remainedWalkingDistance = try selectForwardPoint(remainedDistance: remainedWalkingDistance, purposeDistance: purposeWalkingDistance, candidatePoints: candidatePoints, direction: forwardDirection, stepCount: .first, mustWaypoint: &waypoint, selectedPoints: &selectedPoints)
+            remainedWalkingDistance = try selectForwardPoint(remainedDistance: remainedWalkingDistance, purposeDistance: purposeWalkingDistance, candidatePoints: candidatePoints, direction: forwardDirection, stepCount: .first, mustWaypoint: &waypoint, selectedPoints: &selectedPoints, nextDistance: &pointsDistance)
         } catch {
             print(error.localizedDescription)
             return
@@ -72,7 +76,7 @@ final class PointsModel: ObservableObject {
         
         // 30% 전진
         do {
-            remainedWalkingDistance = try selectForwardPoint(remainedDistance: remainedWalkingDistance, purposeDistance: purposeWalkingDistance, candidatePoints: candidatePoints, direction: forwardDirection, stepCount: .second, mustWaypoint: &waypoint, selectedPoints: &selectedPoints)
+            remainedWalkingDistance = try selectForwardPoint(remainedDistance: remainedWalkingDistance, purposeDistance: purposeWalkingDistance, candidatePoints: candidatePoints, direction: forwardDirection, stepCount: .second, mustWaypoint: &waypoint, selectedPoints: &selectedPoints, nextDistance: &pointsDistance)
         } catch {
             print(error.localizedDescription)
             return
@@ -86,7 +90,7 @@ final class PointsModel: ObservableObject {
         
         // 남은 거리 Back
         do {
-            remainedWalkingDistance = try selectForwardPoint(remainedDistance: remainedWalkingDistance, purposeDistance: purposeWalkingDistance, candidatePoints: candidatePoints, direction: forwardDirection, stepCount: .last, mustWaypoint: &waypoint, selectedPoints: &selectedPoints)
+            remainedWalkingDistance = try selectForwardPoint(remainedDistance: remainedWalkingDistance, purposeDistance: purposeWalkingDistance, candidatePoints: candidatePoints, direction: forwardDirection, stepCount: .last, mustWaypoint: &waypoint, selectedPoints: &selectedPoints, nextDistance: &pointsDistance)
         } catch {
             print(error.localizedDescription)
             return
@@ -94,15 +98,21 @@ final class PointsModel: ObservableObject {
         
         print("=====> 마지막 지점과 집까지의 거리 \(selectedPoints.last?.locationCoordinate.distance(from: nowPostion))")
         
+        print(selectedPoints.count)
+        print(pointsDistance.count)
+        
         // 집으로 Back
-        selectedPoints.append(Point(name: "출발지점", lat: String(nowPostion.latitude), lon: String(nowPostion.longitude), category: "출발지점", address: "출발지점", id: 999999999))
+        let homePoint: Point = Point(name: "출발지점", lat: String(nowPostion.latitude), lon: String(nowPostion.longitude), category: "출발지점", address: "출발지점", id: 999999999)
+        pointsDistance.append(homePoint.locationCoordinate.distance(from: (selectedPoints.last?.locationCoordinate)!))
+        selectedPoints.append(homePoint)
+        
         for selectedPoint in selectedPoints.enumerated() {
             if !mustWaypointNumber.isEmpty && selectedPoint.offset == mustWaypointNumber[0] {
-                resultPoints.append(ViewPoint(id: selectedPoint.offset, mustWaypoint: true, nowPoint: selectedPoint.element))
+                resultPoints.append(ViewPoint(id: selectedPoint.offset, mustWaypoint: true, distanceNextPoint: pointsDistance[selectedPoint.offset], nowPoint: selectedPoint.element))
                 print(ViewPoint(id: selectedPoint.offset, mustWaypoint: true, nowPoint: selectedPoint.element))
                 mustWaypointNumber.removeFirst()
             } else {
-                resultPoints.append(ViewPoint(id: selectedPoint.offset, nowPoint: selectedPoint.element))
+                resultPoints.append(ViewPoint(id: selectedPoint.offset, distanceNextPoint: pointsDistance[selectedPoint.offset], nowPoint: selectedPoint.element))
             }
         }
         
@@ -138,7 +148,7 @@ final class PointsModel: ObservableObject {
         return firstPoint
     }
     
-    private func selectForwardPoint(remainedDistance: Double, purposeDistance: Double, candidatePoints: [Point], direction: ForwardDirection, stepCount: DirectionCount, mustWaypoint: inout Waypoint, selectedPoints: inout [Point]) throws -> Double {
+    private func selectForwardPoint(remainedDistance: Double, purposeDistance: Double, candidatePoints: [Point], direction: ForwardDirection, stepCount: DirectionCount, mustWaypoint: inout Waypoint, selectedPoints: inout [Point], nextDistance: inout [Double]) throws -> Double {
         var calculatedDistance = remainedDistance
         var searchRange: Double = 100.0
         let purposeRatio: Double = stepCount.rawValue
@@ -190,35 +200,50 @@ final class PointsModel: ObservableObject {
             
             if mustWaypoint.hospital && !(nextCandidatePoints.filter { $0.category == "Hospital" }.isEmpty) {
                 mustWaypoint.hospital = false
-                selectedPoints.append(nextCandidatePoints.filter { $0.category == "Hospital" }.first!)
+                let selectedWayPoint: Point = nextCandidatePoints.filter { $0.category == "Hospital" }.first!
+                selectedPoints.append(selectedWayPoint)
+                nextDistance.append(selectedWayPoint.locationCoordinate.distance(from: selectedPointLocation))
+                calculatedDistance -= selectedWayPoint.locationCoordinate.distance(from: selectedPointLocation)
                 searchRange = 50.0
                 i += 1
                 self.mustWaypointNumber.append(i)
                 continue
             } else if mustWaypoint.library && !(nextCandidatePoints.filter { $0.category == "Library" }.isEmpty) {
                 mustWaypoint.library = false
-                selectedPoints.append(nextCandidatePoints.filter { $0.category == "Library" }.first!)
+                let selectedWayPoint: Point = nextCandidatePoints.filter { $0.category == "Library" }.first!
+                selectedPoints.append(selectedWayPoint)
+                nextDistance.append(selectedWayPoint.locationCoordinate.distance(from: selectedPointLocation))
+                calculatedDistance -= selectedWayPoint.locationCoordinate.distance(from: selectedPointLocation)
                 searchRange = 50.0
                 i += 1
                 self.mustWaypointNumber.append(i)
                 continue
             } else if mustWaypoint.park && !(nextCandidatePoints.filter { $0.category == "Park" }.isEmpty) {
                 mustWaypoint.park = false
-                selectedPoints.append(nextCandidatePoints.filter { $0.category == "Park" }.first!)
+                let selectedWayPoint: Point = nextCandidatePoints.filter { $0.category == "Park" }.first!
+                selectedPoints.append(selectedWayPoint)
+                nextDistance.append(selectedWayPoint.locationCoordinate.distance(from: selectedPointLocation))
+                calculatedDistance -= selectedWayPoint.locationCoordinate.distance(from: selectedPointLocation)
                 searchRange = 50.0
                 i += 1
                 self.mustWaypointNumber.append(i)
                 continue
             } else if mustWaypoint.pharmacy && !(nextCandidatePoints.filter { $0.category == "Pharmacy" }.isEmpty) {
                 mustWaypoint.pharmacy = false
-                selectedPoints.append(nextCandidatePoints.filter { $0.category == "Pharmacy" }.first!)
+                let selectedWayPoint: Point = nextCandidatePoints.filter { $0.category == "Pharmacy" }.first!
+                selectedPoints.append(selectedWayPoint)
+                nextDistance.append(selectedWayPoint.locationCoordinate.distance(from: selectedPointLocation))
+                calculatedDistance -= selectedWayPoint.locationCoordinate.distance(from: selectedPointLocation)
                 searchRange = 50.0
                 i += 1
                 self.mustWaypointNumber.append(i)
                 continue
             } else if mustWaypoint.busStop && !(nextCandidatePoints.filter { $0.category == "Bus" }.isEmpty) {
                 mustWaypoint.busStop = false
-                selectedPoints.append(nextCandidatePoints.filter { $0.category == "Bus" }.first!)
+                let selectedWayPoint: Point = nextCandidatePoints.filter { $0.category == "Bus" }.first!
+                selectedPoints.append(selectedWayPoint)
+                nextDistance.append(selectedWayPoint.locationCoordinate.distance(from: selectedPointLocation))
+                calculatedDistance -= selectedWayPoint.locationCoordinate.distance(from: selectedPointLocation)
                 searchRange = 50.0
                 i += 1
                 self.mustWaypointNumber.append(i)
@@ -231,7 +256,7 @@ final class PointsModel: ObservableObject {
             
             selectedPoints.append(nextPoint)
             print("=====> 현재 개수 : \(selectedPoints.count) 값 : \(selectedPoints)")
-            
+            nextDistance.append(nextPoint.locationCoordinate.distance(from: selectedPointLocation))
             calculatedDistance -= nextPoint.locationCoordinate.distance(from: selectedPointLocation)
             print("=====> 남은 거리 : \(calculatedDistance)")
             
