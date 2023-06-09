@@ -89,7 +89,7 @@ struct TrekkingModalView: View {
                     
                     //초기화 하기
                     if progress >= 1 {
-                        progress = 1
+                        progress = 0
                     }
                     
                     showRewardView = true
