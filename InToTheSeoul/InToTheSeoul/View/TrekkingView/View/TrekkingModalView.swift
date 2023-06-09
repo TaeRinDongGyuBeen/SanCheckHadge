@@ -26,6 +26,8 @@ struct TrekkingModalView: View {
     
 
     @Binding var mkMapView: MKMapView
+    
+    @Binding var progress: Double
 
     let minHeight: CGFloat = 80
     let maxHeight: CGFloat = 320
@@ -82,6 +84,14 @@ struct TrekkingModalView: View {
                     //                    let minutes = Calendar.current.dateComponents([.minute], from: firstTime, to: lastTime).minute ?? 0
                     print("last time : \(lastTime)")
                     
+                    progress += 1 / Double(pointsModel.annotationPoints.count)
+                    print("progress :\(progress)")
+                    
+                    //초기화 하기
+                    if progress >= 1 {
+                        progress = 0
+                    }
+                    
                     showRewardView = true
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                         showRewardView = false
@@ -112,6 +122,8 @@ struct TrekkingModalView: View {
                         timeInterval = Int(lastTime.timeIntervalSince(firstTime) / 60) // 시간 간격 (분 단위)
                         
                         print("timeInterval : \(timeInterval)")
+                        progress += Double(pointsModel.annotationPoints.count)
+                        print("progress == \(progress)")
                         
                         showRewardView = true
                         

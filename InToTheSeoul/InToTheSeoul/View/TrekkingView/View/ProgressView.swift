@@ -7,45 +7,50 @@
 
 import SwiftUI
 
-struct ProgressView: View {
-    @State private var progress: Double = 0.0
-    @Binding var totalDistance: Double
-    @Binding var predictMin: Int
-    
-    var body: some View {
-        VStack {
-            CustomProgressBar(progress: progress, totalDistance: $totalDistance, predictMin: $predictMin)
-                .frame(height: 50)
-            
-            //MARK: - 계산식 수정 필요
-            
-            Button("Increase Progress") {
-                withAnimation(Animation.linear(duration: 3)) {
-                    progress += 0.2
-                    
-                    if progress >= 1.0 {
-                        progress = 0
-                    }
-                }
-                print(progress)
-            }
-            .padding()
-        }
-        .padding()
-    }
-}
-
-struct ProgressView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProgressView(totalDistance: .constant(1200), predictMin: .constant(40))
-    }
-}
+//struct ProgressView: View {
+//    @State private var progress: Double = 0.0
+//    @Binding var totalDistance: Double
+//    @Binding var predictMin: Int
+//    
+//    var body: some View {
+//        VStack {
+//            CustomProgressBar(progress: progress, totalDistance: $totalDistance, predictMin: $predictMin)
+//                .frame(height: 50)
+//            
+//            //MARK: - 계산식 수정 필요
+//            
+//            Button("Increase Progress") {
+//                withAnimation(Animation.linear(duration: 3)) {
+//                    progress += 0.2
+////                    progress += Double(pointsModel.annotationPoints.count)
+//
+//                    
+//                    if progress >= 1.0 {
+//                        progress = 0
+//                    }
+//                }
+//                print(progress)
+//            }
+//            .padding()
+//        }
+//        .padding()
+//    }
+//}
+//
+//struct ProgressView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ProgressView(totalDistance: .constant(1200), predictMin: .constant(40))
+//    }
+//}
 
 
 struct CustomProgressBar: View {
-    var progress: Double
+    @Binding var progress: Double
     @Binding var totalDistance: Double
     @Binding var predictMin: Int
+    @EnvironmentObject var pointsModel: PointsModel
+    
+    // pointsModel.annotationPoints.count : 총 지점 개수
 
     
     var body: some View {

@@ -30,6 +30,8 @@ struct TrekkingInformationInput: View {
     @Binding var totalDistance: Double
     
     @Binding var predictMin: Int
+    @Binding var progress: Double
+
     
     var body: some View {
         VStack {
@@ -58,7 +60,7 @@ struct TrekkingInformationInput: View {
                 }
             }
             .navigationDestination(isPresented: $isRecommendSuccess) {
-                TrekkingView(firstTime: $firstTime, userMoney: $userMoney, accumulateDistance: $accumulateDistance, totalDistance: $totalDistance, predictMin: $predictMin).environmentObject(pointsModel)
+                TrekkingView(firstTime: $firstTime, userMoney: $userMoney, accumulateDistance: $accumulateDistance, totalDistance: $totalDistance, predictMin: $predictMin, progress: $progress).environmentObject(pointsModel)
             }
             
 //            NavigationLink(destination: TrekkingView(firstTime: $firstTime, userMoney: $userMoney, accumulateDistance: $accumulateDistance).environmentObject(pointsModel)) {
