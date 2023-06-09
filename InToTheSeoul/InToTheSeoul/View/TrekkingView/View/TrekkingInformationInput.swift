@@ -47,6 +47,9 @@ struct TrekkingInformationInput: View {
             ButtonComponent(buttonType: .nextButton, content: "시작하기", isActive: true) {
                 firstTime = Date()
                 print("first time \(firstTime)")
+                
+                //프로그레스바 초기화
+                progress = 0
 
                 do {
                     try pointsModel.recommendPoint(nowPostion: CLLocationCoordinate2D(latitude: 37.4753668, longitude: 126.9625635), walkTimeMin: Int(trekkingTime), mustWaypoint: Waypoint(hospital: isSelectedWaypointHospital, pharmacy: isSelectedWaypointPharmacy, library: isSelectedWaypointLibrary, park: isSelectedWaypointPark, busStop: isSelectedWaypointBusStop))
