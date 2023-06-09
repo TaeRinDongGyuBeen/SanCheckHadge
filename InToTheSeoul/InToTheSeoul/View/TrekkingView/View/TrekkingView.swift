@@ -32,6 +32,9 @@ struct TrekkingView: View {
     @Binding var userMoney: Int
     @Binding var accumulateDistance: Double
     
+    @Binding var totalDistance: Double
+    @Binding var predictMin: Int
+    
     var body: some View {
         ZStack {
             //            if showLoadingView {
@@ -54,7 +57,7 @@ struct TrekkingView: View {
             }
             
             VStack {
-                CustomProgressBar(progress: val)
+                CustomProgressBar(progress: val, totalDistance: $totalDistance, predictMin: $predictMin)
                     .frame(height: 57)
                 Spacer()
             }

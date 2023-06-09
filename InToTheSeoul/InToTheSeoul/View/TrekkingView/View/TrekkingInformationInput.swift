@@ -27,6 +27,10 @@ struct TrekkingInformationInput: View {
     @Binding var userMoney: Int
     @Binding var accumulateDistance: Double
     
+    @Binding var totalDistance: Double
+    
+    @Binding var predictMin: Int
+    
     var body: some View {
         VStack {
             Title
@@ -38,13 +42,18 @@ struct TrekkingInformationInput: View {
             WaypointPicker
                 .padding(.bottom, 109)
             
-//            NavigationLink(destination: TrekkingView(firstTime: $firstTime, userMoney: $userMoney, accumulateDistance: $accumulateDistance).environmentObject(pointsModel), isActive: $isRecommendSuccess) { }
-            
+
+            NavigationLink(destination: TrekkingView(firstTime: $firstTime, userMoney: $userMoney, accumulateDistance: $accumulateDistance, totalDistance: $totalDistance, predictMin: $predictMin).environmentObject(pointsModel), isActive: $isRecommendSuccess) { }
+        
             ButtonComponent(buttonType: .nextButton, content: "시작하기", isActive: true) {
                 firstTime = Date()
                 print("first time \(firstTime)")
+
                 do {
                     try pointsModel.recommendPoint(nowPostion: CLLocationCoordinate2D(latitude: 37.4753668, longitude: 126.9625635), walkTimeMin: Int(trekkingTime), mustWaypoint: Waypoint(hospital: isSelectedWaypointHospital, pharmacy: isSelectedWaypointPharmacy, library: isSelectedWaypointLibrary, park: isSelectedWaypointPark, busStop: isSelectedWaypointBusStop))
+                    
+                    distanceCalculate(pointsModel.annotationPoints)
+                    print("==========================distance on()")
                     isRecommendSuccess.toggle()
                 } catch {
                     print(error)
@@ -85,6 +94,22 @@ struct TrekkingInformationInput: View {
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: CustomBackButton())
         
+    }
+    func distanceCalculate(_ checkPoint: [AnnotationPoint]) -> Double {
+        totalDistance = 0
+        
+        for i in checkPoint {
+            totalDistance += i.viewPoint.distanceNextPoint
+        }
+        
+//        totalDistance = ((totalDistance / 1000) * 100).rounded() / 100
+        
+        totalDistance = (totalDistance / 1000).rounded(toPlaces: 2)
+        predictMin = Int((totalDistance / 4) * 60)   //4 : 평균 속력 4km 기준
+        print("predictMin :: \(predictMin)")
+        
+        print("DistanceSum : \(totalDistance)")
+        return totalDistance
     }
 }
 
@@ -184,3 +209,10 @@ extension TrekkingInformationInput {
 //            .environmentObject(PointsModel())
 //    }
 //}
+
+extension Double {
+    func rounded(toPlaces places: Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return (self * divisor).rounded() / divisor
+    }
+}
