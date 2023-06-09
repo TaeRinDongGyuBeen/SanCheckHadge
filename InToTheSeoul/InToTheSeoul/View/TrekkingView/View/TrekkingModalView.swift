@@ -84,7 +84,7 @@ struct TrekkingModalView: View {
                     //                    let minutes = Calendar.current.dateComponents([.minute], from: firstTime, to: lastTime).minute ?? 0
                     print("last time : \(lastTime)")
                     
-                    progress += 1 / Double(pointsModel.annotationPoints.count)
+                    progress += 1 / Double(pointsModel.annotationPoints.count + 1)
                     print("progress :\(progress)")
                     
                     //초기화 하기

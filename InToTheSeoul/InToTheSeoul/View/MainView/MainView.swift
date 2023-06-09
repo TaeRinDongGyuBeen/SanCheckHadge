@@ -5,6 +5,7 @@
 //  Created by 김동현 on 2023/06/04.
 //
 import SwiftUI
+import MapKit
 
 struct MainView: View {
     
@@ -22,6 +23,11 @@ struct MainView: View {
     @State var totalDistance: Double = 0
     @State var predictMin: Int = 0
     @State private var progress: Double = 0.0
+    
+    @State var userLocation: CLLocationCoordinate2D?
+    
+    @State var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+
     
     var body: some View {
         NavigationStack {
@@ -102,7 +108,7 @@ struct MainView: View {
                         showTrakingDestination = true
                     })
                     
-                    NavigationLink(destination: TrekkingInformationInput(userMoney: $userMoney, accumulateDistance: $userAccumulateDistance, totalDistance: $totalDistance, predictMin: $predictMin, progress: $progress), isActive: $showTrakingDestination) {
+                    NavigationLink(destination: TrekkingInformationInput(userMoney: $userMoney, accumulateDistance: $userAccumulateDistance, totalDistance: $totalDistance, predictMin: $predictMin, progress: $progress, userLocation: $userLocation), isActive: $showTrakingDestination) {
                         
                     }
                     .hidden()
@@ -124,7 +130,38 @@ struct MainView: View {
             }
             .padding(EdgeInsets(top: 0, leading: 40, bottom: 40, trailing: 40))
         }
+        .onReceive(self.timer) { (_) in
+            saveCurrentLocation()
+        }
         
+    }
+    
+    func getCurrentLocation(completion: @escaping (CLLocationCoordinate2D?) -> Void) {
+        let locationManager = CLLocationManager()
+        locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.startUpdatingLocation()
+            
+            if let location = locationManager.location {
+                completion(location.coordinate)
+            } else {
+                completion(nil)
+            }
+        } else {
+            completion(nil)
+        }
+    }
+
+    func saveCurrentLocation() {
+        getCurrentLocation { coordinate in
+            guard let currentCoordinate = coordinate else {
+                print("현재 위치를 가져올 수 없음()")
+                return
+            }
+            userLocation = currentCoordinate
+        }
     }
     
 }
