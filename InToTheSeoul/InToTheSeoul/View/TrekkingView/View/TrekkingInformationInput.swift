@@ -29,6 +29,8 @@ struct TrekkingInformationInput: View {
     
     @Binding var totalDistance: Double
     
+    @Binding var predictMin: Int
+    
     var body: some View {
         VStack {
             Title
@@ -40,7 +42,7 @@ struct TrekkingInformationInput: View {
             WaypointPicker
                 .padding(.bottom, 109)
             
-            NavigationLink(destination: TrekkingView(firstTime: $firstTime, userMoney: $userMoney, accumulateDistance: $accumulateDistance, totalDistance: $totalDistance).environmentObject(pointsModel), isActive: $isRecommendSuccess) { }
+            NavigationLink(destination: TrekkingView(firstTime: $firstTime, userMoney: $userMoney, accumulateDistance: $accumulateDistance, totalDistance: $totalDistance, predictMin: $predictMin).environmentObject(pointsModel), isActive: $isRecommendSuccess) { }
             
             ButtonComponent(buttonType: .nextButton, content: "시작하기", isActive: true) {
                 firstTime = Date()
@@ -99,7 +101,9 @@ struct TrekkingInformationInput: View {
 //        totalDistance = ((totalDistance / 1000) * 100).rounded() / 100
         
         totalDistance = (totalDistance / 1000).rounded(toPlaces: 2)
-
+        predictMin = Int((totalDistance / 3) * 60)   //3 : 평균 속력 3km 기준
+        print("predictMin :: \(predictMin)")
+        
         print("DistanceSum : \(totalDistance)")
         return totalDistance
     }

@@ -10,11 +10,11 @@ import SwiftUI
 struct ProgressView: View {
     @State private var progress: Double = 0.0
     @Binding var totalDistance: Double
-
+    @Binding var predictMin: Int
     
     var body: some View {
         VStack {
-            CustomProgressBar(progress: progress, totalDistance: $totalDistance)
+            CustomProgressBar(progress: progress, totalDistance: $totalDistance, predictMin: $predictMin)
                 .frame(height: 50)
             
             //MARK: - 계산식 수정 필요
@@ -37,7 +37,7 @@ struct ProgressView: View {
 
 struct ProgressView_Previews: PreviewProvider {
     static var previews: some View {
-        ProgressView(totalDistance: .constant(1200))
+        ProgressView(totalDistance: .constant(1200), predictMin: .constant(40))
     }
 }
 
@@ -45,6 +45,7 @@ struct ProgressView_Previews: PreviewProvider {
 struct CustomProgressBar: View {
     var progress: Double
     @Binding var totalDistance: Double
+    @Binding var predictMin: Int
 
     
     var body: some View {
@@ -82,7 +83,7 @@ struct CustomProgressBar: View {
                         .stroke(style: StrokeStyle(lineWidth: 2))
                         .foregroundColor(Color.theme.gray4)
                         .frame(width: geometry.size.width - 60, height: 1)
-                    Text("\(String(format: "%.2f", totalDistance))km · 40분 예상")
+                    Text("\(String(format: "%.2f", totalDistance))km · \(predictMin)분 예상")
                         .textFontAndColor(.h5)
                     Spacer()
   
