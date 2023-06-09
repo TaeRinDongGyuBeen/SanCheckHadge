@@ -21,6 +21,7 @@ struct MainView: View {
     
     @State var totalDistance: Double = 0
     @State var predictMin: Int = 0
+    @State private var progress: Double = 0.0
     
     var body: some View {
         NavigationStack {
@@ -101,7 +102,7 @@ struct MainView: View {
                         showTrakingDestination = true
                     })
                     
-                    NavigationLink(destination: TrekkingInformationInput(userMoney: $userMoney, accumulateDistance: $userAccumulateDistance, totalDistance: $totalDistance, predictMin: $predictMin), isActive: $showTrakingDestination) {
+                    NavigationLink(destination: TrekkingInformationInput(userMoney: $userMoney, accumulateDistance: $userAccumulateDistance, totalDistance: $totalDistance, predictMin: $predictMin, progress: $progress), isActive: $showTrakingDestination) {
                         
                     }
                     .hidden()
