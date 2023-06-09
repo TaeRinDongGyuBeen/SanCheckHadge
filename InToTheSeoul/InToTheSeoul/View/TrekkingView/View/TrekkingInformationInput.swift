@@ -101,7 +101,7 @@ struct TrekkingInformationInput: View {
 //        totalDistance = ((totalDistance / 1000) * 100).rounded() / 100
         
         totalDistance = (totalDistance / 1000).rounded(toPlaces: 2)
-        predictMin = Int((totalDistance / 3) * 60)   //3 : 평균 속력 3km 기준
+        predictMin = Int((totalDistance / 4) * 60)   //4 : 평균 속력 4km 기준
         print("predictMin :: \(predictMin)")
         
         print("DistanceSum : \(totalDistance)")
