@@ -41,9 +41,6 @@ struct TrekkingInformationInput: View {
             
             WaypointPicker
                 .padding(.bottom, 109)
-            
-
-            NavigationLink(destination: TrekkingView(firstTime: $firstTime, userMoney: $userMoney, accumulateDistance: $accumulateDistance, totalDistance: $totalDistance, predictMin: $predictMin).environmentObject(pointsModel), isActive: $isRecommendSuccess) { }
         
             ButtonComponent(buttonType: .nextButton, content: "시작하기", isActive: true) {
                 firstTime = Date()
@@ -61,7 +58,7 @@ struct TrekkingInformationInput: View {
                 }
             }
             .navigationDestination(isPresented: $isRecommendSuccess) {
-                TrekkingView(firstTime: $firstTime, userMoney: $userMoney, accumulateDistance: $accumulateDistance).environmentObject(pointsModel)
+                TrekkingView(firstTime: $firstTime, userMoney: $userMoney, accumulateDistance: $accumulateDistance, totalDistance: $totalDistance, predictMin: $predictMin).environmentObject(pointsModel)
             }
             
 //            NavigationLink(destination: TrekkingView(firstTime: $firstTime, userMoney: $userMoney, accumulateDistance: $accumulateDistance).environmentObject(pointsModel)) {
