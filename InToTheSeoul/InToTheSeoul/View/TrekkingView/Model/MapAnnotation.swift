@@ -34,6 +34,11 @@ struct MapAnnotation: View {
                 Image("ReachedPoint")
                     .resizable()
                     .scaledToFit()
+                Circle()
+                    .foregroundColor(.red)
+                    .frame(width: 11)
+                    .offset(x: 15, y: -18)
+                    .isHidden(!annotation.viewPoint.mustWaypoint)
                 ZStack {
                     Circle()
                         .foregroundColor(.white)
@@ -51,6 +56,11 @@ struct MapAnnotation: View {
                 Image("WillPoint")
                     .resizable()
                     .scaledToFit()
+                Circle()
+                    .foregroundColor(.red)
+                    .frame(width: 11)
+                    .offset(x: 15, y: -18)
+                    .isHidden(!annotation.viewPoint.mustWaypoint)
                 ZStack {
                     Circle()
                         .foregroundColor(.white)
@@ -73,15 +83,15 @@ enum AnnotationStyle {
     case toVisit
 }
 
-//struct MapAnnotation_Previews: PreviewProvider {
-//    static var previews: some View {
-//        Group {
-//            MapAnnotation(style: .start, number: 1)
-//            MapAnnotation(style: .visited, number: 1)
-//            MapAnnotation(style: .toVisit, number: 1)
-//        }
-//    }
-//}
+struct MapAnnotation_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            MapAnnotation(style: .toVisit, number: 1, annotation: AnnotationPoint(viewPoint: ViewPoint(id: 1, mustWaypoint: true, nowPoint: Point(name: "", lat: "", lon: "", category: "", address: "", id: 1))))
+            MapAnnotation(style: .start, number: 1, annotation: AnnotationPoint(viewPoint: ViewPoint(id: 1, mustWaypoint: false, nowPoint: Point(name: "", lat: "", lon: "", category: "", address: "", id: 1))))
+            MapAnnotation(style: .visited, number: 1, annotation: AnnotationPoint(viewPoint: ViewPoint(id: 1, mustWaypoint: false, nowPoint: Point(name: "", lat: "", lon: "", category: "", address: "", id: 1))))
+        }
+    }
+}
 
 
 final class MapAnnotationView: MKAnnotationView {
