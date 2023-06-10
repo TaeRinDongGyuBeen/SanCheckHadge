@@ -83,11 +83,6 @@ enum AnnotationStyle {
 //    }
 //}
 
-struct MapAnnotation_Previews: PreviewProvider {
-    static var previews: some View {
-        MapAnnotation(style: .start, number: 1, annotation: AnnotationPoint(viewPoint: ViewPoint(id: 1, mustWaypoint: true, nowPoint: Point(name: "", lat: "", lon: "", category: "", address: "", id: 1))))
-    }
-}
 
 final class MapAnnotationView: MKAnnotationView {
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
