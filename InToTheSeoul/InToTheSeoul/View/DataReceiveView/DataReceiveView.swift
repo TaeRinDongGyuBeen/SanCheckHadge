@@ -23,6 +23,7 @@ struct DataReceiveView: View {
     // TODO: nameLimiter 최소 글자 수 설정 필요. 최소 글자 수 입력 시 dataCheckList의 0번 인덱스를 true로 만들어 주어야 함.
     @State var nameLimiter: TextLimiter = TextLimiter(limit: 8)
     
+    
     /**
      여성(0), 남성(1)이 각각 클릭될 때, 상호 작용하도록 만드는 Bool Array
      */
@@ -93,14 +94,13 @@ struct DataReceiveView: View {
                     .frame(height: 40)
                     .background(Color.theme.gray1)
                     .cornerRadius(20)
-                    .onChange(of: nameLimiter.value) { newValue in
-                        if newValue.isEmpty {
-                            dataCheckList[0] = false
-                        } else {
+                    .onChange(of: nameLimiter.value, perform: { newValue in
+                        if newValue.count >= 2 {
                             dataCheckList[0] = true
+                        } else {
+                            dataCheckList[0] = false
                         }
-//                        dataCheckList[0] = !newValue.isEmpty
-                    }
+                    })
             }
             
             Spacer()
@@ -179,7 +179,7 @@ struct DataReceiveView: View {
                     }, label: {
                         ButtonComponent(
                             buttonType: .miniButton,
-                            content: "20대",
+                            content: "20~24세",
                             isActive: ageCheckList[1],
                             action: {
                                 for i in stride(from: 0, through: ageCheckList.count - 1, by: 1) {
@@ -198,7 +198,7 @@ struct DataReceiveView: View {
                     }, label: {
                         ButtonComponent(
                             buttonType: .miniButton,
-                            content: "30대",
+                            content: "25~29세",
                             isActive: ageCheckList[2],
                             action: {
                                 focus = false
@@ -218,7 +218,7 @@ struct DataReceiveView: View {
                     }, label: {
                         ButtonComponent(
                             buttonType: .miniButton,
-                            content: "40대",
+                            content: "30~34세",
                             isActive: ageCheckList[3],
                             action: {
                                 focus = false
@@ -237,7 +237,7 @@ struct DataReceiveView: View {
                     }, label: {
                         ButtonComponent(
                             buttonType: .miniButton,
-                            content: "50대",
+                            content: "35~39세",
                             isActive: ageCheckList[4],
                             action: {
                                 focus = false
@@ -256,7 +256,7 @@ struct DataReceiveView: View {
                     }, label: {
                         ButtonComponent(
                             buttonType: .miniButton,
-                            content: "60대 이상",
+                            content: "40세 이상",
                             isActive: ageCheckList[5],
                             action: {
                                 focus = false
