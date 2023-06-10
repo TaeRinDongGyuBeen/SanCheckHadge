@@ -109,7 +109,8 @@ struct TrekkingView: View {
                         .overlay(
                             withAnimation(.easeInOut(duration: 4)) {
                                 VStack {
-                                    RewardView(points: Int(pointsModel.selectedPoints[toVisitPointIndex].distanceNextPoint / 10))
+                                    RewardView(points: Int(pointsModel.selectedPoints[toVisitPointIndex - 1
+                                                                                     ].distanceNextPoint / 10))
                                 }
                             }
                         )
