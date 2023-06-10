@@ -61,7 +61,7 @@ struct TrekkingInformationInput: View {
                 }
             }
             .navigationDestination(isPresented: $isRecommendSuccess) {
-                TrekkingView(firstTime: $firstTime, userMoney: $userMoney, accumulateDistance: $accumulateDistance).environmentObject(pointsModel)
+                TrekkingView(firstTime: $firstTime, userMoney: $userMoney, accumulateDistance: $accumulateDistance, totalDistance: $totalDistance, predictMin: $predictMin).environmentObject(pointsModel)
             }
             
 //            NavigationLink(destination: TrekkingView(firstTime: $firstTime, userMoney: $userMoney, accumulateDistance: $accumulateDistance).environmentObject(pointsModel)) {

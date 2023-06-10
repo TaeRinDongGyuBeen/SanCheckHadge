@@ -91,7 +91,7 @@ struct OnboardingView: View {
             
             
             ButtonComponent(buttonType: .nextButton, content: selection == 2 ? "시작하기" : "다음 페이지 넘어가기", isActive: true) {
-                if selection < 2 {
+                if selection < 4 {
                     withAnimation {
                         selection += 1
                     }
