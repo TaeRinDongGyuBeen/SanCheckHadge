@@ -90,7 +90,7 @@ struct OnboardingView: View {
             .accentColor(.black) // 인디케이터 점의 색상을 까만색으로 설정
             
             
-            ButtonComponent(buttonType: .nextButton, content: selection == 2 ? "시작하기" : "다음 페이지 넘어가기", isActive: true) {
+            ButtonComponent(buttonType: .nextButton, content: selection == 4 ? "시작하기" : "다음 페이지 넘어가기", isActive: true) {
                 if selection < 4 {
                     withAnimation {
                         selection += 1
