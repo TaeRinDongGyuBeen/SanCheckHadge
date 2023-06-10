@@ -136,11 +136,12 @@ struct TrekkingResultView: View {
                     Spacer()
                     Text("\(recentWorkData?.gainCoin ?? 0)")
                         .textFontAndColor(.body5)
+                        .frame(minWidth: 70)
                     Spacer()
                     Text("획득")
                         .textFontAndColor(.h5)
                 }
-                .frame(maxWidth: 118)
+                .frame(maxWidth: 150)
             }
             
             Spacer()
