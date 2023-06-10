@@ -37,7 +37,7 @@ struct MapAnnotation: View {
                 ZStack {
                     Circle()
                         .foregroundColor(.white)
-                    Text("\(annotation.viewPoint.id)")
+                    Text("\(annotation.viewPoint.id + 1)")
                         .font(.headline)
                         .foregroundColor(.theme.green2)
                 }
@@ -54,7 +54,7 @@ struct MapAnnotation: View {
                 ZStack {
                     Circle()
                         .foregroundColor(.white)
-                    Text("\(annotation.viewPoint.id)")
+                    Text("\(annotation.viewPoint.id + 1)")
                         .font(.headline)
                         .foregroundColor(.theme.yellow)
                 }
@@ -82,6 +82,12 @@ enum AnnotationStyle {
 //        }
 //    }
 //}
+
+struct MapAnnotation_Previews: PreviewProvider {
+    static var previews: some View {
+        MapAnnotation(style: .start, number: 1, annotation: AnnotationPoint(viewPoint: ViewPoint(id: 1, mustWaypoint: true, nowPoint: Point(name: "", lat: "", lon: "", category: "", address: "", id: 1))))
+    }
+}
 
 final class MapAnnotationView: MKAnnotationView {
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
