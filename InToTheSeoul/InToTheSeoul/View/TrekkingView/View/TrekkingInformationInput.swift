@@ -30,6 +30,10 @@ struct TrekkingInformationInput: View {
     @Binding var totalDistance: Double
     
     @Binding var predictMin: Int
+    @Binding var progress: Double
+    
+    @Binding var userLocation: CLLocationCoordinate2D?
+
     
     var body: some View {
         VStack {
@@ -41,16 +45,16 @@ struct TrekkingInformationInput: View {
             
             WaypointPicker
                 .padding(.bottom, 109)
-            
-
-            NavigationLink(destination: TrekkingView(firstTime: $firstTime, userMoney: $userMoney, accumulateDistance: $accumulateDistance, totalDistance: $totalDistance, predictMin: $predictMin).environmentObject(pointsModel), isActive: $isRecommendSuccess) { }
         
             ButtonComponent(buttonType: .nextButton, content: "시작하기", isActive: true) {
                 firstTime = Date()
                 print("first time \(firstTime)")
+                
+                //프로그레스바 초기화
+                progress = 0
 
                 do {
-                    try pointsModel.recommendPoint(nowPostion: CLLocationCoordinate2D(latitude: 37.4753668, longitude: 126.9625635), walkTimeMin: Int(trekkingTime), mustWaypoint: Waypoint(hospital: isSelectedWaypointHospital, pharmacy: isSelectedWaypointPharmacy, library: isSelectedWaypointLibrary, park: isSelectedWaypointPark, busStop: isSelectedWaypointBusStop))
+                    try pointsModel.recommendPoint(nowPostion: userLocation ?? CLLocationCoordinate2D(latitude: 37.4753668, longitude: 126.9625635), walkTimeMin: Int(trekkingTime), mustWaypoint: Waypoint(hospital: isSelectedWaypointHospital, pharmacy: isSelectedWaypointPharmacy, library: isSelectedWaypointLibrary, park: isSelectedWaypointPark, busStop: isSelectedWaypointBusStop))
                     
                     distanceCalculate(pointsModel.annotationPoints)
                     print("==========================distance on()")
@@ -61,7 +65,7 @@ struct TrekkingInformationInput: View {
                 }
             }
             .navigationDestination(isPresented: $isRecommendSuccess) {
-                TrekkingView(firstTime: $firstTime, userMoney: $userMoney, accumulateDistance: $accumulateDistance, totalDistance: $totalDistance, predictMin: $predictMin).environmentObject(pointsModel)
+                TrekkingView(firstTime: $firstTime, userMoney: $userMoney, accumulateDistance: $accumulateDistance, totalDistance: $totalDistance, predictMin: $predictMin, progress: $progress).environmentObject(pointsModel)
             }
             
 //            NavigationLink(destination: TrekkingView(firstTime: $firstTime, userMoney: $userMoney, accumulateDistance: $accumulateDistance).environmentObject(pointsModel)) {

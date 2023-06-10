@@ -22,7 +22,6 @@ struct TrekkingView: View {
     @State var toVisitPointIndex: Int = 0
     @State private var isNearby = false
     
-    @State var val: Double = 0
     
     @State private var showRewardView = false   //해찌 나오는 보상뷰
     @State private var showResultView = false   //모달 바꾸기
@@ -34,6 +33,7 @@ struct TrekkingView: View {
     
     @Binding var totalDistance: Double
     @Binding var predictMin: Int
+    @Binding var progress: Double
     
     var body: some View {
         ZStack {
@@ -57,7 +57,7 @@ struct TrekkingView: View {
             }
             
             VStack {
-                CustomProgressBar(progress: val, totalDistance: $totalDistance, predictMin: $predictMin)
+                CustomProgressBar(progress: $progress, totalDistance: $totalDistance, predictMin: $predictMin)
                     .frame(height: 57)
                 Spacer()
             }
@@ -93,7 +93,7 @@ struct TrekkingView: View {
                 .padding()
                 
                 if !showResultView {
-                    TrekkingModalView(isNearby: $isNearby, showRewardView: $showRewardView, showResultView: $showResultView, toVisitPointIndex: $toVisitPointIndex, firstTime: $firstTime, mkMapView: $mkMapView)
+                    TrekkingModalView(isNearby: $isNearby, showRewardView: $showRewardView, showResultView: $showResultView, toVisitPointIndex: $toVisitPointIndex, firstTime: $firstTime, mkMapView: $mkMapView, progress: $progress)
                 } else {
                     TrekkingResultView(userMoney: $userMoney, accumulateDistance: $accumulateDistance)
                 }
