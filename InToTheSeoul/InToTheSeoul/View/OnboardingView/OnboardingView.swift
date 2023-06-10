@@ -82,7 +82,7 @@ struct OnboardingView: View {
                 Image("Onboarding_5")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 280)
+                    .frame(width: 260)
                     .tag(4)
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
@@ -115,7 +115,7 @@ struct OnboardingView: View {
                     }
             }
         })
-        .padding(.horizontal, 26)
+        .padding(.horizontal, 30)
     }
 }
 
