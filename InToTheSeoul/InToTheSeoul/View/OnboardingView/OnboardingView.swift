@@ -14,7 +14,7 @@ struct GifImage: UIViewRepresentable {
     init(_ name: String) {
         self.name = name
     }
-
+ 
     func makeUIView(context: Context) -> WKWebView {
         let webView = WKWebView()
         let url = Bundle.main.url(forResource: name, withExtension: "gif")!
@@ -82,7 +82,7 @@ struct OnboardingView: View {
                 Image("Onboarding_5")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 280)
+                    .frame(width: 260)
                     .tag(4)
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
@@ -91,7 +91,7 @@ struct OnboardingView: View {
             
             
             ButtonComponent(buttonType: .nextButton, content: selection == 2 ? "시작하기" : "다음 페이지 넘어가기", isActive: true) {
-                if selection < 2 {
+                if selection < 4 {
                     withAnimation {
                         selection += 1
                     }
@@ -115,7 +115,7 @@ struct OnboardingView: View {
                     }
             }
         })
-        .padding(.horizontal, 26)
+        .padding(.horizontal, 30)
     }
 }
 
