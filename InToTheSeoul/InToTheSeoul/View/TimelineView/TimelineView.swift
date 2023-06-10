@@ -11,25 +11,29 @@ struct TimelineView: View {
     @State var workDatum = Array(CoreDataManager.coreDM.readWorkData().reversed())
     
     var body: some View {
-        if workDatum.count != 0 {
-            ScrollView {
-                VStack(spacing: 0) {
-                    ForEach(0 ..< workDatum.count) { index in
-                        if index == 0 {
-                            ScrollCell(isFirstCell: true, workData: workDatum[index])
-                        } else {
-                            ScrollCell(workData: workDatum[index])
+        VStack {
+            if workDatum.count != 0 {
+                ScrollView {
+                    VStack(spacing: 0) {
+                        ForEach(0 ..< workDatum.count) { index in
+                            if index == 0 {
+                                ScrollCell(isFirstCell: true, workData: workDatum[index])
+                            } else {
+                                ScrollCell(workData: workDatum[index])
+                            }
                         }
                     }
+                    
                 }
+                .padding(EdgeInsets(top: 0, leading: 40, bottom: 0, trailing: 40))
                 
+            } else {
+                Text("데이터가 없습니다.")
+                    .textFontAndColor(.h1)
             }
-            .padding(EdgeInsets(top: 0, leading: 40, bottom: 0, trailing: 40))
-            
-        } else {
-            Text("데이터가 없습니다.")
-                .textFontAndColor(.h1)
         }
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: CustomBackButton())
     }
 }
 
