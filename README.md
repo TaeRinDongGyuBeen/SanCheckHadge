@@ -1,6 +1,7 @@
-# <img src="https://github.com/2023SST-InToTheSeoul/in-to-the-Seoul/assets/104834390/dfc15dd6-90f6-44a1-b624-f537257a1703" width=30px> 산책해찌 
+# <img src="https://github.com/2023SST-InToTheSeoul/SanCheckHadge/assets/104834390/e3a19642-7618-4b57-8115-3b739e635ff0" width=30px> 산책해찌 
 
-![로고](https://github.com/2023SST-InToTheSeoul/in-to-the-Seoul/assets/104834390/a5500869-88a3-4667-8393-eddedc02bb50)
+![로고](https://github.com/2023SST-InToTheSeoul/SanCheckHadge/assets/104834390/dbcc2f79-1935-4569-bd0e-e42a5ddb276a)
+
 <br>
 
 ### 🦔 About 산책해찌
@@ -59,14 +60,14 @@
 
 |기능|산책 경로 추천|리워드 시스템|
 |---|------|---|
-|스크린샷|<img src="https://github.com/2023SST-InToTheSeoul/in-to-the-Seoul/assets/104834390/36b67041-f57e-478c-b82a-5268e27c4746" alt="이미지" width="300">|<img src="https://github.com/2023SST-InToTheSeoul/in-to-the-Seoul/assets/104834390/312682dc-835f-4f64-b3b8-e905f619b33f" alt="이미지" width="300">|
+|스크린샷|<img src="https://github.com/2023SST-InToTheSeoul/SanCheckHadge/assets/104834390/c3a837d8-16f3-4469-b665-22da152b3ca9" alt="이미지" width="300">|<img src="https://github.com/2023SST-InToTheSeoul/SanCheckHadge/assets/104834390/c91641a9-0439-49ad-a108-ff930ba10a3a" alt="이미지" width="300">|
 |설명|사용자의 현재 위치를 기준으로<br>주변의 공원, 버스정류장, 가로수 등 <br>주요 시설물을 추천해줍니다.|산책 경로에 도달할 시 <br>리워드를 제공하고, 해당 리워드를 통해 <br>상품을 구매할 수 있도록 하였습니다.|
 
 <br>
 
 |기능|행복 코인|기록 뷰|
 |---|------|---|
-|스크린샷|<img src="https://github.com/2023SST-InToTheSeoul/in-to-the-Seoul/assets/104834390/7a1a9c2c-9b1a-40fc-a6bc-bd357fc2379c" alt="아마지" width="300">|<img src="https://github.com/2023SST-InToTheSeoul/in-to-the-Seoul/assets/104834390/f0c12a39-95a2-4c2a-a58d-df76c8d6cc28" alt="이미지" width="300">|
+|스크린샷|<img src="https://github.com/2023SST-InToTheSeoul/SanCheckHadge/assets/104834390/4768e823-9d9d-4100-9c55-2bda9d8b09da" alt="아마지" width="300">|<img src="https://github.com/2023SST-InToTheSeoul/SanCheckHadge/assets/104834390/7d2f7f23-68f6-4072-89cd-17f69cdbcfb6" alt="이미지" width="300">|
 |설명|현재는 코인을 통해 '해찌'를 꾸밀 수 있지만,<br> 추후엔 공공정책과 연계하여 <br>지원금 등을 제공하고자 합니다.|사용자가 산책한 기록을 <br>시간 순서대로 보여주는 뷰입니다.|
 
 <br>
