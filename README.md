@@ -21,7 +21,6 @@
 
 <br>
 
-
 |김동현(Tech)|김태형(Tech)|이우빈(Design)|안수린(Design)|정승균(PM)|
 |:---:|:---:|:---:|:---:|:---:|
 |<img alt="" src="https://github.com/DhKimy.png" width="150">|<img alt="" src="https://github.com/Taerogrammer.png" width="150">|<img alt="" src="https://github.com/JellyBeen0326.png" width="150">|<img alt="" src="https://github.com/dimazsr.png" width="150">|<img alt="" src="https://github.com/seunggyun-jeong.png" width="150">
