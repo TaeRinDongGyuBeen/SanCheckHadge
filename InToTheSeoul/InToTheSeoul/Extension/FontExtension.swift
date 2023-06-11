@@ -19,13 +19,14 @@ extension Font {
      
      */
     enum SeoulFont {
-        case headline1
-        case headline2
-        case headline3
-        case headline4
-        case headline5
-        case headline6
-        case headline7
+        case h1
+        case h2
+        case h3
+        case h4
+        case h5
+        case h6
+        case h7
+        case h8
         case body1
         case body2
         case body3
@@ -39,20 +40,22 @@ extension Font {
         
         var customStyle: TextStyle {
             switch self {
-            case .headline1:
+            case .h1:
                 return .title2
-            case .headline2:
+            case .h2:
                 return .footnote
-            case .headline3:
+            case .h3:
                 return .headline
-            case .headline4:
+            case .h4:
                 return .caption2
-            case .headline5:
+            case .h5:
                 return .footnote
-            case .headline6:
+            case .h6:
                 return .footnote
-            case .headline7:
+            case .h7:
                 return .largeTitle
+            case .h8:
+                return .title3
             case .body1:
                 return .body
             case .body2:
@@ -70,27 +73,31 @@ extension Font {
             case .button1:
                 return .headline
             case .button2:
-                return .body
+                return .caption2
             case .coin:
                 return .body
+
+
             }
         }
         
         var customWeight: Weight {
             switch self {
-            case .headline1:
+            case .h1:
                 return .bold
-            case .headline2:
+            case .h2:
                 return .regular
-            case .headline3:
+            case .h3:
                 return .bold
-            case .headline4:
+            case .h4:
                 return .regular
-            case .headline5:
+            case .h5:
                 return .bold
-            case .headline6:
+            case .h6:
                 return .regular
-            case .headline7:
+            case .h7:
+                return .bold
+            case .h8:
                 return .bold
             case .body1:
                 return .regular
@@ -109,7 +116,7 @@ extension Font {
             case .button1:
                 return .bold
             case .button2:
-                return .bold
+                return .regular
             case .coin:
                 return .bold
             }
