@@ -59,22 +59,21 @@ struct OnboardingView: View {
             
             TabView(selection: $selection) {
                 GifImage("Onboarding_1")
-                    
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 322)
                     .tag(0)
+                
                 GifImage("Onboarding_2")
-                    
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 322)
                     .tag(1)
+                
                 GifImage("Onboarding_3")
-                    
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 322)
                     .tag(2)
+                
                 GifImage("Onboarding_4")
-                    
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 322)
                     .tag(3)

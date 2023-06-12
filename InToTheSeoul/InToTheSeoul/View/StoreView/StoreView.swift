@@ -50,81 +50,88 @@ struct StoreView: View {
             }
             .padding(EdgeInsets(top: 10, leading: 0, bottom: 13.5, trailing: 0))
             Spacer()
-            VStack(spacing: 0) {
-                HStack(spacing: 0) {
-                    StoreProductButton(
-                        isActive: buttonIsActiveArray[0],
-                        color: canBuyItemColor(userMoney: userMoney, price: 1500),
-                        isOwnItem: checkOwnItem(itemName: "palleteSet"),
-                        money: 1500,
-                        imageName: "palleteSet",
-                        action: {
-                            buttonActive(index: 0)
-                            presentClothes = "palleteSet"
-                        })
-                    .disabled(clothes.contains("palleteSet") ? false : cantBuyItemDisable(userMoney: userMoney, price: 1500))
-                    
-                    Spacer()
-                    
-                    StoreProductButton(
-                        isActive: buttonIsActiveArray[1],
-                        color: canBuyItemColor(userMoney: userMoney, price: 2000),
-                        isOwnItem: checkOwnItem(itemName: "drum"),
-                        money: 2000,
-                        imageName: "drum",
-                        action: {
-                            buttonActive(index: 1)
-                            presentClothes = "drum"
-                        })
-                    .disabled(clothes.contains("drum") ? false : cantBuyItemDisable(userMoney: userMoney, price: 2000))
-                    
-                    Spacer()
-                    
-                    StoreProductButton(
-                        isActive: buttonIsActiveArray[2],
-                        color: canBuyItemColor(userMoney: userMoney, price: 1200),
-                        isOwnItem: checkOwnItem(itemName: "books"),
-                        money: 1200,
-                        imageName: "books",
-                        action: {
-                            buttonActive(index: 2)
-                            presentClothes = "books"
-                        })
-                    .disabled(clothes.contains("books") ? false : cantBuyItemDisable(userMoney: userMoney, price: 1200))
-                }
-                .padding(EdgeInsets(top: 0, leading: 0, bottom: 13.5, trailing: 0))
-                
-                HStack(spacing: 0) {
-                    StoreProductButton(
-                        isActive: buttonIsActiveArray[3],
-                        color: canBuyItemColor(userMoney: userMoney, price: 1700),
-                        isOwnItem: checkOwnItem(itemName: "trainingTools"),
-                        money: 1700,
-                        imageName: "trainingTools",
-                        action: {
-                            buttonActive(index: 3)
-                            presentClothes = "trainingTools"
-                        })
-                    .disabled(clothes.contains("trainingTools") ? false : cantBuyItemDisable(userMoney: userMoney, price: 1700))
-                    
-                    Spacer()
-                    
-                    StoreProductButton(isActive: buttonIsActiveArray[4], color: canBuyItemColor(userMoney: userMoney, price: 1500), isOwnItem: checkOwnItem(itemName: "macbook"), money: 1500, imageName: "macbook", action: {
-                        buttonActive(index: 4)
-                        presentClothes = "macbook"
-                    })
-                    .disabled(clothes.contains("macbook") ? false : cantBuyItemDisable(userMoney: userMoney, price: 1500))
-                    
-                    Spacer()
-                    
-                    ButtonComponent(buttonType: .storeReadyForSaleButton, content: "준비중입니다", isActive: false, action: {
+            
+            ScrollView {
+                VStack(spacing: 0) {
+                    HStack(spacing: 0) {
+                        StoreProductButton(
+                            isActive: buttonIsActiveArray[0],
+                            color: canBuyItemColor(userMoney: userMoney, price: 1500),
+                            isOwnItem: checkOwnItem(itemName: "palleteSet"),
+                            money: 1500,
+                            imageName: "palleteSet",
+                            action: {
+                                buttonActive(index: 0)
+                                presentClothes = "palleteSet"
+                            })
+                        .disabled(clothes.contains("palleteSet") ? false : cantBuyItemDisable(userMoney: userMoney, price: 1500))
                         
-                    })
+                        Spacer()
+                        
+                        StoreProductButton(
+                            isActive: buttonIsActiveArray[1],
+                            color: canBuyItemColor(userMoney: userMoney, price: 2000),
+                            isOwnItem: checkOwnItem(itemName: "drum"),
+                            money: 2000,
+                            imageName: "drum",
+                            action: {
+                                buttonActive(index: 1)
+                                presentClothes = "drum"
+                            })
+                        .disabled(clothes.contains("drum") ? false : cantBuyItemDisable(userMoney: userMoney, price: 2000))
+                        
+                        Spacer()
+                        
+                        StoreProductButton(
+                            isActive: buttonIsActiveArray[2],
+                            color: canBuyItemColor(userMoney: userMoney, price: 1200),
+                            isOwnItem: checkOwnItem(itemName: "books"),
+                            money: 1200,
+                            imageName: "books",
+                            action: {
+                                buttonActive(index: 2)
+                                presentClothes = "books"
+                            })
+                        .disabled(clothes.contains("books") ? false : cantBuyItemDisable(userMoney: userMoney, price: 1200))
+                    }
+                    .padding(EdgeInsets(top: 10, leading: 10, bottom: 13.5, trailing: 10))
+                    
+                    HStack(alignment: .top, spacing: 0) {
+                        StoreProductButton(
+                            isActive: buttonIsActiveArray[3],
+                            color: canBuyItemColor(userMoney: userMoney, price: 1700),
+                            isOwnItem: checkOwnItem(itemName: "trainingTools"),
+                            money: 1700,
+                            imageName: "trainingTools",
+                            action: {
+                                buttonActive(index: 3)
+                                presentClothes = "trainingTools"
+                            })
+                        .disabled(clothes.contains("trainingTools") ? false : cantBuyItemDisable(userMoney: userMoney, price: 1700))
+                        
+                        Spacer()
+                        
+                        StoreProductButton(isActive: buttonIsActiveArray[4], color: canBuyItemColor(userMoney: userMoney, price: 1500), isOwnItem: checkOwnItem(itemName: "macbook"), money: 1500, imageName: "macbook", action: {
+                            buttonActive(index: 4)
+                            presentClothes = "macbook"
+                        })
+                        .disabled(clothes.contains("macbook") ? false : cantBuyItemDisable(userMoney: userMoney, price: 1500))
+                        
+                        Spacer()
+                        
+                        ButtonComponent(buttonType: .storeReadyForSaleButton, content: "준비중입니다", isActive: false, action: {
+                            
+                        })
+                    }
+                    .padding(EdgeInsets(top: 13.5, leading: 10, bottom: 10, trailing: 10))
+                    
                 }
-                .padding(EdgeInsets(top: 13.5, leading: 0, bottom: 0, trailing: 0))
-                
+                .padding(EdgeInsets(top: 13.5, leading: 20, bottom: 14, trailing: 20))
             }
-            .padding(EdgeInsets(top: 13.5, leading: 0, bottom: 14, trailing: 0))
+            .padding(.horizontal, 20)
+            .scrollIndicators(.hidden)
+            .border(Color.theme.gray1, width: 5)
+            .cornerRadius(8)
             
             Spacer()
             
@@ -155,9 +162,9 @@ struct StoreView: View {
                 Text("확인 버튼을 누르면 행복코인으로 아이템을 구매합니다.")
                     .textFontAndColor(.body4)
             }
-            .padding(EdgeInsets(top: 14, leading: 0, bottom: 0, trailing: 0))
+            .padding(EdgeInsets(top: 14, leading: 40, bottom: 0, trailing: 40))
         }
-        .padding(EdgeInsets(top: 30, leading: 40, bottom: 20, trailing: 40))
+        .padding(EdgeInsets(top: 30, leading: 0, bottom: 20, trailing: 0))
         .onAppear {
             print(presentClothes)
         }
