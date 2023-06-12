@@ -79,7 +79,7 @@ struct DataReceiveView: View {
                     .padding(1.5)
             }
             
-            Spacer()
+            
             
             VStack(spacing: 0) {
                 Text("이름을 알려주세요")
@@ -102,8 +102,7 @@ struct DataReceiveView: View {
                         }
                     })
             }
-            
-            Spacer()
+            .padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0))
             
             VStack(spacing: 0) {
                 Text("성별을 알려주세요")
@@ -145,8 +144,7 @@ struct DataReceiveView: View {
                     })
                 }
             }
-            
-            Spacer()
+            .padding(EdgeInsets(top: 20, leading: 0, bottom: 0, trailing: 0))
             
             VStack(spacing: 0) {
                 Text("연령대를 알려주세요")
@@ -211,7 +209,8 @@ struct DataReceiveView: View {
                     })
                     
                 }
-                .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
+                .padding(EdgeInsets(top: 0, leading: 0, bottom: 12, trailing: 0))
+                
                 HStack(spacing: 0) {
                     Button(action: {
                         
@@ -270,8 +269,7 @@ struct DataReceiveView: View {
                     
                 }
             }
-            Spacer()
-            
+            .padding(EdgeInsets(top: 20, leading: 0, bottom: 0, trailing: 0))
             
             ButtonComponent(
                 buttonType: .nextButton,
@@ -285,17 +283,18 @@ struct DataReceiveView: View {
                     print("데이터 저장됨")
                 }
             )
+            .scrollDisabled(true)
             .disabled(!nextButtonActivated)
+            .padding(EdgeInsets(top: 20, leading: 0, bottom: 0, trailing: 0))
             
             
         }
-        .scrollIndicators(.hidden)
-        .padding(EdgeInsets(top: 30, leading: 40, bottom: 50, trailing: 40))
         .onChange(of: focus) { newValue in
             if !newValue {
                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
             }
         }
+        .padding(EdgeInsets(top: 15, leading: 40, bottom: 0, trailing: 40))
         
     }
     
