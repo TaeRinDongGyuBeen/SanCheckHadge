@@ -44,7 +44,8 @@ struct TrekkingInformationInput: View {
                 .padding(.bottom, 51)
             
             WaypointPicker
-                .padding(.bottom, 109)
+            
+            Spacer()
         
             ButtonComponent(buttonType: .nextButton, content: "시작하기", isActive: true) {
                 firstTime = Date()
@@ -64,30 +65,10 @@ struct TrekkingInformationInput: View {
                     isRecommendError.toggle()
                 }
             }
+            .padding(.bottom, 25)
             .navigationDestination(isPresented: $isRecommendSuccess) {
                 TrekkingView(firstTime: $firstTime, userMoney: $userMoney, accumulateDistance: $accumulateDistance, totalDistance: $totalDistance, predictMin: $predictMin, progress: $progress).environmentObject(pointsModel)
             }
-            
-//            NavigationLink(destination: TrekkingView(firstTime: $firstTime, userMoney: $userMoney, accumulateDistance: $accumulateDistance).environmentObject(pointsModel)) {
-//                Text("시작하기")
-//                    .frame(maxWidth: .infinity)
-//                    .frame(height: 45)
-//                    .textFontAndColor(.button1)
-//
-//            }
-//            .background(Color.theme.green1)
-//            .cornerRadius(30)
-//            .simultaneousGesture(TapGesture().onEnded({
-//
-//                firstTime = Date()
-//                print("first time \(firstTime)")
-//                do {
-//                    try pointsModel.recommendPoint(nowPostion: CLLocationCoordinate2D(latitude: 37.4753668, longitude: 126.9625635), walkTimeMin: Int(trekkingTime), mustWaypoint: Waypoint(hospital: isSelectedWaypointHospital, pharmacy: isSelectedWaypointPharmacy, library: isSelectedWaypointLibrary, park: isSelectedWaypointPark, busStop: isSelectedWaypointBusStop))
-//                } catch {
-//                    print(error)
-//                    isRecommendError.toggle()
-//                }
-//            }))
         }
         .padding(.horizontal, 40)
         .alert("경로 추천 실패", isPresented: $isRecommendError) {
@@ -99,7 +80,7 @@ struct TrekkingInformationInput: View {
         .navigationBarItems(leading: CustomBackButton())
         
     }
-    func distanceCalculate(_ checkPoint: [AnnotationPoint]) -> Double {
+    func distanceCalculate(_ checkPoint: [AnnotationPoint]) {
         totalDistance = 0
         
         for i in checkPoint {
@@ -113,7 +94,6 @@ struct TrekkingInformationInput: View {
         print("predictMin :: \(predictMin)")
         
         print("DistanceSum : \(totalDistance)")
-        return totalDistance
     }
 }
 

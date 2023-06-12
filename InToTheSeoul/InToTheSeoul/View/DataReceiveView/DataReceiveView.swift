@@ -67,7 +67,7 @@ struct DataReceiveView: View {
     // MARK: - body
     
     var body: some View {
-        VStack(spacing: 0) {
+        ScrollView {
             
             //Title
             VStack(spacing: 0) {
@@ -289,6 +289,7 @@ struct DataReceiveView: View {
             
             
         }
+        .scrollIndicators(.hidden)
         .padding(EdgeInsets(top: 30, leading: 40, bottom: 50, trailing: 40))
         .onChange(of: focus) { newValue in
             if !newValue {
