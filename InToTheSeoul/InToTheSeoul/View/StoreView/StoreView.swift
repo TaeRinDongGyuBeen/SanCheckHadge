@@ -170,6 +170,13 @@ struct StoreView: View {
         }
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: CustomBackButton())
+        .onDisappear {
+            let isBuying = clothes.contains(presentClothes)
+            if !isBuying {
+                presentClothes = CoreDataManager.coreDM.readCharacter()[0].presentClothes ?? ""
+            }
+            
+        }
     }
     
     func buttonActive(index: Int) {
