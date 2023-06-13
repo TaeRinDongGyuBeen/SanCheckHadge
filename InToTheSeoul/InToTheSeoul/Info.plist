@@ -2,6 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>com.seoul.InToTheSeoul1</string>
+		<string>com.seoul.InToTheSeoul2</string>
+	</array>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>
@@ -10,5 +15,7 @@
 		<string>processing</string>
 		<string>remote-notification</string>
 	</array>
+	<key>UILaunStoryboardName</key>
+	<string>LaunchScreen.storyboard</string>
 </dict>
 </plist>

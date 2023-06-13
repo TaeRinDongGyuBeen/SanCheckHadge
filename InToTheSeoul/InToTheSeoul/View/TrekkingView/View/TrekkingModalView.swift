@@ -62,14 +62,14 @@ struct TrekkingModalView: View {
                             .textFontAndColor(.body2)
                         
                         HStack {
-                            Text("현재 지점에서 \(pointsModel.selectedPoints[toVisitPointIndex].distanceNextPoint / 10, specifier: "%.2f")km")
+                            Text("현재 지점에서 \(pointsModel.selectedPoints[toVisitPointIndex].distanceNextPoint / 1000, specifier: "%.2f")km")
                                 .font(Font.seoul(.h5))
                                 .foregroundColor(Color.theme.gray5)
                             
                             Text("(\(Int(pointsModel.selectedPoints[toVisitPointIndex].distanceNextPoint * 1.2)) 걸음)")
                                 .textFontAndColor(.h5)
                             
-                            Text("약 \(Int(pointsModel.selectedPoints[toVisitPointIndex].distanceNextPoint / 73))분 예상")
+                            Text("약 \(Int(pointsModel.selectedPoints[toVisitPointIndex].distanceNextPoint / 83))분 예상")
                                 .font(Font.seoul(.h5))
                                 .foregroundColor(Color.theme.gray5)
                         }
@@ -141,7 +141,7 @@ struct TrekkingModalView: View {
                         
                         showResultView = true
                         // TODO: CoreData WorkData Create 필요
-                        CoreDataManager.coreDM.createWorkData(date: Date(), distance: distanceCalculate(pointsModel.annotationPoints), totalTime: timeInterval, gainPoint: Int(distanceCalculate(pointsModel.annotationPoints)  / 10 + 50), moveRoute: [(2.53)], checkPoint: checkPointToString(pointsModel.annotationPoints), startPoint: checkStartPointToString(pointsModel.annotationPoints))
+                        CoreDataManager.coreDM.createWorkData(date: Date(), distance: distanceCalculate(pointsModel.annotationPoints), totalTime: timeInterval, gainPoint: Int(distanceCalculate(pointsModel.annotationPoints) * 100 + 50), moveRoute: [(2.53)], checkPoint: checkPointToString(pointsModel.annotationPoints), startPoint: checkStartPointToString(pointsModel.annotationPoints))
                     })
                     .disabled(!isNearby)
                     .onChange(of: isNearby) { newValue in
@@ -168,7 +168,7 @@ struct TrekkingModalView: View {
                     secondaryButton: .default(Text("확인"), action: {
                         // TODO: CoreData WorkData Create 필요
                         // distance값 변환 필요
-                        CoreDataManager.coreDM.createWorkData(date: Date(), distance: distanceCalculate(pointsModel.annotationPoints), totalTime: timeInterval, gainPoint: Int(distanceCalculate(pointsModel.annotationPoints) / 10), moveRoute: [(2.53)], checkPoint: checkPointToString(pointsModel.annotationPoints), startPoint: checkStartPointToString(pointsModel.annotationPoints))
+                        CoreDataManager.coreDM.createWorkData(date: Date(), distance: distanceCalculate(pointsModel.annotationPoints), totalTime: timeInterval, gainPoint: Int(distanceCalculate(pointsModel.annotationPoints) * 100), moveRoute: [(2.53)], checkPoint: checkPointToString(pointsModel.annotationPoints), startPoint: checkStartPointToString(pointsModel.annotationPoints))
                         showResultView = true
                     })
                 )

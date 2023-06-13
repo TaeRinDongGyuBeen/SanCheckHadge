@@ -1,57 +1,37 @@
-# 산책해찌 
+# <img src="https://github.com/2023SST-InToTheSeoul/in-to-the-Seoul/assets/104834390/dfc15dd6-90f6-44a1-b624-f537257a1703" width=30px> 산책해찌 
 
-(이미지)
-
-<br>
-<br>
+![로고](https://github.com/2023SST-InToTheSeoul/in-to-the-Seoul/assets/104834390/a5500869-88a3-4667-8393-eddedc02bb50)
 <br>
 
 ### 🦔 About 산책해찌
 
-<br>
-
 **산책해찌**는 번아웃과 실패에 지친 은둔-고립 청년들이 '산책'을 통해 우울감을 극복할 수 있도록 도와주며, <br>
 다시 사회활동을 하고 싶다는 의지를 갖게 해주고자 제작한 앱입니다.
-
-<br>
 
 저희 앱의 캐릭터인 **해찌**를 통해 경계심이 강한 은둔-고립 청년들을 비유하여 산책을 통해 변화하는 과정을 은유적으로 나타내고자 하였고, 
 
 **다양한 산책경로**와 **리워드 시스템**을 통해 사용자의 흥미를 유발하고자 하였습니다. 
-
-<br>
-<br>
 <br>
 <br>
 
-## 태린동규빈
-
-<img width="571" alt="image" src="https://github.com/DeveloperAcademy-POSTECH/MC2-morning-Team12-DreamLog/assets/104834390/43aedc11-4e2d-4cdd-b238-a287e1e293fe">
-
-<br>
-<br>
+## 🌱 태린동규빈팀
 
 저희는 은둔-고립 생활을 하는 13만 명의 서울 청년들에게 **산책**이 주는 힘과 건강을 전달해주고,<br>
 ***다시 세상으로 나올 수 있는 힘을 가질 수 있도록*** 하는 앱을 만들고자하는 '***태린동규빈***' 팀입니다.
 
 <br>
 
-
-|김동현(Bazzi)|김태형(Ted)|이우빈(Jelly_Been)|안수린(Rin)|정승균(규니 스펠링 뭐임요 ㅋㅋ;;)|
+|김동현(Tech)|김태형(Tech)|이우빈(Design)|안수린(Design)|정승균(PM)|
 |:---:|:---:|:---:|:---:|:---:|
-|<img alt="" src="https://github.com/DeveloperAcademy-POSTECH/MC2-morning-Team12-DreamLog/assets/59696697/b3c7fd61-2f75-4df4-afc9-e9bfaaf85c23" width="150">|<img alt="" src="https://github.com/DeveloperAcademy-POSTECH/MC2-morning-Team12-DreamLog/assets/59696697/188a6cfd-203e-4d62-9805-d3e4fb08e73d" width="150">|<img alt="" src="https://github.com/DeveloperAcademy-POSTECH/MC2-morning-Team12-DreamLog/assets/59696697/2a186821-5e3b-4f17-8dee-be16065a8783" width="150">|<img alt="" src="https://github.com/DeveloperAcademy-POSTECH/MC2-morning-Team12-DreamLog/assets/59696697/7e916d98-b09e-43d7-bec1-e12b159db9f6" width="150">|<img alt="" src="https://github.com/DeveloperAcademy-POSTECH/MC2-morning-Team12-DreamLog/assets/59696697/188a6cfd-203e-4d62-9805-d3e4fb08e73d" width="150">
-|[<img src="https://img.shields.io/badge/Github-black?style=for-the-badge&logo=github&logoColor=white" alt="Github Blog Badge"/>](https://github.com/moonkey48)|[<img src="https://img.shields.io/badge/Github-black?style=for-the-badge&logo=github&logoColor=white" alt="Github Blog Badge"/>](https://github.com/Taerogrammer)|[<img src="https://img.shields.io/badge/Github-black?style=for-the-badge&logo=github&logoColor=white" alt="Github Blog Badge"/>](https://github.com/KLJH1025)|[<img src="https://img.shields.io/badge/Github-black?style=for-the-badge&logo=github&logoColor=white" alt="Github Blog Badge"/>](https://github.com/ChrisP-00)|[<img src="https://img.shields.io/badge/Github-black?style=for-the-badge&logo=github&logoColor=white" alt="Github Blog Badge"/>](https://github.com/Taerogrammer)|
+|<img alt="" src="https://github.com/DhKimy.png" width="150">|<img alt="" src="https://github.com/Taerogrammer.png" width="150">|<img alt="" src="https://github.com/JellyBeen0326.png" width="150">|<img alt="" src="https://github.com/dimazsr.png" width="150">|<img alt="" src="https://github.com/seunggyun-jeong.png" width="150">
+|[<img src="https://img.shields.io/badge/Github-black?style=for-the-badge&logo=github&logoColor=white" alt="Github Blog Badge"/>](https://github.com/DhKimy)|[<img src="https://img.shields.io/badge/Github-black?style=for-the-badge&logo=github&logoColor=white" alt="Github Blog Badge"/>](https://github.com/Taerogrammer)|[<img src="https://img.shields.io/badge/Github-black?style=for-the-badge&logo=github&logoColor=white" alt="Github Blog Badge"/>](https://github.com/JellyBeen0326)|[<img src="https://img.shields.io/badge/Github-black?style=for-the-badge&logo=github&logoColor=white" alt="Github Blog Badge"/>](https://github.com/dimazsr)|[<img src="https://img.shields.io/badge/Github-black?style=for-the-badge&logo=github&logoColor=white" alt="Github Blog Badge"/>](https://github.com/seunggyun-jeong)|
 
 <br>
 <br>
-<br>
-<br>
 
-## 프로젝트 배경 - 목표
+## 🎯 프로젝트 배경 - 목표
 
 ### 은둔-고립 청년이란 
-
-<br>
 
 서울시에서 정의한 은둔-고립 청년에 의하면,
 > 고립 청년은 사회적으로 대인관계에 있어 분리된 청년들을, <br> 은둔 청년은 활동 구역을 기준으로 대부분의 생활을 집안 혹은 방안에서만 하는 사람들을 의미합니다.
@@ -60,12 +40,8 @@
 이는 서울시 청년의 4.5%를 해당하는 범위입니다.
 
 <br>
-<br>
-<br>
 
 ### 서울시의 대응 정책 
-
-<br>
 
 은둔-고립 청년들이 은둔-고립 생활을 벗어날 수 있는 요소로써 <br> 
 **경제적인 지원**과 **취미, 운동 등의 활동**을 가장 중요하게 꼽았습니다.
@@ -78,24 +54,38 @@
 #### 따라서 '산책'을 통해 운동을 장려하여 은둔-고립 생활을 벗어날 수 있도록 돕고자 하였습니다.
 
 <br>
+
+## 📱 핵심 기능 및 구현
+
+|기능|산책 경로 추천|리워드 시스템|
+|---|------|---|
+|스크린샷|<img src="https://github.com/2023SST-InToTheSeoul/in-to-the-Seoul/assets/104834390/36b67041-f57e-478c-b82a-5268e27c4746" alt="이미지" width="300">|<img src="https://github.com/2023SST-InToTheSeoul/in-to-the-Seoul/assets/104834390/312682dc-835f-4f64-b3b8-e905f619b33f" alt="이미지" width="300">|
+|설명|사용자의 현재 위치를 기준으로<br>주변의 공원, 버스정류장, 가로수 등 <br>주요 시설물을 추천해줍니다.|산책 경로에 도달할 시 <br>리워드를 제공하고, 해당 리워드를 통해 <br>상품을 구매할 수 있도록 하였습니다.|
+
 <br>
+
+|기능|행복 코인|기록 뷰|
+|---|------|---|
+|스크린샷|<img src="https://github.com/2023SST-InToTheSeoul/in-to-the-Seoul/assets/104834390/7a1a9c2c-9b1a-40fc-a6bc-bd357fc2379c" alt="아마지" width="300">|<img src="https://github.com/2023SST-InToTheSeoul/in-to-the-Seoul/assets/104834390/f0c12a39-95a2-4c2a-a58d-df76c8d6cc28" alt="이미지" width="300">|
+|설명|현재는 코인을 통해 '해찌'를 꾸밀 수 있지만,<br> 추후엔 공공정책과 연계하여 <br>지원금 등을 제공하고자 합니다.|사용자가 산책한 기록을 <br>시간 순서대로 보여주는 뷰입니다.|
+
 <br>
 <br>
 
-## 핵심 기능 및 구현
+## 💻 개발 배포 환경
 
-|산책 경로 추천|리워드 시스템|행복 코인|
-|------|---|---|
-|테스트1|테스트2|테스트3|
-|사용자의 현재 위치를 기준으로<br>주변의 공원, 버스정류장, 가로수 등 <br>주요 시설물을 추천해줍니다.|산책 경로에 도달할 시 <br>리워드를 제공하고, 해당 리워드를 통해 <br>상품을 구매할 수 있도록 하였습니다.|현재는 코인을 통해 '해찌'를 꾸밀 수 있지만,<br> 추후엔 공공정책과 연계하여 <br>지원금 등을 제공하고자 합니다.|
-|테스트1|테스트2|테스트3|
+<img width="80" src="https://img.shields.io/badge/IOS-16%2B-silver"> <img width="95" src="https://img.shields.io/badge/Xcode-14.3-blue">
 
 <br>
 <br>
+  
+## 🌎 테스트 환경
+
+<img width="95" src="https://img.shields.io/badge/Simulator-14.3-blue">
 <br>
 <br>
 
-## **커밋 컨벤션**
+## 😎 **커밋 컨벤션**
   
 <details>
 <summary>팀 협업용 깃허브 컨벤션 문서 </summary>
@@ -145,3 +135,30 @@
 [REFACTOR] 전면 수정이 있을 때 사용합니다
 [INIT] 프로젝트 생성
 ```
+  </div>
+</details>
+
+<br>
+<br>
+
+## 🎬 영상 유튜브 링크
+
+[산책해찌 플레이 영상](https://youtu.be/ufnZ9PsNyds)
+
+<br>
+<br>
+
+## 👩‍👩‍👧‍👦 참가자 코멘트
+
+
+- **김동현(Tech)** : 대한민국의 모든 은둔 청년들이 산책을 하는 그 날까지 열심히 개발한다.
+- **김태형(Tech)** : 지도에 대해 처음 다뤄봐서 매우 흥미로웠고, 재미있는 경험이었습니다 😁
+- **이우빈(Design)** :
+- **안수린(Design)** :
+- **정승균(PM)** : 서울 은둔 청년 문제에 대해서 깊게 알아볼 수 있는 계기가 되었고, 이 프로젝트를 통해 은둔-고립 청년 문제가 해결 될 수 있기를 바랍니다!
+
+<br>
+<br>
+  
+  
+

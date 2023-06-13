@@ -16,6 +16,10 @@ extension View {
     func textFontAndColor(_ font: Font.SeoulFont) -> some View {
         self.modifier(FontAndColorModifier(font: font))
     }
+    
+    func isHidden(_ isHidden: Bool) -> some View {
+        self.modifier(ViewHideModifier(isHidden: isHidden))
+    }
 }
 
 struct FontAndColorModifier: ViewModifier {
@@ -98,5 +102,18 @@ struct FontAndColorModifier: ViewModifier {
         }
 
         
+    }
+}
+
+struct ViewHideModifier: ViewModifier {
+    let isHidden: Bool
+    
+    func body(content: Content) -> some View {
+        if isHidden {
+            content
+                .hidden()
+        } else {
+            content
+        }
     }
 }

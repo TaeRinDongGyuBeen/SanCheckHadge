@@ -56,41 +56,36 @@ struct OnboardingView: View {
             .padding(.bottom, 18)
             
             Spacer()
-            
-            TabView(selection: $selection) {
-                GifImage("Onboarding_1")
+            GeometryReader { geo in
+                TabView(selection: $selection) {
+                    GifImage("Onboarding_1")
+                        .frame(width: geo.size.width - 40, height: (geo.size.width - 40) * 1.76)
+                        .tag(0)
                     
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 322)
-                    .tag(0)
-                GifImage("Onboarding_2")
+                    GifImage("Onboarding_2")
+                        .frame(width: geo.size.width - 40, height: (geo.size.width - 40) * 1.76)
+                        .tag(1)
                     
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 322)
-                    .tag(1)
-                GifImage("Onboarding_3")
+                    GifImage("Onboarding_3")
+                        .frame(width: geo.size.width - 40, height: (geo.size.width - 40) * 1.76)
+                        .tag(2)
                     
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 322)
-                    .tag(2)
-                GifImage("Onboarding_4")
+                    GifImage("Onboarding_4")
+                        .frame(width: geo.size.width - 40, height: (geo.size.width - 40) * 1.76)
+                        .tag(3)
                     
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 322)
-                    .tag(3)
-                
-                Image("Onboarding_5")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 260)
-                    .tag(4)
+                    Image("Onboarding_5")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: geo.size.width - 40, height: (geo.size.height - 160))
+                        .tag(4)
+                }
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
+                .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
             }
-            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
-            .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
-            .accentColor(.black) // 인디케이터 점의 색상을 까만색으로 설정
             
             
-            ButtonComponent(buttonType: .nextButton, content: selection == 2 ? "시작하기" : "다음 페이지 넘어가기", isActive: true) {
+            ButtonComponent(buttonType: .nextButton, content: selection == 4 ? "시작하기" : "다음 페이지 넘어가기", isActive: true) {
                 if selection < 4 {
                     withAnimation {
                         selection += 1
@@ -116,6 +111,14 @@ struct OnboardingView: View {
             }
         })
         .padding(.horizontal, 30)
+        .onAppear {
+              setupAppearance()
+            }
+    }
+    
+    func setupAppearance() {
+      UIPageControl.appearance().currentPageIndicatorTintColor = .black
+      UIPageControl.appearance().pageIndicatorTintColor = UIColor.black.withAlphaComponent(0.2)
     }
 }
 

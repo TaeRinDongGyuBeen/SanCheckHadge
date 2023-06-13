@@ -17,43 +17,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreenCharacter" translatesAutoresizingMaskIntoConstraints="NO" id="1CC-s7-oYx">
-                                <rect key="frame" x="108" y="332" width="177" height="332"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="332" id="Nev-xk-rKh"/>
-                                    <constraint firstAttribute="width" constant="177" id="OhE-gH-Vdx"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="obG-Y5-kRd">
-                                <rect key="frame" x="0.0" y="832" width="393" height="0.0"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Normal_Hedge" translatesAutoresizingMaskIntoConstraints="NO" id="E57-9z-pwP">
+                                <rect key="frame" x="-188" y="253" width="689" height="670"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="산책해찌" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="GJd-Yh-RWb">
-                                <rect key="frame" x="127.33333333333333" y="209" width="138.66666666666669" height="48"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="산책해찌" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iNg-Ag-pof">
+                                <rect key="frame" x="127" y="133" width="139" height="48"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
                                 <color key="textColor" name="White"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreenCircle" translatesAutoresizingMaskIntoConstraints="NO" id="bzQ-RN-bpt">
-                                <rect key="frame" x="-23.666666666666657" y="577" width="440.33333333333326" height="315"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="315" id="Wnc-GA-ccR"/>
-                                    <constraint firstAttribute="width" constant="440" id="mYL-7p-z7o"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
-                        <color key="backgroundColor" name="Green1"/>
+                        <color key="backgroundColor" name="Yellow"/>
                         <constraints>
-                            <constraint firstItem="GJd-Yh-RWb" firstAttribute="top" secondItem="Bcu-3y-fUS" secondAttribute="top" constant="150" id="1FU-7f-fhE"/>
-                            <constraint firstItem="bzQ-RN-bpt" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="6vg-sR-0Hy"/>
-                            <constraint firstItem="GJd-Yh-RWb" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="GoI-34-bic"/>
-                            <constraint firstItem="1CC-s7-oYx" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="J9d-jV-SCw"/>
-                            <constraint firstAttribute="bottom" secondItem="bzQ-RN-bpt" secondAttribute="bottom" constant="-40" id="Ng7-oZ-d5L"/>
-                            <constraint firstItem="1CC-s7-oYx" firstAttribute="top" secondItem="GJd-Yh-RWb" secondAttribute="bottom" constant="75" id="viM-sM-gXo"/>
+                            <constraint firstItem="iNg-Ag-pof" firstAttribute="top" secondItem="Bcu-3y-fUS" secondAttribute="top" constant="80" id="7vT-0m-btc"/>
+                            <constraint firstItem="iNg-Ag-pof" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="zFs-RL-ucP"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -63,13 +42,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="LaunchScreenCharacter" width="709" height="1328"/>
-        <image name="LaunchScreenCircle" width="375" height="271"/>
-        <namedColor name="Green1">
-            <color red="0.33725490196078434" green="0.77254901960784317" blue="0.58823529411764708" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
+        <image name="Normal_Hedge" width="1125" height="900"/>
         <namedColor name="White">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Yellow">
+            <color red="1" green="0.8666666666666667" blue="0.58039215686274515" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

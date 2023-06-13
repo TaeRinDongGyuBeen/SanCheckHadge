@@ -73,33 +73,70 @@ struct TrekkingView: View {
                         if let current = location {
                             userLocation = current
                             region = MKCoordinateRegion(center: current, span: span)
+            if showLoadingView {
+                LoadingView()
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                            showLoadingView = false
                         }
                     }
-                }, label: {
-                    ZStack {
-                        Circle()
-                            .fill(Color.white)
-                            .frame(width: 40)
-                            .overlay(
-                                Circle()
-                                    .stroke(Color.black, lineWidth: 0.3)
-                            )
-                            .shadow(radius: 3, x: 0, y: 2)
-                        Image(systemName: "scope")
-                            .foregroundColor(.black)
-                    }
+            } else {
+                VStack {
+                    MapView(mkMapView: $mkMapView, showUserLocation: $showUserLocation, userLocation: $userLocation, region: $region, span: $span)
+                        .environmentObject(pointsModel)
                     
-                })
-                .padding()
-                
-                if !showResultView {
-                    TrekkingModalView(isNearby: $isNearby, showRewardView: $showRewardView, showResultView: $showResultView, toVisitPointIndex: $toVisitPointIndex, firstTime: $firstTime, mkMapView: $mkMapView, progress: $progress)
-                } else {
-                    TrekkingResultView(userMoney: $userMoney, accumulateDistance: $accumulateDistance)
                 }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .ignoresSafeArea()
+                .onAppear {
+                    startBackgroundTask()
+                }
+                
+                VStack {
+                    CustomProgressBar(progress: $progress, totalDistance: $totalDistance, predictMin: $predictMin)
+                        .frame(height: 57)
+                    Spacer()
+                }
+                .padding(.top, 14)
+                .padding(.leading, 45)
+                .padding(.trailing, 45)
+                
+                
+                //MARK: - 모달 뷰
+                VStack(alignment: .trailing) {
+                    Button(action: {
+                        getCurrentLocation { location in
+                            if let current = location {
+                                userLocation = current
+                                region = MKCoordinateRegion(center: current, span: span)
+                            }
+                        }
+                    }, label: {
+                        ZStack {
+                            Circle()
+                                .fill(Color.white)
+                                .frame(width: 40)
+                                .overlay(
+                                    Circle()
+                                        .stroke(Color.black, lineWidth: 0.3)
+                                )
+                                .shadow(radius: 3, x: 0, y: 2)
+                            Image(systemName: "scope")
+                                .foregroundColor(.black)
+                        }
+                        
+                    })
+                    .padding()
+                    
+                    if !showResultView {
+                        TrekkingModalView(isNearby: $isNearby, showRewardView: $showRewardView, showResultView: $showResultView, toVisitPointIndex: $toVisitPointIndex, firstTime: $firstTime, mkMapView: $mkMapView, progress: $progress)
+                    } else {
+                        TrekkingResultView(userMoney: $userMoney, accumulateDistance: $accumulateDistance)
+                    }
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+                .ignoresSafeArea(edges: .bottom)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
-            .ignoresSafeArea(edges: .bottom)
         }
         .overlay(
             Group {
@@ -109,7 +146,8 @@ struct TrekkingView: View {
                         .overlay(
                             withAnimation(.easeInOut(duration: 4)) {
                                 VStack {
-                                    RewardView(points: Int(pointsModel.selectedPoints[toVisitPointIndex].distanceNextPoint / 10))
+                                    RewardView(points: Int(pointsModel.selectedPoints[toVisitPointIndex - 1
+                                                                                     ].distanceNextPoint / 10))
                                 }
                             }
                         )
@@ -117,6 +155,8 @@ struct TrekkingView: View {
             }
         )
         .navigationBarBackButtonHidden()
+        
+        
         
     }
     

@@ -10,6 +10,7 @@
 		162FE5FB2A2D654A00DCDFA3 /* DefaultLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162FE5FA2A2D654A00DCDFA3 /* DefaultLocation.swift */; };
 		162FE6012A2DAA1A00DCDFA3 /* MapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162FE6002A2DAA1A00DCDFA3 /* MapAnnotation.swift */; };
 		162FE6032A2DC2FC00DCDFA3 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162FE6022A2DC2FC00DCDFA3 /* ProgressView.swift */; };
+		163A2B7F2A3467040053C6BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 163A2B7E2A3467040053C6BC /* LaunchScreen.storyboard */; };
 		167692962A2F047E0077B106 /* RewardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167692952A2F047E0077B106 /* RewardView.swift */; };
 		167692982A2F6C100077B106 /* TrekkingResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167692972A2F6C100077B106 /* TrekkingResultView.swift */; };
 		3D3846062A2B9C20008A9166 /* ButtonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3846052A2B9C20008A9166 /* ButtonComponent.swift */; };
@@ -28,7 +29,6 @@
 		C924BE182A2BD84600FF36BA /* DataReceiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C924BE172A2BD84600FF36BA /* DataReceiveView.swift */; };
 		C927BDF92A2D89870004011B /* MyRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C927BDF82A2D89870004011B /* MyRecordView.swift */; };
 		C94DFE9A2A307C8F001A8B97 /* NavigationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94DFE992A307C8F001A8B97 /* NavigationUtil.swift */; };
-		C94DFE9C2A31610E001A8B97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C94DFE9B2A31610E001A8B97 /* LaunchScreen.storyboard */; };
 		C95D3A532A2D683D009DE078 /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95D3A522A2D683D009DE078 /* TimelineView.swift */; };
 		C95F4AA32A2AE4A800DFBFE3 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95F4AA22A2AE4A800DFBFE3 /* ColorExtension.swift */; };
 		C95F4AA52A2B134500DFBFE3 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95F4AA42A2B134500DFBFE3 /* ViewExtension.swift */; };
@@ -60,6 +60,7 @@
 		162FE5FA2A2D654A00DCDFA3 /* DefaultLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLocation.swift; sourceTree = "<group>"; };
 		162FE6002A2DAA1A00DCDFA3 /* MapAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotation.swift; sourceTree = "<group>"; };
 		162FE6022A2DC2FC00DCDFA3 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		163A2B7E2A3467040053C6BC /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		167692952A2F047E0077B106 /* RewardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardView.swift; sourceTree = "<group>"; };
 		167692972A2F6C100077B106 /* TrekkingResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrekkingResultView.swift; sourceTree = "<group>"; };
 		3D3846052A2B9C20008A9166 /* ButtonComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonComponent.swift; sourceTree = "<group>"; };
@@ -79,7 +80,6 @@
 		C924BE172A2BD84600FF36BA /* DataReceiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataReceiveView.swift; sourceTree = "<group>"; };
 		C927BDF82A2D89870004011B /* MyRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRecordView.swift; sourceTree = "<group>"; };
 		C94DFE992A307C8F001A8B97 /* NavigationUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationUtil.swift; sourceTree = "<group>"; };
-		C94DFE9B2A31610E001A8B97 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C95D3A522A2D683D009DE078 /* TimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineView.swift; sourceTree = "<group>"; };
 		C95F4AA22A2AE4A800DFBFE3 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		C95F4AA42A2B134500DFBFE3 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
@@ -192,7 +192,7 @@
 				C9975FE12A2CC03600C1B4DC /* MainView */,
 				C976C6472A2BED38009E0D24 /* StoreView */,
 				C924BE162A2BD82E00FF36BA /* DataReceiveView */,
-				C94DFE9B2A31610E001A8B97 /* LaunchScreen.storyboard */,
+				163A2B7E2A3467040053C6BC /* LaunchScreen.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -421,8 +421,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9D8CD922A27597100A880E8 /* Preview Assets.xcassets in Resources */,
-				C94DFE9C2A31610E001A8B97 /* LaunchScreen.storyboard in Resources */,
 				C9C0C10A2A319AD300D14041 /* Onboarding_4.gif in Resources */,
+				163A2B7F2A3467040053C6BC /* LaunchScreen.storyboard in Resources */,
 				C9C0C1092A319AD300D14041 /* Onboarding_1.gif in Resources */,
 				C9C0C1072A319AD300D14041 /* Onboarding_2.gif in Resources */,
 				C9C0C1082A319AD300D14041 /* Onboarding_3.gif in Resources */,
@@ -602,6 +602,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"InToTheSeoul/Preview Content\"";
@@ -615,10 +616,8 @@
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자의 위치를 확인하기 위해 사용자 위치 정보 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -638,6 +637,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"InToTheSeoul/Preview Content\"";
@@ -651,10 +651,8 @@
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자의 위치를 확인하기 위해 사용자 위치 정보 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
