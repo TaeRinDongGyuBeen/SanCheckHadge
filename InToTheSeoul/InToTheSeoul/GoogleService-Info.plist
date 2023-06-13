@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>377816550456-ricokcm10artf360emba400m8fhpmris.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.377816550456-ricokcm10artf360emba400m8fhpmris</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBzbkBzs742XzhnCDJQ0ZVbkaMVv7S2eLU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>377816550456</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.seoul.InToTheSeoul</string>
+	<key>PROJECT_ID</key>
+	<string>sancheckhedge</string>
+	<key>STORAGE_BUCKET</key>
+	<string>sancheckhedge.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:377816550456:ios:96da1abb7d3f1474022acd</string>
+</dict>
+</plist>
