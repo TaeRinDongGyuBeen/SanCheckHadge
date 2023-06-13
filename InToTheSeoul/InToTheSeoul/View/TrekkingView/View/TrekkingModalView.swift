@@ -135,6 +135,10 @@ struct TrekkingModalView: View {
                         mkMapView.removeAnnotation(pointsModel.annotationPoints[toVisitPointIndex])
                         mkMapView.addAnnotation(pointsModel.annotationPoints[toVisitPointIndex])
                         //                        toVisitPointIndex += 1
+                        
+                        //remove안됨
+//                        mkMapView.removeOverlay(mkMapView.overlays as! MKOverlay)
+                        
                         showResultView = true
                         // TODO: CoreData WorkData Create 필요
                         CoreDataManager.coreDM.createWorkData(date: Date(), distance: distanceCalculate(pointsModel.annotationPoints), totalTime: timeInterval, gainPoint: Int(distanceCalculate(pointsModel.annotationPoints)  / 10 + 50), moveRoute: [(2.53)], checkPoint: checkPointToString(pointsModel.annotationPoints), startPoint: checkStartPointToString(pointsModel.annotationPoints))

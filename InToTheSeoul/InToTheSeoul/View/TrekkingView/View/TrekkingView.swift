@@ -46,7 +46,7 @@ struct TrekkingView: View {
             //                    }
             //            } else {
             VStack {
-                MapView(mkMapView: $mkMapView, showUserLocation: $showUserLocation, userLocation: $userLocation, region: $region, span: $span)
+                MapView(mkMapView: $mkMapView, showUserLocation: $showUserLocation, userLocation: $userLocation, region: $region, span: $span, toVisitPointIndex: $toVisitPointIndex)
                     .environmentObject(pointsModel)
                 
             }
