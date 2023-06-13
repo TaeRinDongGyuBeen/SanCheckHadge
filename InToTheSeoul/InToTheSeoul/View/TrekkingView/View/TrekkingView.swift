@@ -37,6 +37,42 @@ struct TrekkingView: View {
     
     var body: some View {
         ZStack {
+            //            if showLoadingView {
+            //                LoadingView()
+            //                    .onAppear {
+            //                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            //                            showLoadingView = false
+            //                        }
+            //                    }
+            //            } else {
+            VStack {
+                MapView(mkMapView: $mkMapView, showUserLocation: $showUserLocation, userLocation: $userLocation, region: $region, span: $span, toVisitPointIndex: $toVisitPointIndex)
+                    .environmentObject(pointsModel)
+                
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .ignoresSafeArea()
+            .onAppear {
+                startBackgroundTask()
+            }
+            
+            VStack {
+                CustomProgressBar(progress: $progress, totalDistance: $totalDistance, predictMin: $predictMin)
+                    .frame(height: 57)
+                Spacer()
+            }
+            .padding(.top, 14)
+            .padding(.leading, 45)
+            .padding(.trailing, 45)
+            
+            
+            //MARK: - 모달 뷰
+            VStack(alignment: .trailing) {
+                Button(action: {
+                    getCurrentLocation { location in
+                        if let current = location {
+                            userLocation = current
+                            region = MKCoordinateRegion(center: current, span: span)
             if showLoadingView {
                 LoadingView()
                     .onAppear {
