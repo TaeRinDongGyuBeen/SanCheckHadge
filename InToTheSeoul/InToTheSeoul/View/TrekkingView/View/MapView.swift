@@ -21,6 +21,8 @@ struct MapView: UIViewRepresentable {
     
     @Binding var span: MKCoordinateSpan
     
+    @Binding var toVisitPointIndex: Int
+    
     @EnvironmentObject var pointsModel: PointsModel
     
 //    @ObservedObject var viewPoint: ViewPoint
@@ -104,22 +106,76 @@ struct MapView: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: MKMapView, context: Context) {
-        uiView.setRegion(region, animated: true)
-        uiView.setNeedsDisplay()
-        print(pointsModel.annotationPoints.first?.viewPoint)
-//        let pointMarkers: [ViewPoint] = pointsModel.selectedPoints
-//
-//        //MARK: - 여러 경로
-//        var placemarks: [AnnotationPoint] = [] // 지점들의 배열
-//
-//        for point in pointMarkers {
-//            placemarks.append(AnnotationPoint(viewPoint: point))
-//        }
-//
-//        uiView.removeAnnotations(uiView.annotations)
-//        uiView.addAnnotations(placemarks)
-        
-        
+            uiView.setRegion(region, animated: true)
+            uiView.setNeedsDisplay()
+            print(pointsModel.annotationPoints.first?.viewPoint)
+
+            //MARK: - 여러 경로
+            let pointMarkers: [ViewPoint] = pointsModel.selectedPoints
+            print("제발 \(pointMarkers[0].nowPoint)")
+
+            var placemarks = [MKPlacemark]()
+
+            for i in 0..<Int(pointsModel.selectedPoints.count) {
+                placemarks.append(MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: Double(pointsModel.selectedPoints[i].nowPoint.lat)!, longitude: Double(pointsModel.selectedPoints[i].nowPoint.lon)!)))
+            }
+
+
+            print("APPEND \(placemarks)")
+
+            //pointsModel.selectedPoint
+            var directions: [MKDirections] = []
+
+            var request = MKDirections.Request()
+
+
+
+            if toVisitPointIndex == 0 {
+                request.source = MKMapItem(placemark: placemarks[placemarks.count-1])
+                request.destination = MKMapItem(placemark: placemarks[toVisitPointIndex])
+            } else if toVisitPointIndex == placemarks.count {
+                request.source = MKMapItem(placemark: placemarks[toVisitPointIndex])
+                request.destination = MKMapItem(placemark: placemarks[placemarks.count - 1])
+            } else {
+                request.source = MKMapItem(placemark: placemarks[toVisitPointIndex - 1])
+                request.destination = MKMapItem(placemark: placemarks[toVisitPointIndex])
+            }
+            request.requestsAlternateRoutes = true
+            request.transportType = .walking
+
+            let directionsRequest = MKDirections(request: request)
+            directions.append(directionsRequest)
+            print("directions --> \(directions)")
+            print("to visit \(toVisitPointIndex)")
+
+
+            for direction in directions {
+                direction.calculate { response, error in
+                    guard let route = response?.routes.first else { return }
+                    mkMapView.removeOverlays(mkMapView.overlays)
+                    mkMapView.addOverlay(route.polyline)
+
+
+                    // Overlay를 그리는 MKPolylineRenderer 생성
+                    let renderer = MKPolylineRenderer(overlay: route.polyline)
+
+                    // Overlay의 색상 설정
+                    renderer.strokeColor = UIColor(Color.theme.green2)
+
+                    // 다른 속성들을 필요에 따라 설정
+                    
+                    // MKMapView에서 기존의 Renderer 가져오기
+                    if let oldRenderer = mkMapView.renderer(for: route.polyline) as? MKPolylineRenderer {
+                        // 기존 Renderer의 속성을 업데이트
+                        oldRenderer.strokeColor = renderer.strokeColor
+                        mkMapView.setNeedsDisplay()
+                    } else {
+                        // 기존 Renderer가 없는 경우, 새로운 Renderer로 추가
+                        mkMapView.addOverlay(route.polyline)
+                    }
+
+                }
+            }
     }
     
     
