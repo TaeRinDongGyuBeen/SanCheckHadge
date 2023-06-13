@@ -195,6 +195,26 @@ struct MapView: UIViewRepresentable {
                 guard let route = response?.routes.first else { return }
                 mkMapView.removeOverlays(mkMapView.overlays)
                 mkMapView.addOverlay(route.polyline)
+                
+                
+                // Overlay를 그리는 MKPolylineRenderer 생성
+                let renderer = MKPolylineRenderer(overlay: route.polyline)
+                
+                // Overlay의 색상 설정
+                renderer.strokeColor = UIColor(Color.theme.green2)
+                
+                // 다른 속성들을 필요에 따라 설정
+                
+                // MKMapView에서 기존의 Renderer 가져오기
+                if let oldRenderer = mkMapView.renderer(for: route.polyline) as? MKPolylineRenderer {
+                    // 기존 Renderer의 속성을 업데이트
+                    oldRenderer.strokeColor = renderer.strokeColor
+                    mkMapView.setNeedsDisplay()
+                } else {
+                    // 기존 Renderer가 없는 경우, 새로운 Renderer로 추가
+                    mkMapView.addOverlay(route.polyline)
+                }
+                
             }
         }
     }
