@@ -7,12 +7,10 @@
 
 struct UserData: Codable, Identifiable, Hashable {
     var id: String
-    var sex: String
-    var age: String
+    var sex: Int
+    var age: Int
     var walkingDate: String
     var walkingRoute: [[Double]]
-    var startingPoint: String
-    var endPoint: String
     var totalDistance: Double
     var accumulateDistance: Double
 }

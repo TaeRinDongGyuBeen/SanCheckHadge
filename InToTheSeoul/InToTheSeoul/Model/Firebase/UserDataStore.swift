@@ -137,8 +137,6 @@ class UserDataStore: ObservableObject {
             "age": userData.age,
             "walkingDate": userData.walkingDate,
             "walkingRoute": userData.walkingRoute,
-            "startingPoint": userData.startingPoint,
-            "endPoint": userData.endPoint,
             "totalDistance": userData.totalDistance,
             "accumulateDistance": userData.accumulateDistance
         ] as [String : Any])
@@ -158,8 +156,7 @@ class UserDataStore: ObservableObject {
         let updates: [String : Any] = [
             "id": userData.id,
             "sex": userData.sex,
-            "age": userData.age,
-            "startingPoint": userData.startingPoint
+            "age": userData.age
         ]
         
         let childUpdates = ["userData/\(userData.id)": updates]
