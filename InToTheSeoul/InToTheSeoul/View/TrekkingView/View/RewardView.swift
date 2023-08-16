@@ -137,5 +137,4 @@ struct EmitterView: UIViewRepresentable {
         
         return emitterCells
     }
-    
 }

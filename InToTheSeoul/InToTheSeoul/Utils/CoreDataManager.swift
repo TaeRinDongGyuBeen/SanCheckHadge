@@ -31,7 +31,7 @@ class CoreDataManager: ObservableObject {
         user.username = username
         user.age = Int16(age)
         user.gender = Int16(gender)
-        user.accumulateCoin = 1200
+        user.accumulateCoin = 4000
         user.accumulateDistance = 0.0
         
         do {

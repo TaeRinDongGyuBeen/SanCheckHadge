@@ -10,6 +10,9 @@ import CoreLocation
 import MapKit
 
 struct TrekkingModalView: View {
+    @StateObject var userDataStore: UserDataStore = UserDataStore()
+    @State var dataModel: UserDataModel = UserDataModel()
+    
     @EnvironmentObject var pointsModel: PointsModel
     @State var height: CGFloat = 80
     @Binding var isNearby: Bool
@@ -138,6 +141,10 @@ struct TrekkingModalView: View {
                         showResultView = true
                         // TODO: CoreData WorkData Create 필요
                         CoreDataManager.coreDM.createWorkData(date: Date(), distance: distanceCalculate(pointsModel.annotationPoints), totalTime: timeInterval, gainPoint: Int(distanceCalculate(pointsModel.annotationPoints) * 100 + 50), moveRoute: [(2.53)], checkPoint: checkPointToString(pointsModel.annotationPoints), startPoint: checkStartPointToString(pointsModel.annotationPoints))
+                        firebaseDataSet()
+                        userDataStore.createUserData(userData: UserData(id: UUID().uuidString, sex: dataModel.sex, age: dataModel.age, walkingDate: dataModel.trekkingDate, walkingRoute: dataModel.checkPoint, totalDistance: dataModel.totalDistance, accumulateDistance: dataModel.accumulateDistance))
+                        
+                        
                     })
                     .disabled(!isNearby)
                     .onChange(of: isNearby) { newValue in
@@ -165,6 +172,8 @@ struct TrekkingModalView: View {
                         // TODO: CoreData WorkData Create 필요
                         // distance값 변환 필요
                         CoreDataManager.coreDM.createWorkData(date: Date(), distance: distanceCalculate(pointsModel.annotationPoints), totalTime: timeInterval, gainPoint: Int(distanceCalculate(pointsModel.annotationPoints) * 100), moveRoute: [(2.53)], checkPoint: checkPointToString(pointsModel.annotationPoints), startPoint: checkStartPointToString(pointsModel.annotationPoints))
+                        firebaseDataSet()
+                        userDataStore.createUserData(userData: UserData(id: UUID().uuidString, sex: dataModel.sex, age: dataModel.age, walkingDate: dataModel.trekkingDate, walkingRoute: dataModel.checkPoint, totalDistance: dataModel.totalDistance, accumulateDistance: dataModel.accumulateDistance))
                         showResultView = true
                     })
                 )
@@ -251,6 +260,29 @@ struct TrekkingModalView: View {
             }
         }
         return ((distanceSum / 1000) * 100).rounded() / 100
+    }
+    
+    func returnCheckPoint(_ checkPoint: [AnnotationPoint]) -> [[Double]] {
+        var returnPoint = [[Double]]()
+        for i in checkPoint {
+            if i.viewPoint.isVisited {
+                var temp = [Double]()
+                temp.append(Double(i.viewPoint.nowPoint.lat) ?? 0.0)
+                temp.append(Double(i.viewPoint.nowPoint.lon) ?? 0.0)
+                returnPoint.append(temp)
+            }
+        }
+        
+        return returnPoint
+    }
+    
+    func firebaseDataSet() {
+        dataModel.age = Int(CoreDataManager.coreDM.readUser()[0].age)
+        dataModel.sex = Int(CoreDataManager.coreDM.readUser()[0].gender)
+        dataModel.trekkingDate = "2023-03-26"
+        dataModel.checkPoint = returnCheckPoint(pointsModel.annotationPoints)
+        dataModel.totalDistance = distanceCalculate(pointsModel.annotationPoints)
+        dataModel.accumulateDistance = CoreDataManager.coreDM.readUser()[0].accumulateDistance
     }
 }
 
