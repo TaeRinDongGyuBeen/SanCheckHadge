@@ -8,6 +8,7 @@
 import SwiftUI
 import WebKit
 
+// 되는지 확인
 struct GifImage: UIViewRepresentable {
     private let name: String
 
